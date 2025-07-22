@@ -1,0 +1,8 @@
+{
+  "default": true,
+  "MD013": false,  // disable line-length rule
+  "MD033": false,   // allow inline HTML
+  "MD024": false,   // no duplicate heading
+  "MD025": false,   // allow multiple title/heading tags
+  "MD012": false,   // allow multiple empty lines
+}

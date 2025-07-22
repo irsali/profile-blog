@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+:root {
+	--primary-link: #0070f3;
+	--header-link: #333;
+}
+
+.blog-header__right a.active {
+  font-weight: bold;
+  color: var(--primary-link);
+  border-bottom: 2px solid var(--primary-link);
+}
