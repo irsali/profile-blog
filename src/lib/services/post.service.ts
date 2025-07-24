@@ -39,8 +39,28 @@ class PostService {
     const set = new Set<string>();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries(modules).forEach(([path, mod]) => {
-      mod.metadata?.tags.forEach(tag => {
-        set.add(tag);
+      mod.metadata?.tags?.forEach((tags: string | Array<string>) => {
+        if (typeof tags === 'string') {
+          set.add(tags);
+        } else if (Array.isArray(tags)) {
+          tags.forEach(tag => set.add(tag));
+        }
+      })
+    });
+
+    return Array.from(set);
+  }
+
+  async getAllCategories(): Promise<string[]> {
+    const modules = import.meta.glob<MarkdownModule>(
+      '../../posts/blog/*.md',
+      { eager: true }
+    );
+    const set = new Set<string>();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    Object.entries(modules).forEach(([path, mod]) => {
+      mod.metadata?.categories?.forEach(cat => {
+        set.add(cat);
       })
     });
 

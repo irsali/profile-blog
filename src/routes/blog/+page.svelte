@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { PostMetaWithUrl } from '$lib/types';
+	import BlogMetaSidebar from '$lib/templates/blogMetaSidebar.svelte';
 
-	export let data: { posts: PostMetaWithUrl[] };
+	export let data: { posts: PostMetaWithUrl[], categories?: string[], tags?: string[] };
 	const posts = data.posts;
 
 	const pageSize = 10;
@@ -17,32 +18,39 @@
 	}
 </script>
 
-<header>
-	<h1>Blogs</h1>
-</header>
+<div class="flex flex-col lg:flex-row gap-8">
+	<div class="flex-1">
+		<header>
+			<h1>Blogs</h1>
+		</header>
 
-<ul>
-	{#each paginatedPosts as post}
-		<li>
-			<a href={post.url}>{post.title}</a>
-			<small>{post.date}</small>
-		</li>
-	{/each}
-</ul>
+		<ul>
+			{#each paginatedPosts as post}
+				<li>
+					<a href={post.url}>{post.title}</a>
+					<small>{post.date}</small>
+				</li>
+			{/each}
+		</ul>
 
-{#if totalPages > 1}
-	<nav class="pagination">
-		<button on:click={() => goToPage(currentPage - 1)} disabled={currentPage === 1}
-			>&laquo; Prev</button
-		>
-		{#each Array(totalPages) as _, i}
-			<button on:click={() => goToPage(i + 1)} class:active={currentPage === i + 1}>{i + 1}</button>
-		{/each}
-		<button on:click={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}
-			>Next &raquo;</button
-		>
-	</nav>
-{/if}
+		{#if totalPages > 1}
+			<nav class="pagination">
+				<button on:click={() => goToPage(currentPage - 1)} disabled={currentPage === 1}
+					>&laquo; Prev</button
+				>
+				{#each Array(totalPages) as _, i}
+					<button on:click={() => goToPage(i + 1)} class:active={currentPage === i + 1}>{i + 1}</button>
+				{/each}
+				<button on:click={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}
+					>Next &raquo;</button
+				>
+			</nav>
+		{/if}
+	</div>
+	<aside class="w-full lg:w-64 lg:pl-8">
+		<BlogMetaSidebar categories={data.categories ?? []} tags={data.tags ?? []} />
+	</aside>
+</div>
 
 <style>
 	.pagination {

@@ -1,6 +1,6 @@
 ---
 title:  "Debugging in VS Code"
-date:   2017-11-19
+date:   "2017-11-19"
 desc: "Debugging in VS Code"
 keywords: "VS Code, debugging"
 categories: [others]
