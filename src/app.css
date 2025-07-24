@@ -2,12 +2,36 @@
 @plugin '@tailwindcss/typography';
 
 :root {
-	--primary-link: #0070f3;
-	--header-link: #333;
+  --color-primary: #19c7a6;
+  --color-primary-hover: #17b398;
+  --color-secondary: #0070f3;
+  --color-accent: #ffb300;
+  --color-muted: #f3f4f6;
+  --color-bg: #ffffff;
+  --color-text: #222;
+  --color-border: #e5e7eb;
+  --color-link: #19c7a6;
+  --color-overlay: rgba(0, 0, 0, 0.08);
+  --color-modal-overlay: rgba(0, 0, 0, 0.08);
+  --color-modal-bg: #fff;
+  --color-modal-border: #e5e7eb;
+  --color-modal-shadow: rgba(0,0,0,0.10);
+  --color-modal-title: #222;
+  --color-modal-close: #94a3b8;
+  --color-modal-input-bg: #f8fafc;
+  --color-modal-input-border: #e5e7eb;
+  --color-modal-input-text: #222;
+  --color-modal-divider: #e5e7eb;
+  --color-modal-hover: #e6f7f4;
+  --color-modal-date: #6b7280;
+  --spacing-md: 16px;
+  --radius-md: 8px;
+  --z-index-modal: 1000;
+  --font-family: 'Inter', sans-serif;
 }
 
 .blog-header__right a.active {
   font-weight: bold;
-  color: var(--primary-link);
-  border-bottom: 2px solid var(--primary-link);
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
 }

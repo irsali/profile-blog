@@ -8,9 +8,6 @@ tags: ["Visual Studio"]
 icon: "icon-ide"
 ---
 
-Ensuring Intellisense in Visual Studio 2017 for css
-===================================================
-
 While working on frameworks like Angular or Aurelia, where we install
 dependencies using npm, bower. The dependency css files are not part of
 project or the way these files are part of the project(minified,

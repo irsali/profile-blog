@@ -21,9 +21,9 @@
 	}
 </script>
 
-<div class="min-h-screen bg-[#f3fcfa] py-2">
+<div class="min-h-screen bg-[var(--color-bg,#fff)] py-2">
 	<div class="mx-auto max-w-5xl px-4">
-		<h1 class="mb-8 py-8 text-center text-4xl font-light text-gray-700">
+		<h1 class="mb-8 py-8 text-center text-4xl font-light text-[var(--color-text,#222)]">
 			Blogs in category: {category}
 		</h1>
 		<div class="flex flex-col gap-8 lg:flex-row">
@@ -33,13 +33,15 @@
 						<li>
 							<a
 								href={post.url}
-								class="group block flex flex-col bg-white px-6 py-4 shadow-sm transition-colors hover:bg-blue-50 focus:bg-blue-50"
+								class="group block flex flex-col bg-[var(--color-bg,#fff)] px-6 py-4 shadow-sm transition-colors hover:bg-[var(--color-modal-hover,#e6f7f4)] focus:bg-[var(--color-modal-hover,#e6f7f4)]"
 							>
 								<span
-									class="text-2xl font-semibold text-gray-700 transition-colors group-hover:text-blue-600 group-focus:text-blue-600"
+									class="text-2xl font-semibold text-[var(--color-text,#222)] transition-colors group-hover:text-[var(--color-primary,#19c7a6)] group-focus:text-[var(--color-primary,#19c7a6)]"
 									>{post.title}</span
 								>
-								<div class="mt-1 flex items-center gap-6 text-base text-gray-400">
+								<div
+									class="mt-1 flex items-center gap-6 text-base text-[var(--color-modal-date,#6b7280)]"
+								>
 									<span class="flex items-center gap-1">
 										<MessageCircle class="inline h-5 w-5" /> Comments (0)
 									</span>
