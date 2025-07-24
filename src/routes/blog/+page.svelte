@@ -21,7 +21,7 @@
 
 <div class="min-h-screen bg-[#f3fcfa] py-2">
 	<div class="mx-auto max-w-5xl px-4">
-		<h1 class="mb-8 py-8 text-center text-4xl font-light text-gray-700">Latest Blog</h1>
+		<h1 class="mb-8 py-8 text-center text-4xl font-light text-gray-700">Latest Blogs</h1>
 		<div class="flex flex-col gap-8 lg:flex-row">
 			<div class="flex-1">
 				<ul class="">
