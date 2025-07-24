@@ -49,6 +49,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Blogs | Irshad Ali</title>
+</svelte:head>
+
 <div
 	class="blog-list-layout border-b border-[var(--color-border,#e5e7eb)] bg-[var(--color-bg,#fff)] px-4 md:px-8 lg:px-16"
 >
