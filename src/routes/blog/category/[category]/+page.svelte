@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { PostMetaWithUrl } from '$lib/types';
 	import BlogMetaSidebar from '$lib/templates/blogMetaSidebar.svelte';
+	import { MessageCircle, CalendarDays } from 'lucide-svelte';
 	import { page } from '$app/stores';
 
-	export let data: { posts: PostMetaWithUrl[], categories?: string[], tags?: string[] };
+	export let data: { posts: PostMetaWithUrl[]; categories?: string[]; tags?: string[] };
 	const { category } = $page.params;
-	const posts = data.posts.filter(post => post.categories?.includes(category));
+	const posts = data.posts.filter((post) => post.categories?.includes(category));
 
 	const pageSize = 10;
 	let currentPage = 1;
@@ -20,64 +21,64 @@
 	}
 </script>
 
-<div class="flex flex-col lg:flex-row gap-8">
-	<div class="flex-1">
-		<header>
-			<h1>Blogs in category: {category}</h1>
-		</header>
-
-		<ul>
-			{#each paginatedPosts as post}
-				<li>
-					<a href={post.url}>{post.title}</a>
-					<small>{post.date}</small>
-				</li>
-			{/each}
-		</ul>
-
-		{#if totalPages > 1}
-			<nav class="pagination">
-				<button on:click={() => goToPage(currentPage - 1)} disabled={currentPage === 1}
-					>&laquo; Prev</button
-				>
-				{#each Array(totalPages) as _, i}
-					<button on:click={() => goToPage(i + 1)} class:active={currentPage === i + 1}>{i + 1}</button>
-				{/each}
-				<button on:click={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}
-					>Next &raquo;</button
-				>
-			</nav>
-		{/if}
+<div class="min-h-screen bg-[#f3fcfa] py-2">
+	<div class="mx-auto max-w-5xl px-4">
+		<h1 class="mb-8 py-8 text-center text-4xl font-light text-gray-700">
+			Blogs in category: {category}
+		</h1>
+		<div class="flex flex-col gap-8 lg:flex-row">
+			<div class="flex-1">
+				<ul class="">
+					{#each paginatedPosts as post}
+						<li>
+							<a
+								href={post.url}
+								class="group block flex flex-col bg-white px-6 py-4 shadow-sm transition-colors hover:bg-blue-50 focus:bg-blue-50"
+							>
+								<span
+									class="text-2xl font-semibold text-gray-700 transition-colors group-hover:text-blue-600 group-focus:text-blue-600"
+									>{post.title}</span
+								>
+								<div class="mt-1 flex items-center gap-6 text-base text-gray-400">
+									<span class="flex items-center gap-1">
+										<MessageCircle class="inline h-5 w-5" /> Comments (0)
+									</span>
+									<span class="flex items-center gap-1">
+										<CalendarDays class="inline h-5 w-5" />
+										{post.date}
+									</span>
+								</div>
+							</a>
+						</li>
+					{/each}
+				</ul>
+				{#if totalPages > 1}
+					<div class="mt-8 flex items-center justify-between">
+						<span class="text-lg text-gray-500">Page: {currentPage} of {totalPages}</span>
+						<nav class="flex gap-2">
+							<button
+								on:click={() => goToPage(currentPage - 1)}
+								disabled={currentPage === 1}
+								class="rounded border border-gray-200 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+								>Prev</button
+							>
+							<button
+								on:click={() => goToPage(currentPage + 1)}
+								disabled={currentPage === totalPages}
+								class="rounded border border-gray-200 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+								>Next</button
+							>
+						</nav>
+					</div>
+				{/if}
+			</div>
+		</div>
+		<!-- Move BlogMetaSidebar to bottom -->
+		<div class="mt-12">
+			<BlogMetaSidebar categories={data.categories ?? []} tags={data.tags ?? []} />
+		</div>
 	</div>
-	<aside class="w-full lg:w-64 lg:pl-8">
-		<BlogMetaSidebar categories={data.categories ?? []} tags={data.tags ?? []} />
-	</aside>
 </div>
 
 <style>
-	.pagination {
-		display: flex;
-		gap: 0.5rem;
-		margin-top: 2rem;
-	}
-	.pagination button {
-		background: none;
-		border: 1px solid #ccc;
-		padding: 0.4em 0.8em;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 1rem;
-		transition:
-			background 0.2s,
-			color 0.2s;
-	}
-	.pagination button.active {
-		background: var(--primary-link);
-		color: #fff;
-		border-color: var(--primary-link);
-	}
-	.pagination button:disabled {
-		opacity: 0.5;
-		cursor: not-allowed;
-	}
 </style>
