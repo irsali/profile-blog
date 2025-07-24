@@ -45,6 +45,8 @@
 		"vite-plugin-devtools-json": "^0.2.0"
 	},
 	"dependencies": {
-		"fuse.js": "^7.1.0"
+		"fuse.js": "^7.1.0",
+		"remark-footnotes": "^4.0.1",
+		"remark-smartypants": "^3.0.2"
 	}
 }
