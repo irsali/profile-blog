@@ -21,7 +21,7 @@ Pre Requirement
     Otherwise, will echo a message: 'au' is not recognized as an
     internal or external command, operable program or batch file.
 
-    ![](/static/img/blog/Aurelia/Aurelia-Startup_files/image001.jpg)
+    ![](/static/blog/Aurelia/Aurelia-Startup_files/image001.jpg)
 
 Installations
 --------------
@@ -36,7 +36,7 @@ Installations
 
 For windows 64 click the circled link.
 
-![](/static/img/blog/Aurelia/Aurelia-Startup_files/image002.jpg)
+![](/static/blog/Aurelia/Aurelia-Startup_files/image002.jpg)
 
 ##### Aurelia-cli
 
@@ -77,15 +77,15 @@ Below is my simple sample selection for Aurelia app
 
 when using SystemJS, Typescript, css.
 
-![](/static/img/blog/Aurelia/Aurelia-Startup_files/image003.jpg)
+![](/static/blog/Aurelia/Aurelia-Startup_files/image003.jpg)
 
 You can also choose custom
 
-![](/static/img/blog/Aurelia/Aurelia-Startup_files/image004.jpg)
+![](/static/blog/Aurelia/Aurelia-Startup_files/image004.jpg)
 
 When you create Aurelia-app in .net core project.
 
-![](/static/img/blog/Aurelia/Aurelia-Startup_files/image005.jpg)
+![](/static/blog/Aurelia/Aurelia-Startup_files/image005.jpg)
 
 After all steps. Aurelia-cli will install all dependencies.
 
@@ -100,9 +100,9 @@ Creating Asp.Net Core project
 I have assumed earlier that you Asp.Net core project is already created.
 But there is catch, so I am explaining it here before moving further.
 
-![](/static/img/blog/Aurelia/Aurelia-Startup_files/image006.jpg)
+![](/static/blog/Aurelia/Aurelia-Startup_files/image006.jpg)
 
-![](/static/img/blog/Aurelia/Aurelia-Startup_files/image007.jpg)
+![](/static/blog/Aurelia/Aurelia-Startup_files/image007.jpg)
 
 Install a package Microsoft.AspNetCore.StaticFiles as per your project
 target framework version number like for .NetCore 1.1 choose

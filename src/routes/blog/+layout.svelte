@@ -53,17 +53,14 @@
 	<title>Blogs | Irshad Ali</title>
 </svelte:head>
 
-<div
-	class="blog-list-layout border-b border-[var(--color-border,#e5e7eb)] bg-[var(--color-bg,#fff)] px-4 md:px-8 lg:px-16"
->
+<div class="blog-list-layout relative">
 	<header
-		class="flex items-center justify-between px-2 py-5 text-[var(--color-text,#222)] md:px-6 lg:px-8"
+		class="bg-opacity-80 sticky top-0 z-40 flex items-center justify-between border-b border-[var(--color-border,#e5e7eb)] bg-[var(--color-bg,#fff)] px-4 py-5 text-[var(--color-text,#222)] backdrop-blur-sm md:px-8 lg:px-16"
 	>
-		<div class="flex flex-1 text-xl font-bold tracking-wide">
+		<div class="flex text-xl font-bold tracking-wide">
 			<a href="/">Irshad Ali</a>
 		</div>
-		<div class="flex flex-1 items-center justify-end"></div>
-		<nav class="flex flex-1 items-center justify-end space-x-6 px-2 md:px-4 lg:px-8">
+		<nav class="flex items-center justify-end space-x-6 px-2 md:px-4 lg:px-8">
 			<button
 				class="search-btn flex items-center gap-2 rounded px-3 py-1 text-[var(--color-text,#222)] transition-colors hover:bg-[var(--color-muted,#f3f4f6)] hover:text-[var(--color-primary,#19c7a6)]"
 				on:click={openSearch}
@@ -74,11 +71,6 @@
 				<span class="ml-1 text-base font-medium">Ctrl K</span>
 			</button>
 			<a
-				href="/"
-				class="text-base text-[var(--color-text,#222)] hover:text-[var(--color-primary,#19c7a6)]"
-				>Home</a
-			>
-			<a
 				href="/blog"
 				class="text-base text-[var(--color-text,#222)] hover:text-[var(--color-primary,#19c7a6)]"
 				>Blog</a
@@ -88,7 +80,7 @@
 
 	{#if showSearch}
 		<div
-			class="fixed left-0 top-0 z-[var(--z-index-modal,1000)] flex h-screen w-screen items-start justify-center px-2 md:px-8"
+			class="fixed top-0 left-0 z-[var(--z-index-modal,1000)] flex h-screen w-screen items-start justify-center px-2 md:px-8"
 			style="background: var(--color-modal-overlay,var(--color-overlay,rgba(0,0,0,0.08))); backdrop-filter: blur(8px);"
 		>
 			<div
@@ -96,7 +88,7 @@
 				style="box-shadow: 0 8px 32px var(--color-modal-shadow,rgba(0,0,0,0.10));"
 			>
 				<button
-					class="absolute right-4 top-4 cursor-pointer border-none bg-none text-xl text-[var(--color-modal-close,#94a3b8)] hover:text-[var(--color-primary,#19c7a6)] focus:outline-none"
+					class="absolute top-4 right-4 cursor-pointer border-none bg-none text-xl text-[var(--color-modal-close,#94a3b8)] hover:text-[var(--color-primary,#19c7a6)] focus:outline-none"
 					on:click={closeSearch}
 					aria-label="Close search modal"
 				>
@@ -136,14 +128,16 @@
 						{/each}
 					</ul>
 				{:else if searchQuery.length > 0}
-					<p class="italic text-[var(--color-modal-date,#6b7280)]">No results found.</p>
+					<p class="text-[var(--color-modal-date,#6b7280)] italic">No results found.</p>
 				{/if}
 			</div>
 		</div>
 	{/if}
 </div>
 
-<slot />
+<div class="mb-4">
+	<slot />
+</div>
 
 <!-- Tailwind animation for modal and custom scrollbar for modal -->
 <style>
