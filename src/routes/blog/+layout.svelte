@@ -49,6 +49,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Blogs | Irshad Ali</title>
+</svelte:head>
+
 <div
 	class="blog-list-layout border-b border-[var(--color-border,#e5e7eb)] bg-[var(--color-bg,#fff)] px-4 md:px-8 lg:px-16"
 >
@@ -78,11 +82,6 @@
 				href="/blog"
 				class="text-base text-[var(--color-text,#222)] hover:text-[var(--color-primary,#19c7a6)]"
 				>Blog</a
-			>
-			<a
-				href="/about"
-				class="text-base text-[var(--color-text,#222)] hover:text-[var(--color-primary,#19c7a6)]"
-				>About</a
 			>
 		</nav>
 	</header>
