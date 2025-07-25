@@ -26,7 +26,7 @@
 	});
 </script>
 
-<div class="bg-[var(--color-bg,#fff)] text-[var(--color-text,#222)]">
+<div class="prose prose-lg bg-[var(--color-bg,#fff)] text-[var(--color-text,#222)]">
 	{#if content}
 		<svelte:component this={content} />
 		{#if metadata?.date}
