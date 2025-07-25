@@ -4,7 +4,7 @@ date: "2016-09-17"
 description: "Performance considerations in C# and .NET applications."
 categories: ["csharp"]
 tags: ["csharp", "performance"]
-icon: icon-csharp
+icon: "icon-csharp"
 ---
 
 

@@ -3,7 +3,14 @@
 	import { onMount } from 'svelte';
 
 	export let data: SlugPostDto;
-	const { content, metadata } = data.post;
+	let content = data.post.content;
+	let metadata = data.post.metadata;
+
+	// Reactively update content and metadata when data changes (e.g., on slug change)
+	$: if (data?.post) {
+		content = data.post.content;
+		metadata = data.post.metadata;
+	}
 
 	onMount(() => {
 		const script = document.createElement('script');
@@ -26,16 +33,16 @@
 	});
 </script>
 
-<div class="bg-[var(--color-bg,#fff)] text-[var(--color-text,#222)]">
+<article class="prose prose-lg bg-[var(--color-bg)] text-[var(--color-text)]">
 	{#if content}
 		<svelte:component this={content} />
 		{#if metadata?.date}
-			<hr class="border-[var(--color-border,#e5e7eb)]" />
-			<small class="text-[var(--color-modal-date,#6b7280)]">Posted on {metadata.date}</small>
+			<hr class="border-[var(--color-border)]" />
+			<small class="text-[var(--color-modal-date)]">Posted on {metadata.date}</small>
 		{/if}
 	{:else}
 		<h1 class="text-[var(--color-primary,#19c7a6)]">Not found</h1>
 	{/if}
-</div>
+</article>
 
 <div class="giscus"></div>

@@ -39,7 +39,7 @@ you can download Ruby from [here](http://rubyinstaller.org/downloads/)
 
 Execute the installer and go through the steps of the installation. Make sure to check the “Add Ruby executables to your PATH” box like below.
 
-`<img src="{{ site.url }}/static/img/blog/Jekyll/AddRubyExecutableToPath.PNG" />`
+`<img src="{{ site.url }}/static/blog/Jekyll/AddRubyExecutableToPath.PNG" />`
 
 Jekyll has some dependencies which, out of the box, only provide raw source code. To make them into fully functional executables, you’ll probably need to install the Development Kit.
 

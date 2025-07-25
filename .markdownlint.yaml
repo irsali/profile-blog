@@ -5,4 +5,6 @@
   "MD024": false,   // no duplicate heading
   "MD025": false,   // allow multiple title/heading tags
   "MD012": false,   // allow multiple empty lines
+  "MD010": false,   // no hard tabs
+  "MD045": false,   // no-alt-text: Images should have alternate text
 }

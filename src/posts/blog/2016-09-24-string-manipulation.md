@@ -4,7 +4,7 @@ date: "2016-09-24"
 description: "string manipulation"
 categories: ["csharp"]
 tags: ["csharp"]
-icon: icon-csharp
+icon: "icon-csharp"
 ---
 
 ## Preface
