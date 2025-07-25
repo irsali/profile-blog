@@ -11,11 +11,9 @@
 	{/if}
 </svelte:head>
 
-<div
-	class="blog-layout mx-auto max-w-3xl bg-[var(--color-bg,#fff)] px-4 py-8 text-[var(--color-text,#222)]"
->
+<div class="blog-layout mx-auto max-w-3xl bg-[var(--color-bg)] px-4 py-8 text-[var(--color-text)]">
 	<header class="mb-8">
-		<h1 class="mb-2 text-3xl font-bold text-[var(--color-primary,#19c7a6)]">{title}</h1>
+		<h1 class="mb-2 text-3xl font-bold text-[var(--color-primary)]">{title}</h1>
 		<!-- {#if description}
 			<p class="mb-4 text-lg text-[var(--color-modal-date,#6b7280)]">{description}</p>
 		{/if} -->
@@ -23,7 +21,7 @@
 	<main class="min-h-[60vh]">
 		<slot />
 	</main>
-	<footer class="mt-12 text-center text-sm text-[var(--color-muted,#aaa)]"></footer>
+	<footer class="mt-12 text-center text-sm text-[var(--color-muted)]"></footer>
 </div>
 
 <style>

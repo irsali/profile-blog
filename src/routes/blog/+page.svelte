@@ -19,11 +19,9 @@
 	}
 </script>
 
-<div class="min-h-screen bg-[var(--color-bg,#fff)] py-2">
+<div class="min-h-screen bg-[var(--color-bg)] py-2">
 	<div class="mx-auto max-w-5xl px-4">
-		<h1 class="mb-8 py-8 text-center text-4xl font-light text-[var(--color-text,#222)]">
-			Latest Blogs
-		</h1>
+		<h1 class="mb-8 py-8 text-center text-4xl font-light text-[var(--color-text)]">Latest Blogs</h1>
 		<div class="flex flex-col gap-8 lg:flex-row">
 			<div class="flex-1">
 				<ul class="">
@@ -31,21 +29,18 @@
 						<li>
 							<a
 								href={post.url}
-								class="border-t-1 group block flex flex-col border-[var(--color-border,#e5e7eb)] bg-[var(--color-bg,#fff)] px-6 py-4 shadow-sm transition-colors hover:bg-[var(--color-modal-hover,#e6f7f4)] focus:bg-[var(--color-modal-hover,#e6f7f4)]"
+								class="group block flex flex-col border-t-1 border-[var(--color-border)] bg-[var(--color-bg)] px-6 py-4 shadow-sm transition-colors hover:bg-[var(--color-modal-hover)] focus:bg-[var(--color-modal-hover)]"
 							>
 								<span
-									class="text-2xl font-semibold text-[var(--color-text,#222)] transition-colors group-hover:text-[var(--color-primary,#19c7a6)] group-focus:text-[var(--color-primary,#19c7a6)]"
+									class="text-2xl font-semibold text-[var(--color-text)] transition-colors group-hover:text-[var(--color-primary)] group-focus:text-[var(--color-primary)]"
 									>{post.title}</span
 								>
-								<div
-									class="mt-1 flex items-center gap-6 text-base text-[var(--color-modal-date,#6b7280)]"
-								>
+								<div class="mt-1 flex items-center gap-6 text-base text-[var(--color-modal-date)]">
 									<span class="flex items-center gap-1">
-										<MessageCircle class="inline h-5 w-5 text-[var(--color-muted,#f3f4f6)]" /> Comments
-										(0)
+										<MessageCircle class="inline h-5 w-5 text-[var(--color-muted)]" /> Comments (0)
 									</span>
 									<span class="flex items-center gap-1">
-										<CalendarDays class="inline h-5 w-5 text-[var(--color-muted,#f3f4f6)]" />
+										<CalendarDays class="inline h-5 w-5 text-[var(--color-muted)]" />
 										{post.date}
 									</span>
 								</div>

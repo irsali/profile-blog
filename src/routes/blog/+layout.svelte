@@ -53,16 +53,16 @@
 	<title>Blogs | Irshad Ali</title>
 </svelte:head>
 
-<div class="blog-list-layout relative">
+<div class="blog-list-layout px-4 md:px-8 lg:px-16">
 	<header
-		class="bg-opacity-80 sticky top-0 z-40 flex items-center justify-between border-b border-[var(--color-border,#e5e7eb)] bg-[var(--color-bg,#fff)] px-4 py-5 text-[var(--color-text,#222)] backdrop-blur-sm md:px-8 lg:px-16"
+		class="bg-opacity-80 sticky top-0 z-40 flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-bg)] py-5 text-[var(--color-text)] backdrop-blur-sm"
 	>
 		<div class="flex text-xl font-bold tracking-wide">
 			<a href="/">Irshad Ali</a>
 		</div>
 		<nav class="flex items-center justify-end space-x-6 px-2 md:px-4 lg:px-8">
 			<button
-				class="search-btn flex items-center gap-2 rounded px-3 py-1 text-[var(--color-text,#222)] transition-colors hover:bg-[var(--color-muted,#f3f4f6)] hover:text-[var(--color-primary,#19c7a6)]"
+				class="search-btn flex items-center gap-2 rounded px-3 py-1 text-[var(--color-text)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-primary)]"
 				on:click={openSearch}
 				title="Search blogs"
 				aria-label="Open search modal"
@@ -70,9 +70,7 @@
 				<Search class="h-6 w-6" />
 				<span class="ml-1 text-base font-medium">Ctrl K</span>
 			</button>
-			<a
-				href="/blog"
-				class="text-base text-[var(--color-text,#222)] hover:text-[var(--color-primary,#19c7a6)]"
+			<a href="/blog" class="text-base text-[var(--color-text)] hover:text-[var(--color-primary)]"
 				>Blog</a
 			>
 		</nav>
@@ -81,28 +79,28 @@
 	{#if showSearch}
 		<div
 			class="fixed top-0 left-0 z-[var(--z-index-modal,1000)] flex h-screen w-screen items-start justify-center px-2 md:px-8"
-			style="background: var(--color-modal-overlay,var(--color-overlay,rgba(0,0,0,0.08))); backdrop-filter: blur(8px);"
+			style="background: var(--color-modal-overlay); backdrop-filter: blur(8px);"
 		>
 			<div
-				class="animate-fadeInModal shadow-3xl relative mt-[5vh] max-h-[70vh] w-full overflow-y-auto border border-[var(--color-modal-border,#e5e7eb)] bg-[var(--color-modal-bg,#fff)] p-6 sm:w-[500px] md:w-[700px] md:p-8 lg:w-[900px] xl:w-[900px]"
+				class="animate-fadeInModal shadow-3xl relative mt-[5vh] max-h-[70vh] w-full overflow-y-auto border border-[var(--color-modal-border)] bg-[var(--color-modal-bg)] p-6 sm:w-[500px] md:w-[700px] md:p-8 lg:w-[900px] xl:w-[900px]"
 				style="box-shadow: 0 8px 32px var(--color-modal-shadow,rgba(0,0,0,0.10));"
 			>
 				<button
-					class="absolute top-4 right-4 cursor-pointer border-none bg-none text-xl text-[var(--color-modal-close,#94a3b8)] hover:text-[var(--color-primary,#19c7a6)] focus:outline-none"
+					class="absolute top-4 right-4 cursor-pointer border-none bg-none text-xl text-[var(--color-modal-close)] hover:text-[var(--color-primary)] focus:outline-none"
 					on:click={closeSearch}
 					aria-label="Close search modal"
 				>
 					<X class="h-6 w-6" />
 				</button>
 				<h2
-					class="mb-4 flex items-center gap-2 text-xl font-semibold text-[var(--color-modal-title,#222)]"
+					class="mb-4 flex items-center gap-2 text-xl font-semibold text-[var(--color-modal-title)]"
 				>
-					<Search class="h-5 w-5 text-[var(--color-primary,#19c7a6)]" />
+					<Search class="h-5 w-5 text-[var(--color-primary)]" />
 					<span>Search Blog</span>
 				</h2>
 				<input
 					id="blog-search-input"
-					class="mb-5 w-full rounded-xl border border-[var(--color-modal-input-border,#e5e7eb)] bg-[var(--color-modal-input-bg,#f8fafc)] px-5 py-3 text-lg text-[var(--color-modal-input-text,#222)] shadow-sm focus:border-[var(--color-primary,#19c7a6)] focus:outline-none"
+					class="mb-5 w-full rounded-xl border border-[var(--color-modal-input-border)] bg-[var(--color-modal-input-bg)] px-5 py-3 text-lg text-[var(--color-modal-input-text)] shadow-sm focus:border-[var(--color-primary)] focus:outline-none"
 					type="text"
 					placeholder="Type to search..."
 					bind:value={searchQuery}
@@ -110,25 +108,23 @@
 					autocomplete="off"
 				/>
 				{#if results.length > 0}
-					<ul class="m-0 list-none divide-y divide-[var(--color-modal-divider,#e5e7eb)] p-0">
+					<ul class="m-0 list-none divide-y divide-[var(--color-modal-divider)] p-0">
 						{#each results as post}
 							<li
-								class="flex flex-col rounded-md p-3 transition-colors hover:bg-[var(--color-modal-hover,#e6f7f4)]"
+								class="flex flex-col rounded-md p-3 transition-colors hover:bg-[var(--color-modal-hover)]"
 							>
 								<a
 									href={post.url}
-									class="text-lg font-medium text-[var(--color-primary,#19c7a6)]"
+									class="text-lg font-medium text-[var(--color-primary)]"
 									on:click={closeSearch}
 									>{post.title}
-									<small class="mt-1 block text-[var(--color-modal-date,#6b7280)]"
-										>{post.date}</small
-									>
+									<small class="mt-1 block text-[var(--color-modal-date)]">{post.date}</small>
 								</a>
 							</li>
 						{/each}
 					</ul>
 				{:else if searchQuery.length > 0}
-					<p class="text-[var(--color-modal-date,#6b7280)] italic">No results found.</p>
+					<p class="text-[var(--color-modal-date)] italic">No results found.</p>
 				{/if}
 			</div>
 		</div>
