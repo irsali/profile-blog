@@ -4,7 +4,7 @@ date: "2017-10-06"
 description: "aurelia, breeze"
 categories: ["others"]
 tags: ["Aurelia"]
-icon: icon-aurelia
+icon: "icon-aurelia"
 ---
 
 

@@ -4,7 +4,7 @@ date: "2016-09-25"
 description: "Search string using regular expression in C#"
 categories: ["csharp"]
 tags: ["String", "Regex"]
-icon: icon-csharp
+icon: "icon-csharp"
 ---
 
 ## Preface

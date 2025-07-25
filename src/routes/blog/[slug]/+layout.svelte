@@ -1,6 +1,5 @@
 <script>
 	export let data;
-	console.log('post layout data: ', data);
 	$: title = data?.post?.metadata?.title ?? '';
 	$: description = data?.post?.metadata?.description ?? '';
 </script>
@@ -17,17 +16,14 @@
 >
 	<header class="mb-8">
 		<h1 class="mb-2 text-3xl font-bold text-[var(--color-primary,#19c7a6)]">{title}</h1>
-		{#if description}
+		<!-- {#if description}
 			<p class="mb-4 text-lg text-[var(--color-modal-date,#6b7280)]">{description}</p>
-		{/if}
-		<slot name="header" />
+		{/if} -->
 	</header>
 	<main class="min-h-[60vh]">
 		<slot />
 	</main>
-	<footer class="mt-12 text-center text-sm text-[var(--color-muted,#aaa)]">
-		<slot name="footer" />
-	</footer>
+	<footer class="mt-12 text-center text-sm text-[var(--color-muted,#aaa)]"></footer>
 </div>
 
 <style>
@@ -39,4 +35,3 @@
 		color: var(--color-text, #222);
 	}
 </style>
-	

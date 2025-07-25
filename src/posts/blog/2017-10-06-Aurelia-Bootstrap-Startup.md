@@ -1,25 +1,21 @@
 ---
-title: "Aurelia Bootstrap Startup"
-date: "2017-10-06"
-description: "aurelia"
-categories: ["others"]
-tags: ["Aurelia"]
-icon: icon-aurelia
+title: 'Aurelia Bootstrap Startup'
+date: '2017-10-06'
+description: 'aurelia'
+categories: ['others']
+tags: ['Aurelia']
+icon: 'icon-aurelia'
 ---
 
+# Getting Started
 
-Getting Started
-===============
-
-Pre Requisites
---------------
+## Pre Requisites
 
 Aurelia Setup project
 
-Installs
---------
+### Installs
 
-``` node
+```bash
 npm install bootstrap --save
 
 npm install aurelia-bootstrap --save
@@ -29,76 +25,62 @@ npm install velocity-animate --save
 npm install tether --save
 ```
 
-Update aurelia.json for path of above installs
-----------------------------------------------
+### Update aurelia.json for path of above installs
 
-``` json
-"velocity-animate",
+```json
+[
+	"velocity-animate",
 
-"tether",
+	"tether",
 
-{
+	{
+		"name": "aurelia-bootstrap",
 
-"name": "aurelia-bootstrap",
+		"path": "../node_modules/aurelia-bootstrap/dist/amd",
 
-"path": "../node_modules/aurelia-bootstrap/dist/amd",
+		"main": "index",
 
-"main": "index",
+		"resources": ["**/*.html"]
+	},
 
-"resources": [
+	{
+		"name": "bootstrap",
 
-"**/*.html"
+		"path": "../node_modules/bootstrap-v4-dev/dist/",
 
+		"main": false,
+
+		"resources": ["**/*.css"]
+	}
 ]
-
-},
-
-{
-
-"name": "bootstrap",
-
-"path": "../node_modules/bootstrap-v4-dev/dist/",
-
-"main": false,
-
-"resources": [
-
-"**/*.css"
-
-]
-
-}
-
 ```
 
-Register bootstrap plugin with Aurelia
---------------------------------------
+### Register bootstrap plugin with Aurelia
 
 Aurelia-bootstrap supports both Bootstrap 3 and 4. to use the version 4.
 You need to explicity say Aurelia to use bootstrap version 4 like below.
 
-``` ts
+```ts
 export function configure(aurelia: Aurelia) {
+	aurelia.use
 
-aurelia.use
+		.standardConfiguration()
 
-.standardConfiguration()
+		.plugin('aurelia-bootstrap', (plugin) => (plugin.options.version = 4))
 
-.plugin('aurelia-bootstrap', plugin => plugin.options.version = 4)
-
-.feature('resources');
+		.feature('resources');
+}
 ```
 
 Bingo!!! You are ready to use bootstrap in your Aurelia application.
 
-Using Bootstrap Renderer for faciliating validation errors
-==========================================================
+## Using Bootstrap Renderer for faciliating validation errors
 
 Add BootstrapFormValidationRender in ValidationController and object to
 validate. Then validate using validate method. Also, on html must
 specify the field you want to validate.
 
-``` ts
+```ts
 constructor(private controller: ValidationController) {
 
 log.debug("constructor called");
@@ -108,155 +90,115 @@ this.controller.addRenderer(new BootstrapFormValidationRenderer());
 this.controller.addObject(objectToValidate, getValidationRules());
 
 }
+```
 
-function getValidationRules(){
+```ts
+function getValidationRules() {
+	return ValidationRules.ensure<FormField, any>((x) => x.value)
 
-return ValidationRules.ensure<FormField, any>(x => x.value)
+		.required()
+		.when((x) => x.validation && x.validation.required)
 
-.required().when(x => x.validation && x.validation.required)
+		.email()
+		.when((x) => x.validation && x.validation.email)
 
-.email().when(x => x.validation && x.validation.email)
+		.maxLength(this.validation.maxLength)
+		.when((x) => x.validation && x.validation.maxLength && typeof x.value == 'string')
 
-.maxLength(this.validation.maxLength).when(x => x.validation &&
-x.validation.maxLength && typeof x.value == "string")
-
-.minLength(this.validation.maxLength).when(x => x.validation &&
-x.validation.minLength && typeof x.value == "string")
-
-.rules;
-
+		.minLength(this.validation.maxLength)
+		.when((x) => x.validation && x.validation.minLength && typeof x.value == 'string').rules;
 }
+```
 
-save() {
+```ts
+function save() {
+	this.controller
+		.validate()
 
-this.controller.validate()
-
-.then(result => {
-
-if (result.valid) {
-
+		.then((result) => {
+			if (result.valid) {
+			}
+		});
 }
+```
 
-});
-
-}
-
-<input type=”text” value.bind="formField.value & validate" />
-
+```html
+<input type="”text”" value.bind="formField.value & validate" />
 ```
 
 Below is a BootstrapFormValidationRender a class.
 
-``` ts
-import {
-
-ValidationRenderer,
-
-RenderInstruction,
-
-ValidateResult
-
-} from 'aurelia-validation';
+```ts
+import { ValidationRenderer, RenderInstruction, ValidateResult } from 'aurelia-validation';
 
 export class BootstrapFormValidationRenderer {
+	render(instruction: RenderInstruction) {
+		for (let { result, elements } of instruction.unrender) {
+			for (let element of elements) {
+				this.remove(element, result);
+			}
+		}
 
-render(instruction: RenderInstruction) {
+		for (let { result, elements } of instruction.render) {
+			for (let element of elements) {
+				this.add(element, result);
+			}
+		}
+	}
 
-for (let { result, elements } of instruction.unrender) {
+	add(element: Element, result: ValidateResult) {
+		if (result.valid) {
+			return;
+		}
 
-for (let element of elements) {
+		const formGroup = element.closest('.form-group');
 
-this.remove(element, result);
+		if (!formGroup) {
+			return;
+		}
 
-}
+		// add the has-danger class to the enclosing form-group div
 
-}
+		formGroup.classList.add('has-danger');
 
-for (let { result, elements } of instruction.render) {
+		// add help-block
 
-for (let element of elements) {
+		const message = document.createElement('div');
 
-this.add(element, result);
+		message.className = 'form-control-feedback';
 
-}
+		message.textContent = result.message;
 
-}
+		message.id = 'validation-message-${result.id}';
 
-}
+		formGroup.lastElementChild.appendChild(message);
+	}
 
-add(element: Element, result: ValidateResult) {
+	remove(element: Element, result: ValidateResult) {
+		if (result.valid) {
+			return;
+		}
 
-if (result.valid) {
+		const formGroup = element.closest('.form-group');
 
-return;
+		if (!formGroup) {
+			return;
+		}
 
-}
+		// remove help-block
 
-const formGroup = element.closest('.form-group');
+		const message = formGroup.lastElementChild.querySelector('\#validation-message-${result.id}');
 
-if (!formGroup) {
+		if (message) {
+			formGroup.lastElementChild.removeChild(message);
 
-return;
+			// remove the has-danger class from the enclosing form-group div
 
-}
-
-// add the has-danger class to the enclosing form-group div
-
-formGroup.classList.add('has-danger');
-
-// add help-block
-
-const message = document.createElement('div');
-
-message.className = 'form-control-feedback';
-
-message.textContent = result.message;
-
-message.id = 'validation-message-${result.id}';
-
-formGroup.lastElementChild.appendChild(message);
-
-}
-
-remove(element: Element, result: ValidateResult) {
-
-if (result.valid) {
-
-return;
-
-}
-
-const formGroup = element.closest('.form-group');
-
-if (!formGroup) {
-
-return;
-
-}
-
-// remove help-block
-
-const message =
-formGroup.lastElementChild.querySelector('\#validation-message-${result.id}');
-
-if (message) {
-
-formGroup.lastElementChild.removeChild(message);
-
-// remove the has-danger class from the enclosing form-group div
-
-if
-(formGroup.lastElementChild.querySelectorAll('.form-control-feedback').length
-=== 0) {
-
-formGroup.classList.remove('has-danger');
-
-}
-
-}
-
-}
-
+			if (formGroup.lastElementChild.querySelectorAll('.form-control-feedback').length === 0) {
+				formGroup.classList.remove('has-danger');
+			}
+		}
+	}
 }
 ```
 

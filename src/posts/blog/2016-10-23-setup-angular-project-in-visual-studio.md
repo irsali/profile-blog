@@ -4,7 +4,7 @@ date: "2016-10-23"
 description: "angular2, setup, visual studio"
 categories: ["others"]
 tags: ["angular"]
-icon: icon-angular
+icon: "icon-angular"
 ---
 
 

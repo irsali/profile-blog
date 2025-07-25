@@ -10,7 +10,7 @@ Steps to getting started with ElasticSearch.
 
 * [Download](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and install the Java SE (Standard Edition) version. Ignore the EE (Enterprise Edition) and ME (Micros Edition).
   * Set the JAVA_HOME environmental variable
-    * Go to the drive where your windows is installed (generally it is c:\ drive) in "my computer".
+    * Go to the drive where y our windows is installed (generally it is c:\ drive) in "my computer".
     * Now go to "program files" folder and then go inside "java" folder( for a 64 bit OS, if the "JAVA" folder is not found, consider looking in "Program Files(x86)" folder). -->Look for a JAVA JDK installation folder. If you don't have it, then download java jdk and install the latest.
     * Copy the path name(e.g.C:\Program Files\Java\jdk1.8.0_05) or just write it down on paper.
     * Now go to your desktop; right click on "my computer" icon; go to properties; go to "Advanced System Settings"; click on "Environment Variables"; click "new" in "System Variables".

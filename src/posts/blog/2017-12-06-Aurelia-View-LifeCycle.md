@@ -3,9 +3,9 @@ title:  "Aurelia view life cycle"
 date:   "2017-12-06"
 desc: "Aurelia view life cycle"
 keywords: "Aurelia"
-categories: [others]
-tags: [Aurelia]
-icon: icon-aurelia
+categories: ["others"]
+tags: ["Aurelia"]
+icon: "icon-aurelia"
 ---
 
 
