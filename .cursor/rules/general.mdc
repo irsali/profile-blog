@@ -1,0 +1,153 @@
+# Svelte Profile Blog - General Rules
+
+## Code Quality & Standards
+
+### TypeScript
+- Always use TypeScript for all `.ts` and `.svelte` files
+- Define proper interfaces and types in `src/lib/types.ts`
+- Use strict type checking and avoid `any` types
+- Prefer `interface` over `type` for object shapes
+- Export types and interfaces that are used across multiple files
+
+### Svelte Components
+- Use Svelte 5 syntax with `$props()` and `$state()`
+- Write doc comments for each function and component
+- Use proper prop typing with `export let` statements
+- Implement reactive statements with `$:` when needed
+- Use `onMount()` for side effects and DOM manipulation
+- Prefer `{#if}`, `{#each}`, and `{#await}` blocks over imperative code
+
+### File Organization
+- Keep components in `src/lib/templates/` for reusable UI
+- Place services in `src/lib/services/` with proper separation of concerns
+- Store types in `src/lib/types.ts`
+- Use descriptive file names that match their purpose
+- Group related functionality in the same directory
+
+## Blog Post Management
+
+### Markdown Posts
+- Store all blog posts in `src/posts/blog/` with `.md` extension
+- Use consistent frontmatter structure:
+  ```yaml
+  ---
+  title: "Post Title"
+  date: "YYYY-MM-DD"
+  description: "Brief description"
+  categories: ["category1", "category2"]
+  tags: ["tag1", "tag2"]
+  icon: "icon-name"
+  ---
+  ```
+- Use descriptive filenames with date prefix: `YYYY-MM-DD-post-title.md`
+- Include proper markdown formatting with headers, lists, and code blocks
+- Use relative paths for images in `static/static/blog/` directory
+
+### Post Service
+- Extend `PostService` in `src/lib/services/post.service.ts` for new functionality
+- Add proper error handling for missing metadata
+- Implement caching for performance when needed
+- Use async/await patterns consistently
+- Add JSDoc comments for all public methods
+
+## Styling & Design
+
+### TailwindCSS
+- Use TailwindCSS utility classes for styling
+- Leverage CSS custom properties for theming: `var(--color-primary)`
+- Maintain responsive design with mobile-first approach
+- Use semantic color names in CSS variables
+- Prefer utility classes over custom CSS when possible
+
+### Component Styling
+- Use `class:` directive for conditional styling
+- Implement proper hover and focus states
+- Ensure accessibility with proper contrast ratios
+- Use consistent spacing and typography scales
+
+## Performance & Best Practices
+
+### Build Optimization
+- Use `@sveltejs/adapter-static` for static site generation
+- Optimize images and assets in `static/` directory
+- Implement proper lazy loading for components
+- Use `import.meta.glob()` for dynamic imports
+
+### Code Organization
+- Keep components small and focused on single responsibility
+- Use composition over inheritance
+- Implement proper error boundaries
+- Add loading states for async operations
+
+## Documentation
+
+### Code Comments
+- Write doc comments for each function and component
+- Document complex business logic
+- Explain non-obvious code decisions
+- Use JSDoc format for TypeScript functions
+
+### README & Documentation
+- Keep `README.md` updated with setup instructions
+- Document any new features or configuration changes
+- Include examples for common tasks
+- Maintain changelog for significant updates
+
+## Testing & Quality Assurance
+
+### Code Quality
+- Use ESLint and Prettier for code formatting
+- Run `npm run check` to verify TypeScript types
+- Use `npm run lint` to check code quality
+- Fix all linting errors before committing
+
+### Content Validation
+- Validate frontmatter structure for all blog posts
+- Ensure all required metadata fields are present
+- Check for broken links and missing images
+- Verify proper markdown syntax
+
+## Deployment & Configuration
+
+### Environment Setup
+- Use `npm run dev` for local development
+- Use `npm run build` for production builds
+- Configure proper environment variables
+- Set up proper Git hooks for pre-commit checks
+
+### Static Assets
+- Organize images in `static/static/blog/` by category
+- Use descriptive image names
+- Optimize images for web delivery
+- Maintain proper directory structure for assets
+
+## Security & Best Practices
+
+### Input Validation
+- Validate all user inputs and frontmatter data
+- Sanitize markdown content when needed
+- Use proper TypeScript types to prevent runtime errors
+- Implement proper error handling for edge cases
+
+### Dependencies
+- Keep dependencies up to date
+- Use specific version numbers in package.json
+- Audit dependencies regularly for security issues
+- Prefer stable, well-maintained packages
+
+## Accessibility
+
+### Web Standards
+- Use semantic HTML elements
+- Implement proper ARIA labels and roles
+- Ensure keyboard navigation works
+- Maintain proper heading hierarchy
+- Use alt text for all images
+
+### User Experience
+- Provide clear navigation and breadcrumbs
+- Implement proper loading states
+- Use consistent design patterns
+- Ensure responsive design works on all devices
+alwaysApply: true
+---
