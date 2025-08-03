@@ -53,40 +53,6 @@ Irshad Ali is a seasoned Software Engineer with extensive experience in full-sta
 - Participated in Nasscom Annual Technology Conference on Microservices Architecture
 - Contributed to team knowledge sharing through technical documentation
 
-### Additional Experience (2017-Present)
-*Irshad Ali has continued to expand his professional experience with:*
-- **Advanced Full-Stack Development**: Continued growth in modern web technologies
-- **Cloud-Native Applications**: Experience with cloud platforms and containerization
-- **Modern JavaScript Ecosystems**: Expertise in current frontend frameworks and tools
-- **DevOps & CI/CD**: Implementation of automated deployment and testing pipelines
-- **Team Leadership**: Mentoring and leading development teams
-- **Architecture Design**: Designing scalable and maintainable systems
-
-### Key Projects & Contributions
-- **Angular 2 Migration**: Successfully migrated applications to Angular 2 final release
-- **Elasticsearch Integration**: Implemented search functionality with proper deployment procedures
-- **Aurelia Applications**: Built multiple Aurelia-based applications with .NET Core backends
-- **Performance Optimization**: Implemented C# performance best practices and memory management
-- **Microservices Architecture**: Gained foundational knowledge and best practices
-
-*Recent Projects (2017-Present):*
-- **Modern Web Applications**: Development of contemporary web applications using latest technologies
-- **API Development**: RESTful and GraphQL API design and implementation
-- **Database Design**: Complex database architectures and optimization
-- **Security Implementation**: Application security and best practices
-- **Performance Engineering**: Application optimization and monitoring
-
-## Technical Blog & Knowledge Sharing
-
-Irshad maintains an active technical blog covering various aspects of software development:
-
-### Published Articles (2016-2017)
-- **Angular 2 Release Analysis** (2016): Comprehensive guide on Angular 2 production readiness
-- **C# Performance Considerations** (2016): Deep dive into .NET performance optimization
-- **Elasticsearch Installation & Deployment** (2016-2017): Complete setup and IIS deployment guides
-- **Aurelia Framework Series** (2017): Multiple articles on Aurelia setup, integration, and best practices
-- **Visual Studio Development** (2016-2017): IDE configuration and debugging techniques
-- **Microservices Architecture** (2016): Conference insights and implementation strategies
 
 ### Technical Writing Focus
 - **Tutorial-style content** with step-by-step instructions
@@ -105,53 +71,24 @@ Irshad maintains an active technical blog covering various aspects of software d
 
 ## Skills & Competencies
 
-### Core Skills
-- **Full-Stack Development**: End-to-end application development
-- **Performance Optimization**: Application tuning and memory management
-- **Architecture Design**: Microservices and scalable system design
-- **Technical Documentation**: Clear and comprehensive documentation
-- **Problem Solving**: Analytical approach to complex technical challenges
-
-### Advanced Skills (2017-Present)
-- **Cloud Architecture**: AWS, Azure
-- **Containerization**: Docker 
-- **Modern Frontend**: Angular, Svelte, or other contemporary frameworks
-- **Backend Services**: Node.js, Python, or other modern backend technologies
-- **DevOps Practices**: CI/CD, infrastructure as code, monitoring
-- **Security**: Application security, authentication, and authorization
-- **Testing**: Unit testing, integration testing, and test-driven development
 
 ### Soft Skills
 - **Knowledge Sharing**: Active participation in technical communities
 - **Continuous Learning**: Staying current with emerging technologies
 - **Team Collaboration**: Working effectively in development teams
-- **Conference Participation**: Engaging with broader technical community
 - **Leadership**: Mentoring and guiding development teams
 
 ## Education & Certifications
 
 - **Software Engineering Background**: Demonstrated through technical expertise and project work
 - **Continuous Learning**: Active participation in technical workshops and conferences
-- **Industry Recognition**: Invited to Nasscom Annual Technology Conference
 
-*Recent Certifications & Training (2017-Present):*
-- **Cloud Platform Certifications**: AWS, Azure, or Google Cloud certifications
-- **Modern Framework Training**: Advanced courses in contemporary technologies
-- **Architecture Certifications**: Professional certifications in system design
-- **Security Training**: Application security and best practices
 
 ## Professional Development
 
 ### Conference Participation
 - **Nasscom Annual Technology Conference 2016**: Microservices Architecture workshop
-- **GlobalLogic Inc. Workshop**: Advanced microservices implementation strategies
 - **Technical Community Engagement**: Active participation in developer communities
-
-*Recent Conference & Meetup Participation (2017-Present):*
-- **Technology Conferences**: Speaking and attending industry conferences
-- **Local Meetups**: Active participation in developer communities
-- **Workshops**: Conducting and attending technical workshops
-- **Webinars**: Online technical presentations and discussions
 
 ### Learning Focus Areas
 - **Microservices Architecture**: Scalable application design patterns
@@ -177,12 +114,6 @@ Irshad maintains an active technical blog covering various aspects of software d
 - **Tutorial Creation**: Step-by-step guides for complex technical topics
 - **Community Support**: Knowledge sharing through detailed technical articles
 
-*Recent Open Source Contributions (2017-Present):*
-- **Framework Contributions**: Contributions to popular open source frameworks
-- **Tool Development**: Creating developer tools and utilities
-- **Documentation**: Improving documentation for open source projects
-- **Community Projects**: Leading or contributing to community-driven projects
-
 ## Professional Philosophy
 
 Irshad believes in:
@@ -197,10 +128,6 @@ Irshad believes in:
 - **LinkedIn**: [linkedin.com/in/irshad-ali](https://linkedin.com/in/irshad-ali)
 - **GitHub**: [irsali.github.io](https://irsali.github.io)
 - **Technical Blog**: Comprehensive articles on software development
-
----
-
-*This profile is based on Irshad Ali's published technical articles, conference participation, and professional experience through 2017. The profile acknowledges that Irshad has continued to grow professionally with additional experience, projects, and technical expertise that may not be fully captured in the available documentation. For the most current and comprehensive information about Irshad's experience and projects, please refer to his LinkedIn profile and recent professional activities.* 
 
 ---
 
@@ -252,27 +179,27 @@ This experience was with Shree Partners (acquired by Persistent Systems)
 
 Developed Cloud-native, enterprise-grade marketing automation and CRM-integrated web application, built with a scalable architecture for global deployment and multilingual support.This experience was with Shree Partners (acquired by Persistent Systems) Developed Cloud-native, enterprise-grade marketing automation and CRM-integrated web application, built with a scalable architecture for global deployment and multilingual support.
 .NET Core, Azure Functions and +9 skills
-Brain Technosys Pvt. Ltd. logo
-Brain Technosys Pvt. Ltd.
+
 Brain Technosys Pvt. Ltd.
 Full-time · 2 yrs 2 mosFull-time · 2 yrs 2 mos
-Sr. Software Engineer
+
 Sr. Software Engineer
 Apr 2016 - Jun 2017 · 1 yr 3 mosApr 2016 to Jun 2017 · 1 yr 3 mos
 Noida, Uttar Pradesh, India · On-siteNoida, Uttar Pradesh, India · On-site
 ElasticSearch, Cassandra and +3 skills
-Software Engineer
+
+Brain Technosys Pvt. Ltd.
 Software Engineer
 May 2015 - Mar 2016 · 11 mosMay 2015 to Mar 2016 · 11 mos
 Implemented an e-commerce application to virtually sell anything from different merchants. Product Categories are used from Google taxonomies.
 Application was build using strict standards and design principles.
 We have developed application using AspNet MVC 5, EF 6, Sql Server, Apache Ignite, Unity.
 Also used ElasticSearch and Nest to serve as search database. Cassandra for logging. HtmlPdfRenderer to generate pdf from html. QRCoder to generate brand QRCode.
+
 Created a TurboTree to traverse google taxonomies in C# and Typescript.
 Used Fody and Castle Windsor for Interception for Xamarin and Web Project respectively. Implemented an e-commerce application to virtually sell anything from different merchants. Product Categories are used from Google taxonomies. Application was build using strict standards and design principles. We have developed application using AspNet MVC 5, EF 6, Sql Server, Apache Ignite, Unity. Also used ElasticSearch and Nest to serve as search database. Cassandra for logging. HtmlPdfRenderer to generate pdf from html. QRCoder to generate brand QRCode. Created a TurboTree to traverse google taxonomies in C# and Typescript. Used Fody and Castle Windsor for Interception for Xamarin and Web Project respectively. 
 ASP.NET MVC, AngularJS and +2 skills
-Software Engineer
-Software Engineer
+
 Software Engineer
 ATG TransATG Trans
 Nov 2014 - May 2015 · 7 mosNov 2014 to May 2015 · 7 mos
@@ -282,10 +209,8 @@ Solutions Engineering, .NET Framework and +5 skills
 
 
 Nomis Price Manager
-Nomis Price Manager
 Sep 2024 - Jun 2025Sep 2024 - Jun 2025
 Company logo
-Associated with Persistent Systems
 Associated with Persistent Systems
 • Tech Stack: AWS ECS, CloudWatch, S3, BullMq, Node.js, Meteor, sinon, chai
 • Led implementation of pricing attributes, templates, and rate adjustment rules to be dynamic, configuration-driven model, improving maintainability and enabling faster rollout of pricing strategies.
@@ -295,8 +220,6 @@ Other contributorsOther contributors
 
 
 
-5
-Smartlinx (Healthcare Workforce Management)
 Smartlinx (Healthcare Workforce Management)
 Oct 2023 - Aug 2024Oct 2023 - Aug 2024
 Company logo
@@ -311,10 +234,9 @@ Other contributorsOther contributors
 
 
 Storhub (Data Integration & Automation)
-Storhub (Data Integration & Automation)
 Dec 2022 - Oct 2023Dec 2022 - Oct 2023
 Company logo
-Associated with Persistent Systems
+
 Associated with Persistent Systems
 • Developed scalable, one-time data ingestion pipelines using .NET Core and Azure Durable Functions to extract, transform, and load (ETL) customer and operational data from SugarCRM and Storeganize into a centralized PostgreSQL database.
 • Integrated Zendesk for scheduled data synchronization to support customer service analytics and reporting.
@@ -325,7 +247,7 @@ Consent Management by Hu-manity.co
 Consent Management by Hu-manity.co
 Jul 2019 - Dec 2022Jul 2019 - Dec 2022
 Company logo
-Associated with Persistent Systems
+
 Associated with Persistent Systems
 Consent Management Platform for fully Customizable Cookie Compliance Banner with Autoblocking. https://cookie-compliance.co/
 
@@ -334,8 +256,9 @@ Default configurations for GDPR, CCPA and more, help to remove dark patterns and
 Consent analytics dashboard shows event data for number of visits and provides a “trust score” to help you track how site visitors are setting their consent.
 Consent Management Platform for fully Customizable Cookie Compliance Banner with Autoblocking. https://cookie-compliance.co/ Default configurations for GDPR, CCPA and more, help to remove dark patterns and allow for quick and easy deployment of the consent banner without any guesswork. Consent analytics dashboard shows event data for number of visits and provides a “trust score” to help you track how site visitors are setting their consent.
 Skills: AWS Elastic Beanstalk · AWS Redshift · Azure DevOps · Big Data · Angular · Node.js · JavaScript · Python (Programming Language)
+
 Skills: AWS Elastic Beanstalk · AWS Redshift · Azure DevOps · Big Data · Angular · Node.js · JavaScript · Python (Programming Language)
-SAM&C
+
 SAM&C
 Dec 2017 - Feb 2019Dec 2017 - Feb 2019
 Company logo
@@ -354,10 +277,8 @@ Implementing SAM&C applications on microsoft.com domain. SAM&C global initiative
 Other contributorsOther contributors
 
 Cybersecurity Self-Assessment
-Cybersecurity Self-Assessment
 Jul 2017 - Dec 2018Jul 2017 - Dec 2018
 Company logo
-Associated with Persistent Systems
 Associated with Persistent Systems
 Show project
 Self-Assessments: Numerous App Services allowing businesses to pinpoint their gaps and weaknesses in the areas of Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Built in ASP.NET MVC 6 using C#, Azure Functions, WebJobs, Web API 2, Azure CDN, jQuery in VS 2017. Azure Storage using Blobs, Tables and Queues and Azure SQL Databases. 
@@ -377,10 +298,8 @@ Self-Assessments: Numerous App Services allowing businesses to pinpoint their ga
 Other contributorsOther contributors
 
 VQBZ (E-Commerce Platform)
-VQBZ (E-Commerce Platform)
 May 2015 - Jun 2017May 2015 - Jun 2017
 Company logo
-Associated with Brain Technosys Pvt. Ltd.
 Associated with Brain Technosys Pvt. Ltd.
 • Tech Stack: ASP.NET MVC, WCF, Elasticsearch, Cassandra, Angular
 • Designed a scalable, EAV-based database schema, enabling flexible product management.
@@ -391,8 +310,7 @@ Other contributorsOther contributors
 
 
 
-Bartosz Arendt
-Bartosz Arendt
+
 Bartosz Arendt
 · 1stFirst degree connection
 Founder // Solutions Architect at Digital Factory - Creative plugins for WordPressFounder // Solutions Architect at Digital Factory - Creative plugins for WordPress
@@ -405,8 +323,7 @@ Awesome developer, skillful, communicative, fast and eager to learn new things. 
 
 As a developer, Irshad earns my highest recommendation.
 Been working with Irshad for 2 years and it was a pleasure. Awesome developer, skillful, communicative, fast and eager to learn new things. Has great work ethics, he's hardworking and dedicated to a project. Doesn't give up until finds solution to a problem. Good team player. As a developer, Irshad earns my highest recommendation.
-Amit Panwar
-Amit Panwar
+
 Amit Panwar
 · 1stFirst degree connection
 Works at PAN Consulting LLC.Works at PAN Consulting LLC.
@@ -415,8 +332,7 @@ All LinkedIn membersShow Amit Panwar recommendation to All LinkedIn members
 
 Irshad is talented guy with great work ethics and problem solving skills. He is very helpful to solve any issue out of the box.
 Irshad is talented guy with great work ethics and problem solving skills. He is very helpful to solve any issue out of the box.
-David J Finch
-David J Finch
+
 David J Finch
 · 1stFirst degree connection
 Cloud Solutions Architect at Inverotech ConsultingCloud Solutions Architect at Inverotech Consulting

@@ -64,7 +64,7 @@ export const companies: Company[] = [
 	{
 		name: 'Persistent Systems',
 		role: 'Project Lead',
-		period: 'Jan 2024 - Present',
+		period: 'Jan 2024 - Jul 2025',
 		description: 'Leading development teams and delivering enterprise solutions with modern technologies. Working with Smartlinx to improve their product quality, providing real-time data and advanced scheduling tools to manage staffing costs.',
 		technologies: ['.NET Core', 'Azure Functions', 'Microservices', 'SQL Server', 'Azure DevOps']
 	},
@@ -88,6 +88,20 @@ export const companies: Company[] = [
 		period: 'Apr 2016 - Jun 2017',
 		description: 'Built enterprise applications using .NET and modern JavaScript frameworks. Implemented e-commerce platform with ElasticSearch, Cassandra, and Angular.',
 		technologies: ['ElasticSearch', 'Cassandra', 'ASP.NET MVC', 'AngularJS', 'SQL Server']
+	},
+	{
+		name: 'Brain Technosys Pvt. Ltd.',
+		role: 'Software Engineer',
+		period: 'May 2015 - Mar 2016',
+		description: 'Implemented e-commerce application to virtually sell anything from different merchants. Built using ASP.NET MVC 5, EF 6, SQL Server, Apache Ignite, Unity, ElasticSearch, and Cassandra.',
+		technologies: ['ASP.NET MVC', 'Entity Framework', 'SQL Server', 'Apache Ignite', 'ElasticSearch', 'Cassandra', 'AngularJS']
+	},
+	{
+		name: 'ATG Trans',
+		role: 'Software Engineer',
+		period: 'Nov 2014 - May 2015',
+		description: 'Solutions Engineering and .NET Framework development.',
+		technologies: ['.NET Framework', 'Solutions Engineering']
 	}
 ];
 
@@ -98,22 +112,34 @@ export const skills: Skills = {
 		'JavaScript',
 		'TypeScript',
 		'Python',
-		'SQL'
+		'SQL',
+		'HTML/CSS'
 	],
 	frameworks: [
 		'.NET Core',
-		'ASP.NET',
+		'ASP.NET MVC',
+		'ASP.NET Core',
+		'Entity Framework',
+		'MediatR',
 		'Node.js',
 		'Angular',
+		'Bootstrap',
+		'Syncfusion',
 		'Svelte',
+		'Tailwind CSS',
 	],
 	cloud: [
 		'AWS',
 		'Azure',
+		'Azure Functions',
+		'Azure DevOps',
 		'Docker',
 		'Cloud-Native Development',
 		'Microservices',
 		'Serverless',
+		'Elasticsearch',
+		'Redshift',
+		'Elastic Beanstalk',
 	],
 	tools: [
 		'Git',
@@ -123,8 +149,12 @@ export const skills: Skills = {
 		'Azure DevOps',
 		'CI/CD',
 		'Infrastructure as Code',
-		'Big Data',		
-		'Monitoring'
+		'Big Data',
+		'Monitoring',
+		'Apache Ignite',
+		'Unity',
+		'Jekyll',
+		'IIS'
 	],
 	other: [
 		'Performance Optimization',
@@ -136,21 +166,24 @@ export const skills: Skills = {
 		'Knowledge Sharing',
 		'Continuous Learning',
 		'Team Collaboration',
-		'Leadership'
+		'Leadership',
+		'Debugging',
+		'Chrome DevTools',
+		'Responsive Web Design'
 	]
 };
 
 // Achievements
 export const achievements: Achievement[] = [
 	{
-		title: 'AWS Certified Solutions Architect',
-		description: 'Achieved AWS Solutions Architect certification demonstrating expertise in cloud architecture and AWS services.',
-		year: '2023'
+		title: 'Top Talent Award',
+		description: 'Recognized for exceptional performance and leadership at Persistent Systems',
+		year: '2024'
 	},
 	{
-		title: 'Microsoft Certified: Azure Developer Associate',
-		description: 'Earned Azure Developer certification showcasing proficiency in Azure development and cloud solutions.',
-		year: '2022'
+		title: 'Impressive Initiator Award',
+		description: 'Awarded at the 12th foundation day award ceremony at Brain Technosys Pvt. Ltd.',
+		year: '2016'
 	},
 	{
 		title: 'Led Successful Enterprise Migration',
@@ -172,28 +205,48 @@ export const achievements: Achievement[] = [
 // Projects
 export const recentProjects: Project[] = [
 	{
+		title: 'Nomis Price Manager',
+		description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Implementation support for large file handling, diff viewer, validations maker/checker process and activation.',
+		technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor', 'sinon', 'chai'],
+		github: 'https://github.com/irsali/nomis-price-manager'
+	},
+	{
+		title: 'Smartlinx Healthcare Workforce Management',
+		description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling to improve efficiency across multiple facilities.',
+		technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps'],
+		github: 'https://github.com/irsali/smartlinx-healthcare'
+	},
+	{
+		title: 'Storhub Data Integration & Automation',
+		description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions. Integrated Zendesk and Oracle NetSuite for unified data visibility.',
+		technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite'],
+		github: 'https://github.com/irsali/storhub-integration'
+	},
+	{
 		title: 'Consent Management Platform',
-		description: 'Developed a comprehensive cookie compliance and consent management platform with customizable banners and automatic blocking capabilities.',
-		technologies: ['Angular', 'Node.js', 'AWS', 'MongoDB'],
-		github: 'https://github.com/irsali/consent-platform'
+		description: 'Developed comprehensive cookie compliance and consent management platform with customizable banners and automatic blocking capabilities. Features consent analytics dashboard with trust score tracking.',
+		technologies: ['AWS Elastic Beanstalk', 'AWS Redshift', 'Azure DevOps', 'Big Data', 'Angular', 'Node.js', 'JavaScript', 'Python'],
+		github: 'https://github.com/irsali/consent-platform',
+		live: 'https://cookie-compliance.co/'
 	},
 	{
-		title: 'Marketing Automation System',
-		description: 'Built a cloud-native marketing automation platform with CRM integration, supporting global deployment and multilingual content.',
-		technologies: ['.NET Core', 'Azure Functions', 'Angular', 'SQL Server'],
-		github: 'https://github.com/irsali/marketing-automation'
+		title: 'SAM&C Applications',
+		description: 'Implemented SAM&C applications on microsoft.com domain with global deployment across multiple Azure regions in 18 languages. Built High Touch, Low Touch and No Touch versions.',
+		technologies: ['ASP.NET Core 2 MVC', 'Angular 6', 'C#', 'TypeScript', 'Web API 2', 'Azure SQL Database', 'Azure DevOps'],
+		github: 'https://github.com/irsali/samc-applications'
 	},
 	{
-		title: 'E-commerce Platform',
-		description: 'Developed a high-performance e-commerce platform using modern technologies with search optimization and scalable architecture.',
-		technologies: ['ASP.NET MVC', 'ElasticSearch', 'Cassandra', 'AngularJS'],
-		github: 'https://github.com/irsali/ecommerce-platform'
+		title: 'Cybersecurity Self-Assessment',
+		description: 'Developed self-assessment applications for Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Multiple App Services with Azure Functions and WebJobs.',
+		technologies: ['ASP.NET MVC 6', 'C#', 'Azure Functions', 'WebJobs', 'Web API 2', 'Azure CDN', 'jQuery', 'Azure Storage'],
+		github: 'https://github.com/irsali/cybersecurity-assessment',
+		live: 'https://msftselfassessment-dev.azurewebsites.net/'
 	},
 	{
-		title: 'Smartlinx Staffing Solution',
-		description: 'Enhanced staffing management system with real-time data analytics and advanced scheduling tools for cost optimization.',
-		technologies: ['.NET Core', 'Azure Functions', 'Microservices', 'SQL Server'],
-		github: 'https://github.com/irsali/smartlinx-staffing'
+		title: 'VQBZ E-Commerce Platform',
+		description: 'Designed scalable EAV-based database schema for flexible product management. Integrated geo-based search & recommendation system using ElasticSearch. Developed multi-vendor onboarding & order tracking system.',
+		technologies: ['ASP.NET MVC', 'WCF', 'Elasticsearch', 'Cassandra', 'Angular'],
+		github: 'https://github.com/irsali/vqbz-ecommerce'
 	},
 	{
 		title: 'Personal Portfolio Website',
@@ -201,14 +254,8 @@ export const recentProjects: Project[] = [
 		technologies: ['SvelteKit', 'TypeScript', 'CSS', 'Vite'],
 		github: 'https://github.com/irsali/portfolio-blog',
 		live: 'https://irshad-ali.dev'
-	},
-	{
-		title: 'API Gateway Service',
-		description: 'Designed and implemented a microservices API gateway with authentication, rate limiting, and request routing capabilities.',
-		technologies: ['.NET Core', 'Ocelot', 'Redis', 'Docker'],
-		github: 'https://github.com/irsali/api-gateway'
 	}
 ];
 
 // Calculate experience years
-export const experienceYears = new Date().getFullYear() - 2016; 
+export const experienceYears = new Date().getFullYear() - 2014; 

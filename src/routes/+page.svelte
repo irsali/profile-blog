@@ -3,7 +3,6 @@
 	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
-	import NetworkBackground from '$lib/components/NetworkBackground.svelte';
 	import { profile, companies, skills, achievements, recentProjects, experienceYears } from '$lib/data/profile';
 	import { siGithub } from 'simple-icons';
 
@@ -56,9 +55,6 @@
 
 <!-- Hero Section -->
 <section class="hero">
-	
-	<!-- Network Pattern Background -->
-	<NetworkBackground />
 	
 	<div class="hero__container">
 		<div class="hero__content">
