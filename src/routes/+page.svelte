@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Github, Linkedin, Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon } from 'lucide-svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin } from 'lucide-svelte';
+	import { siGithub } from 'simple-icons';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 
 	// Profile data
@@ -47,10 +48,52 @@
 	];
 
 	const skills = {
-		programming: ['C#', 'JavaScript', 'TypeScript', 'Node.js', 'Python'],
-		frameworks: ['Angular', '.NET Core', 'ASP.NET', 'React', 'Vue.js'],
-		cloud: ['Azure', 'AWS', 'Google Cloud Platform', 'Docker', 'Kubernetes'],
-		tools: ['Git', 'Visual Studio', 'VS Code', 'Azure DevOps', 'Jenkins']
+		programming: [
+			'C#',
+			'JavaScript',
+			'TypeScript',
+			'Python',
+			'SQL'
+		],
+		frameworks: [
+			'.NET Core',
+			'ASP.NET',
+			'Node.js',
+			'Angular',
+			'Svelte',
+		],
+		cloud: [
+			'AWS',
+			'Azure',
+			'Docker',
+			'Cloud-Native Development',
+			'Microservices',
+			'Serverless',
+		
+		],
+		tools: [
+			'Git',
+			'Visual Studio',
+			'VS Code',
+			'Cursor AI',
+			'Azure DevOps',
+			'CI/CD',
+			'Infrastructure as Code',
+			'Big Data',		
+			'Monitoring'
+		],
+		other: [
+			'Performance Optimization',
+			'Architecture Design',
+			'Technical Documentation',
+			'Problem Solving',
+			'Security',
+			'Unit Testing',
+			'Knowledge Sharing',
+			'Continuous Learning',
+			'Team Collaboration',
+			'Leadership'
+		]
 	};
 
 	const achievements = [
@@ -172,6 +215,46 @@
 
 <!-- Hero Section -->
 <section class="hero">
+	<!-- Animated Tech Stack Background -->
+	<div class="tech-background">
+		<div class="tech-icon" style="--delay: 0s; --speed: 20s; --x: 10%; --y: 20%;">
+			<span>.NET</span>
+		</div>
+		<div class="tech-icon" style="--delay: 2s; --speed: 25s; --x: 80%; --y: 15%;">
+			<span>Angular</span>
+		</div>
+		<div class="tech-icon" style="--delay: 4s; --speed: 18s; --x: 15%; --y: 70%;">
+			<span>AWS</span>
+		</div>
+		<div class="tech-icon" style="--delay: 6s; --speed: 22s; --x: 85%; --y: 75%;">
+			<span>Azure</span>
+		</div>
+		<div class="tech-icon" style="--delay: 8s; --speed: 19s; --x: 45%; --y: 10%;">
+			<span>Node.js</span>
+		</div>
+		<div class="tech-icon" style="--delay: 10s; --speed: 24s; --x: 5%; --y: 50%;">
+			<span>SQL</span>
+		</div>
+		<div class="tech-icon" style="--delay: 12s; --speed: 21s; --x: 90%; --y: 45%;">
+			<span>TypeScript</span>
+		</div>
+		<div class="tech-icon" style="--delay: 14s; --speed: 23s; --x: 30%; --y: 85%;">
+			<span>Elasticsearch</span>
+		</div>
+		<div class="tech-icon" style="--delay: 16s; --speed: 17s; --x: 70%; --y: 25%;">
+			<span>AI/ML</span>
+		</div>
+		<div class="tech-icon" style="--delay: 18s; --speed: 26s; --x: 25%; --y: 35%;">
+			<span>Python</span>
+		</div>
+		<div class="tech-icon" style="--delay: 20s; --speed: 20s; --x: 75%; --y: 60%;">
+			<span>React</span>
+		</div>
+		<div class="tech-icon" style="--delay: 22s; --speed: 22s; --x: 50%; --y: 80%;">
+			<span>Docker</span>
+		</div>
+	</div>
+	
 	<div class="hero__container">
 		<div class="hero__content">
 			<h1 class="hero__title">
@@ -374,7 +457,9 @@
 			</div>
 			<div class="contact__social">
 				<a href={profile.github} class="social-link" target="_blank" rel="noopener">
-					<Github class="social-icon" />
+					<svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+						<path d={siGithub.path} />
+					</svg>
 					<span>GitHub</span>
 				</a>
 				<a href={profile.linkedin} class="social-link" target="_blank" rel="noopener">
@@ -471,8 +556,10 @@
 	/* Hero Section */
 	.hero {
 		padding: 120px 0 80px;
-		background: linear-gradient(135deg, var(--color-hero-gradient-start) 0%, var(--color-hero-gradient-end) 100%);
-		color: white;
+		background: var(--color-bg-alt);
+		color: var(--color-text);
+		position: relative;
+		overflow: hidden;
 	}
 
 	.hero__container {
@@ -483,6 +570,68 @@
 		grid-template-columns: 1fr 1fr;
 		gap: 4rem;
 		align-items: center;
+		position: relative;
+		z-index: 2;
+	}
+
+	/* Animated Tech Stack Background */
+	.tech-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		z-index: 1;
+	}
+
+	.tech-icon {
+		position: absolute;
+		left: var(--x);
+		top: var(--y);
+		background: rgba(25, 199, 166, 0.1);
+		color: var(--color-primary);
+		padding: 0.5rem 1rem;
+		border-radius: var(--radius-md);
+		border: 1px solid rgba(25, 199, 166, 0.2);
+		font-size: 0.875rem;
+		font-weight: 500;
+		white-space: nowrap;
+		animation: float var(--speed) ease-in-out infinite;
+		animation-delay: var(--delay);
+		opacity: 0.7;
+		transition: all 0.3s ease;
+	}
+
+	.tech-icon:hover {
+		opacity: 1;
+		background: rgba(25, 199, 166, 0.15);
+		transform: scale(1.05);
+	}
+
+	@keyframes float {
+		0%, 100% {
+			transform: translateY(0px) rotate(0deg);
+		}
+		25% {
+			transform: translateY(-10px) rotate(1deg);
+		}
+		50% {
+			transform: translateY(-5px) rotate(-1deg);
+		}
+		75% {
+			transform: translateY(-15px) rotate(0.5deg);
+		}
+	}
+
+	/* Dark theme adjustments for tech icons */
+	[data-theme="dark"] .tech-icon {
+		background: rgba(25, 199, 166, 0.15);
+		border-color: rgba(25, 199, 166, 0.3);
+	}
+
+	[data-theme="dark"] .tech-icon:hover {
+		background: rgba(25, 199, 166, 0.2);
 	}
 
 	.hero__title {
@@ -926,8 +1075,8 @@
 
 	/* Footer */
 	.footer {
-		background: var(--color-text);
-		color: var(--color-bg);
+		background: var(--color-bg-alt);
+		color: var(--color-text);
 		padding: 2rem 0;
 		text-align: center;
 	}

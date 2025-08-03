@@ -48,6 +48,7 @@
 		"fuse.js": "^7.1.0",
 		"lucide-svelte": "^0.525.0",
 		"remark-footnotes": "^4.0.1",
-		"remark-smartypants": "^3.0.2"
+		"remark-smartypants": "^3.0.2",
+		"simple-icons": "^15.9.0"
 	}
 }

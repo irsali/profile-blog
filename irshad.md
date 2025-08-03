@@ -113,9 +113,9 @@ Irshad maintains an active technical blog covering various aspects of software d
 - **Problem Solving**: Analytical approach to complex technical challenges
 
 ### Advanced Skills (2017-Present)
-- **Cloud Architecture**: AWS, Azure, or Google Cloud Platform expertise
-- **Containerization**: Docker and Kubernetes implementation
-- **Modern Frontend**: React, Vue.js, or other contemporary frameworks
+- **Cloud Architecture**: AWS, Azure
+- **Containerization**: Docker 
+- **Modern Frontend**: Angular, Svelte, or other contemporary frameworks
 - **Backend Services**: Node.js, Python, or other modern backend technologies
 - **DevOps Practices**: CI/CD, infrastructure as code, monitoring
 - **Security**: Application security, authentication, and authorization
