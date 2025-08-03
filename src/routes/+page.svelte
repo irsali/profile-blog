@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Github, Linkedin, Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin } from 'lucide-svelte';
+	import { Github, Linkedin, Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield } from 'lucide-svelte';
 
 	// Profile data
 	const profile = {
 		name: 'Irshad Ali',
 		title: 'Project Lead & Full-Stack Software Engineer',
-		description: 'Seasoned software engineer with extensive experience in full-stack development, specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures.',
+		description: 'Result-driven software engineer with extensive experience in full-stack development, specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures. I help businesses create smart and scalable solutions to their general and unique problems.',
 		location: 'India',
 		email: 'irshad.ali@example.com',
 		github: 'https://github.com/irsali',
@@ -18,50 +18,81 @@
 		{
 			name: 'Persistent Systems',
 			role: 'Project Lead',
-			period: '2020 - Present',
-			description: 'Leading development teams and delivering enterprise solutions with modern technologies.'
+			period: 'Jan 2024 - Present',
+			description: 'Leading development teams and delivering enterprise solutions with modern technologies. Working with Smartlinx to improve their product quality, providing real-time data and advanced scheduling tools to manage staffing costs.',
+			technologies: ['.NET Core', 'Azure Functions', 'Microservices', 'SQL Server', 'Azure DevOps']
 		},
 		{
-			name: 'Shree Partners',
-			role: 'Senior Software Engineer',
-			period: '2018 - 2020',
-			description: 'Developed scalable applications and mentored junior developers.'
+			name: 'Persistent Systems',
+			role: 'Senior Engineering Lead',
+			period: 'Nov 2021 - Dec 2023',
+			description: 'Led development of Consent Management Platform for customizable cookie compliance banner with autoblocking. Modernized Ivanti legacy projects with AWS and modern cloud technologies.',
+			technologies: ['AWS', 'Amazon Redshift', 'Node.js', 'Angular', 'Python', 'Big Data']
+		},
+		{
+			name: 'Persistent Systems (Shree Partners)',
+			role: 'Sr. Software Engineer',
+			period: 'Jul 2017 - Nov 2021',
+			description: 'Developed cloud-native, enterprise-grade marketing automation and CRM-integrated web application, built with scalable architecture for global deployment and multilingual support.',
+			technologies: ['.NET Core', 'Azure Functions', 'Angular', 'SQL Server', 'Azure DevOps']
 		},
 		{
 			name: 'Brain Technosys Pvt. Ltd.',
-			role: 'Software Engineer',
-			period: '2016 - 2017',
-			description: 'Built enterprise applications using .NET and modern JavaScript frameworks.'
+			role: 'Sr. Software Engineer',
+			period: 'Apr 2016 - Jun 2017',
+			description: 'Built enterprise applications using .NET and modern JavaScript frameworks. Implemented e-commerce platform with ElasticSearch, Cassandra, and Angular.',
+			technologies: ['ElasticSearch', 'Cassandra', 'ASP.NET MVC', 'AngularJS', 'SQL Server']
 		}
 	];
 
 	const skills = {
-		programming: ['C#', 'JavaScript', 'TypeScript', 'Node.js'],
-		frameworks: ['Angular', '.NET Core', 'ASP.NET'],
-		cloud: ['Azure', 'AWS'],
-		tools: ['Git', 'Visual Studio', 'VS Code', 'Docker']
+		programming: ['C#', 'JavaScript', 'TypeScript', 'Node.js', 'Python'],
+		frameworks: ['Angular', '.NET Core', 'ASP.NET', 'React', 'Vue.js'],
+		cloud: ['Azure', 'AWS', 'Google Cloud Platform', 'Docker', 'Kubernetes'],
+		tools: ['Git', 'Visual Studio', 'VS Code', 'Azure DevOps', 'Jenkins']
 	};
 
 	const achievements = [
 		{
-			icon: Award,
-			title: 'Nasscom Conference',
-			description: 'Participated in Nasscom Annual Technology Conference on Microservices Architecture'
+			icon: Star,
+			title: 'Top Talent Award',
+			description: 'Recognized for exceptional performance and leadership at Persistent Systems'
 		},
 		{
-			icon: Users,
-			title: 'Team Leadership',
-			description: 'Successfully led development teams and mentored junior developers'
+			icon: Shield,
+			title: 'Healthcare Compliance',
+			description: 'Led security implementation and penetration testing for healthcare workforce management system'
 		},
 		{
-			icon: Code,
-			title: 'Technical Blog',
-			description: 'Published 20+ technical articles on software development best practices'
+			icon: Zap,
+			title: 'Consent Management Platform',
+			description: 'Developed GDPR/CCPA compliant cookie management platform serving global customers'
+		}
+	];
+
+	const recentProjects = [
+		{
+			name: 'Nomis Price Manager',
+			period: 'Sep 2024 - Jun 2025',
+			description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Tech stack: AWS ECS, CloudWatch, S3, BullMq, Node.js, Meteor.',
+			technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor']
+		},
+		{
+			name: 'Smartlinx Healthcare',
+			period: 'Oct 2023 - Aug 2024',
+			description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling across multiple facilities.',
+			technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps']
+		},
+		{
+			name: 'Storhub Data Integration',
+			period: 'Dec 2022 - Oct 2023',
+			description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions.',
+			technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite']
 		}
 	];
 
 	let currentYear = new Date().getFullYear();
-	let experienceYears = currentYear - 2016;
+	let experienceYears = currentYear - 2015;
 
 	onMount(() => {
 		// Add smooth scrolling for anchor links
@@ -92,6 +123,7 @@
 		<nav class="header__nav">
 			<a href="#about" class="nav-link">About</a>
 			<a href="#experience" class="nav-link">Experience</a>
+			<a href="#projects" class="nav-link">Projects</a>
 			<a href="#skills" class="nav-link">Skills</a>
 			<a href={profile.blog} class="nav-link">Blog</a>
 		</nav>
@@ -113,10 +145,6 @@
 				<div class="stat">
 					<span class="stat__number">{experienceYears}+</span>
 					<span class="stat__label">Years Experience</span>
-				</div>
-				<div class="stat">
-					<span class="stat__number">20+</span>
-					<span class="stat__label">Technical Articles</span>
 				</div>
 				<div class="stat">
 					<span class="stat__number">15+</span>
@@ -149,12 +177,17 @@
 		<div class="about__content">
 			<div class="about__text">
 				<p>
-					I'm a passionate software engineer with a strong foundation in both frontend and backend development. 
-					I specialize in building scalable applications and contributing to technical communities through knowledge sharing.
+					I'm a result-driven software engineer with extensive experience in full-stack development, 
+					specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures.
 				</p>
 				<p>
-					With expertise in .NET technologies, modern JavaScript frameworks, and cloud-native architectures, 
-					I've successfully delivered enterprise-level applications and mentored development teams.
+					I help businesses create smart and scalable solutions to their general and unique problems. 
+					With expertise in cloud platforms, microservices, and modern development practices, 
+					I've successfully delivered enterprise-level applications and led development teams.
+				</p>
+				<p>
+					My focus areas include performance optimization, security implementation, and building 
+					maintainable, scalable systems that drive business value.
 				</p>
 			</div>
 			<div class="about__achievements">
@@ -187,6 +220,34 @@
 							<span class="timeline__period">{company.period}</span>
 						</div>
 						<p class="timeline__description">{company.description}</p>
+						<div class="timeline__technologies">
+							{#each company.technologies as tech}
+								<span class="tech-tag">{tech}</span>
+							{/each}
+						</div>
+					</div>
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
+
+<!-- Recent Projects Section -->
+<section id="projects" class="section">
+	<div class="container">
+		<h2 class="section__title">Recent Projects</h2>
+		<div class="projects__grid">
+			{#each recentProjects as project}
+				<div class="project-card">
+					<div class="project__header">
+						<h3 class="project__title">{project.name}</h3>
+						<span class="project__period">{project.period}</span>
+					</div>
+					<p class="project__description">{project.description}</p>
+					<div class="project__technologies">
+						{#each project.technologies as tech}
+							<span class="tech-tag">{tech}</span>
+						{/each}
 					</div>
 				</div>
 			{/each}
@@ -195,7 +256,7 @@
 </section>
 
 <!-- Skills Section -->
-<section id="skills" class="section">
+<section id="skills" class="section section--alt">
 	<div class="container">
 		<h2 class="section__title">Skills & Technologies</h2>
 		<div class="skills__grid">
@@ -248,7 +309,7 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="section section--alt">
+<section id="contact" class="section">
 	<div class="container">
 		<h2 class="section__title">Get in Touch</h2>
 		<div class="contact__content">
@@ -559,9 +620,73 @@
 	}
 
 	.timeline__description {
-		margin: 0;
+		margin: 0 0 1rem 0;
 		color: var(--color-text-light);
 		line-height: 1.6;
+	}
+
+	.timeline__technologies {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.tech-tag {
+		background: var(--color-primary);
+		color: white;
+		padding: 0.25rem 0.75rem;
+		border-radius: var(--radius-md);
+		font-size: 0.75rem;
+		font-weight: 500;
+	}
+
+	/* Projects Section */
+	.projects__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 2rem;
+	}
+
+	.project-card {
+		background: var(--color-bg);
+		padding: 2rem;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-sm);
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+
+	.project-card:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.project__header {
+		margin-bottom: 1rem;
+	}
+
+	.project__title {
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 0 0 0.5rem 0;
+		color: var(--color-text);
+	}
+
+	.project__period {
+		font-size: 0.875rem;
+		color: var(--color-primary);
+		font-weight: 500;
+	}
+
+	.project__description {
+		margin: 0 0 1rem 0;
+		color: var(--color-text-light);
+		line-height: 1.6;
+	}
+
+	.project__technologies {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
 	}
 
 	/* Skills Section */
@@ -747,6 +872,10 @@
 		}
 
 		.skills__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.projects__grid {
 			grid-template-columns: 1fr;
 		}
 
