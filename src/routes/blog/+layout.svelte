@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { X, Search, Sun, Moon } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
+	import Preloader from '$lib/components/Preloader.svelte';
 	export let data;
 	let searchQuery = '';
 	let showSearch = false;
@@ -53,6 +54,9 @@
 <svelte:head>
 	<title>Blogs | Irshad Ali</title>
 </svelte:head>
+
+<!-- Preloader -->
+<Preloader duration={0} />
 
 <div class="blog-list-layout">
 	<header class="blog-header">

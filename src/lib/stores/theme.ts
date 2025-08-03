@@ -36,9 +36,16 @@ function applyTheme(theme: Theme) {
 // Create the store
 const theme = writable<Theme>(getInitialTheme());
 
-// Apply initial theme
+// Apply initial theme without transitions
 if (browser) {
+	// Disable transitions temporarily
+	document.documentElement.classList.add('no-transitions');
 	applyTheme(getInitialTheme());
+	
+	// Re-enable transitions after a short delay
+	setTimeout(() => {
+		document.documentElement.classList.remove('no-transitions');
+	}, 100);
 }
 
 // Subscribe to theme changes and apply them

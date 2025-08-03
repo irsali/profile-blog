@@ -1,174 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin } from 'lucide-svelte';
-	import { siGithub } from 'simple-icons';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
+	import Preloader from '$lib/components/Preloader.svelte';
+	import NetworkBackground from '$lib/components/NetworkBackground.svelte';
+	import { profile, companies, skills, achievements, recentProjects, experienceYears } from '$lib/data/profile';
+	import { siGithub } from 'simple-icons';
 
-	// Profile data
-	const profile = {
-		name: 'Irshad Ali',
-		title: 'Project Lead & Full-Stack Software Engineer',
-		description: 'Result-driven software engineer with extensive experience in full-stack development, specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures. I help businesses create smart and scalable solutions to their general and unique problems.',
-		location: 'India',
-		email: 'irshad.ali@example.com',
-		github: 'https://github.com/irsali',
-		linkedin: 'https://linkedin.com/in/irshad-ali',
-		blog: '/blog'
-	};
-
-	const companies = [
-		{
-			name: 'Persistent Systems',
-			role: 'Project Lead',
-			period: 'Jan 2024 - Present',
-			description: 'Leading development teams and delivering enterprise solutions with modern technologies. Working with Smartlinx to improve their product quality, providing real-time data and advanced scheduling tools to manage staffing costs.',
-			technologies: ['.NET Core', 'Azure Functions', 'Microservices', 'SQL Server', 'Azure DevOps']
-		},
-		{
-			name: 'Persistent Systems',
-			role: 'Senior Engineering Lead',
-			period: 'Nov 2021 - Dec 2023',
-			description: 'Led development of Consent Management Platform for customizable cookie compliance banner with autoblocking. Modernized Ivanti legacy projects with AWS and modern cloud technologies.',
-			technologies: ['AWS', 'Amazon Redshift', 'Node.js', 'Angular', 'Python', 'Big Data']
-		},
-		{
-			name: 'Persistent Systems (Shree Partners)',
-			role: 'Sr. Software Engineer',
-			period: 'Jul 2017 - Nov 2021',
-			description: 'Developed cloud-native, enterprise-grade marketing automation and CRM-integrated web application, built with scalable architecture for global deployment and multilingual support.',
-			technologies: ['.NET Core', 'Azure Functions', 'Angular', 'SQL Server', 'Azure DevOps']
-		},
-		{
-			name: 'Brain Technosys Pvt. Ltd.',
-			role: 'Sr. Software Engineer',
-			period: 'Apr 2016 - Jun 2017',
-			description: 'Built enterprise applications using .NET and modern JavaScript frameworks. Implemented e-commerce platform with ElasticSearch, Cassandra, and Angular.',
-			technologies: ['ElasticSearch', 'Cassandra', 'ASP.NET MVC', 'AngularJS', 'SQL Server']
-		}
-	];
-
-	const skills = {
-		programming: [
-			'C#',
-			'JavaScript',
-			'TypeScript',
-			'Python',
-			'SQL'
-		],
-		frameworks: [
-			'.NET Core',
-			'ASP.NET',
-			'Node.js',
-			'Angular',
-			'Svelte',
-		],
-		cloud: [
-			'AWS',
-			'Azure',
-			'Docker',
-			'Cloud-Native Development',
-			'Microservices',
-			'Serverless',
-		
-		],
-		tools: [
-			'Git',
-			'Visual Studio',
-			'VS Code',
-			'Cursor AI',
-			'Azure DevOps',
-			'CI/CD',
-			'Infrastructure as Code',
-			'Big Data',		
-			'Monitoring'
-		],
-		other: [
-			'Performance Optimization',
-			'Architecture Design',
-			'Technical Documentation',
-			'Problem Solving',
-			'Security',
-			'Unit Testing',
-			'Knowledge Sharing',
-			'Continuous Learning',
-			'Team Collaboration',
-			'Leadership'
-		]
-	};
-
-	const achievements = [
-		{
-			icon: Star,
-			title: 'Top Talent Award',
-			description: 'Recognized for exceptional performance and leadership at Persistent Systems'
-		},
-		{
-			icon: Shield,
-			title: 'Healthcare Compliance',
-			description: 'Led security implementation and penetration testing for healthcare workforce management system'
-		},
-		{
-			icon: Zap,
-			title: 'Consent Management Platform',
-			description: 'Developed GDPR/CCPA compliant cookie management platform serving global customers'
-		}
-	];
-
-	const allProjects = [
-		{
-			name: 'Nomis Price Manager',
-			period: 'Sep 2024 - Jun 2025',
-			description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Tech stack: AWS ECS, CloudWatch, S3, BullMq, Node.js, Meteor.',
-			technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor'],
-			company: 'Persistent Systems'
-		},
-		{
-			name: 'Smartlinx Healthcare',
-			period: 'Oct 2023 - Aug 2024',
-			description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling across multiple facilities.',
-			technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps'],
-			company: 'Persistent Systems'
-		},
-		{
-			name: 'Storhub Data Integration',
-			period: 'Dec 2022 - Oct 2023',
-			description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions.',
-			technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite'],
-			company: 'Persistent Systems'
-		},
-		{
-			name: 'Consent Management Platform',
-			period: 'Jul 2019 - Dec 2022',
-			description: 'Developed fully customizable cookie compliance banner with autoblocking for GDPR, CCPA compliance. Features consent analytics dashboard with trust score tracking.',
-			technologies: ['AWS Elastic Beanstalk', 'AWS Redshift', 'Azure DevOps', 'Big Data', 'Angular', 'Node.js', 'JavaScript', 'Python'],
-			company: 'Persistent Systems',
-			url: 'https://cookie-compliance.co/'
-		},
-		{
-			name: 'SAM&C Applications',
-			period: 'Dec 2017 - Feb 2019',
-			description: 'Implemented SAM&C applications on microsoft.com domain with global deployment across multiple Azure regions in 18 languages. Built High Touch, Low Touch and No Touch versions.',
-			technologies: ['ASP.NET Core 2 MVC', 'Angular 6', 'C#', 'TypeScript', 'Web API 2', 'Azure SQL Database', 'Azure DevOps'],
-			company: 'Persistent Systems'
-		},
-		{
-			name: 'Cybersecurity Self-Assessment',
-			period: 'Jul 2017 - Dec 2018',
-			description: 'Developed self-assessment applications for Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Multiple App Services with Azure Functions and WebJobs.',
-			technologies: ['ASP.NET MVC 6', 'C#', 'Azure Functions', 'WebJobs', 'Web API 2', 'Azure CDN', 'jQuery', 'Azure Storage'],
-			company: 'Persistent Systems'
-		},
-		{
-			name: 'VQBZ E-Commerce Platform',
-			period: 'May 2015 - Jun 2017',
-			description: 'Designed scalable EAV-based database schema for flexible product management. Integrated geo-based search & recommendation system using ElasticSearch. Developed multi-vendor onboarding & order tracking system.',
-			technologies: ['ASP.NET MVC', 'WCF', 'Elasticsearch', 'Cassandra', 'Angular'],
-			company: 'Brain Technosys Pvt. Ltd.'
-		}
-	];
-
-	let currentYear = new Date().getFullYear();
-	let experienceYears = currentYear - 2015;
 
 	onMount(() => {
 		// Add smooth scrolling for anchor links
@@ -189,6 +27,9 @@
 	<title>{profile.name} - {profile.title}</title>
 	<meta name="description" content={profile.description} />
 </svelte:head>
+
+<!-- Preloader -->
+<Preloader duration={0} />
 
 <!-- Header -->
 <header class="header">
@@ -215,45 +56,9 @@
 
 <!-- Hero Section -->
 <section class="hero">
-	<!-- Animated Tech Stack Background -->
-	<div class="tech-background">
-		<div class="tech-icon" style="--delay: 0s; --speed: 20s; --x: 10%; --y: 20%;">
-			<span>.NET</span>
-		</div>
-		<div class="tech-icon" style="--delay: 2s; --speed: 25s; --x: 80%; --y: 15%;">
-			<span>Angular</span>
-		</div>
-		<div class="tech-icon" style="--delay: 4s; --speed: 18s; --x: 15%; --y: 70%;">
-			<span>AWS</span>
-		</div>
-		<div class="tech-icon" style="--delay: 6s; --speed: 22s; --x: 85%; --y: 75%;">
-			<span>Azure</span>
-		</div>
-		<div class="tech-icon" style="--delay: 8s; --speed: 19s; --x: 45%; --y: 10%;">
-			<span>Node.js</span>
-		</div>
-		<div class="tech-icon" style="--delay: 10s; --speed: 24s; --x: 5%; --y: 50%;">
-			<span>SQL</span>
-		</div>
-		<div class="tech-icon" style="--delay: 12s; --speed: 21s; --x: 90%; --y: 45%;">
-			<span>TypeScript</span>
-		</div>
-		<div class="tech-icon" style="--delay: 14s; --speed: 23s; --x: 30%; --y: 85%;">
-			<span>Elasticsearch</span>
-		</div>
-		<div class="tech-icon" style="--delay: 16s; --speed: 17s; --x: 70%; --y: 25%;">
-			<span>AI/ML</span>
-		</div>
-		<div class="tech-icon" style="--delay: 18s; --speed: 26s; --x: 25%; --y: 35%;">
-			<span>Python</span>
-		</div>
-		<div class="tech-icon" style="--delay: 20s; --speed: 20s; --x: 75%; --y: 60%;">
-			<span>React</span>
-		</div>
-		<div class="tech-icon" style="--delay: 22s; --speed: 22s; --x: 50%; --y: 80%;">
-			<span>Docker</span>
-		</div>
-	</div>
+	
+	<!-- Network Pattern Background -->
+	<NetworkBackground />
 	
 	<div class="hero__container">
 		<div class="hero__content">
@@ -314,15 +119,17 @@
 				</p>
 			</div>
 			<div class="about__achievements">
-				{#each achievements as achievement}
-					<div class="achievement">
-						<svelte:component this={achievement.icon} class="achievement__icon" />
-						<div class="achievement__content">
-							<h3 class="achievement__title">{achievement.title}</h3>
-							<p class="achievement__description">{achievement.description}</p>
-						</div>
-					</div>
-				{/each}
+						{#each achievements as achievement}
+			<div class="achievement">
+				<div class="achievement__content">
+					<h3 class="achievement__title">{achievement.title}</h3>
+					<p class="achievement__description">{achievement.description}</p>
+					{#if achievement.year}
+						<span class="achievement__year">{achievement.year}</span>
+					{/if}
+				</div>
+			</div>
+		{/each}
 			</div>
 		</div>
 	</div>
@@ -357,17 +164,14 @@
 
 <!-- Projects Section -->
 <section id="projects" class="section">
+	
 	<div class="container">
 		<h2 class="section__title">Featured Projects</h2>
 		<div class="projects__grid">
-			{#each allProjects as project}
+			{#each recentProjects as project}
 				<div class="project-card">
 					<div class="project__header">
-						<h3 class="project__title">{project.name}</h3>
-						<div class="project__meta">
-							<span class="project__period">{project.period}</span>
-							<span class="project__company">{project.company}</span>
-						</div>
+						<h3 class="project__title">{project.title}</h3>
 					</div>
 					<p class="project__description">{project.description}</p>
 					<div class="project__technologies">
@@ -375,12 +179,22 @@
 							<span class="tech-tag">{tech}</span>
 						{/each}
 					</div>
-					{#if project.url}
-						<a href={project.url} target="_blank" rel="noopener" class="project__link">
-							<ExternalLink class="project__link-icon" />
-							View Project
-						</a>
-					{/if}
+					<div class="project__links">
+						{#if project.github}
+							<a href={project.github} target="_blank" rel="noopener" class="project__link">
+								<svg class="project__link-icon" viewBox="0 0 24 24" fill="currentColor">
+									<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+								</svg>
+								GitHub
+							</a>
+						{/if}
+						{#if project.live}
+							<a href={project.live} target="_blank" rel="noopener" class="project__link">
+								<ExternalLink class="project__link-icon" />
+								Live Demo
+							</a>
+						{/if}
+					</div>
 				</div>
 			{/each}
 		</div>
@@ -389,6 +203,7 @@
 
 <!-- Skills Section -->
 <section id="skills" class="section section--alt">
+	
 	<div class="container">
 		<h2 class="section__title">Skills & Technologies</h2>
 		<div class="skills__grid">
@@ -479,7 +294,7 @@
 <footer class="footer">
 	<div class="container">
 		<p class="footer__text">
-			Built with curiosity, creativity, and a bit of AI magic. © {currentYear} {profile.name}.
+			Built with curiosity, creativity, and a bit of AI magic. © {new Date().getFullYear()} {profile.name}.
 		</p>
 	</div>
 </footer>
@@ -571,8 +386,10 @@
 		gap: 4rem;
 		align-items: center;
 		position: relative;
-		z-index: 2;
+		z-index: 4;
 	}
+
+
 
 	/* Animated Tech Stack Background */
 	.tech-background {
@@ -582,7 +399,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		z-index: 1;
+		z-index: 3;
 	}
 
 	.tech-icon {
@@ -861,7 +678,11 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 2rem;
+		position: relative;
+		z-index: 2;
 	}
+
+
 
 	.project-card {
 		background: var(--color-bg);
@@ -945,7 +766,11 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 2rem;
+		position: relative;
+		z-index: 2;
 	}
+
+
 
 	.skills__category {
 		background: var(--color-bg);
@@ -1164,4 +989,7 @@
 			padding: 1.5rem;
 		}
 	}
+
+
 </style>
+
