@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Github, Linkedin, Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield } from 'lucide-svelte';
+	import { Github, Linkedin, Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon } from 'lucide-svelte';
+	import { theme, toggleTheme } from '$lib/stores/theme';
 
 	// Profile data
 	const profile = {
@@ -70,24 +71,56 @@
 		}
 	];
 
-	const recentProjects = [
+	const allProjects = [
 		{
 			name: 'Nomis Price Manager',
 			period: 'Sep 2024 - Jun 2025',
 			description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Tech stack: AWS ECS, CloudWatch, S3, BullMq, Node.js, Meteor.',
-			technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor']
+			technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor'],
+			company: 'Persistent Systems'
 		},
 		{
 			name: 'Smartlinx Healthcare',
 			period: 'Oct 2023 - Aug 2024',
 			description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling across multiple facilities.',
-			technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps']
+			technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps'],
+			company: 'Persistent Systems'
 		},
 		{
 			name: 'Storhub Data Integration',
 			period: 'Dec 2022 - Oct 2023',
 			description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions.',
-			technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite']
+			technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite'],
+			company: 'Persistent Systems'
+		},
+		{
+			name: 'Consent Management Platform',
+			period: 'Jul 2019 - Dec 2022',
+			description: 'Developed fully customizable cookie compliance banner with autoblocking for GDPR, CCPA compliance. Features consent analytics dashboard with trust score tracking.',
+			technologies: ['AWS Elastic Beanstalk', 'AWS Redshift', 'Azure DevOps', 'Big Data', 'Angular', 'Node.js', 'JavaScript', 'Python'],
+			company: 'Persistent Systems',
+			url: 'https://cookie-compliance.co/'
+		},
+		{
+			name: 'SAM&C Applications',
+			period: 'Dec 2017 - Feb 2019',
+			description: 'Implemented SAM&C applications on microsoft.com domain with global deployment across multiple Azure regions in 18 languages. Built High Touch, Low Touch and No Touch versions.',
+			technologies: ['ASP.NET Core 2 MVC', 'Angular 6', 'C#', 'TypeScript', 'Web API 2', 'Azure SQL Database', 'Azure DevOps'],
+			company: 'Persistent Systems'
+		},
+		{
+			name: 'Cybersecurity Self-Assessment',
+			period: 'Jul 2017 - Dec 2018',
+			description: 'Developed self-assessment applications for Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Multiple App Services with Azure Functions and WebJobs.',
+			technologies: ['ASP.NET MVC 6', 'C#', 'Azure Functions', 'WebJobs', 'Web API 2', 'Azure CDN', 'jQuery', 'Azure Storage'],
+			company: 'Persistent Systems'
+		},
+		{
+			name: 'VQBZ E-Commerce Platform',
+			period: 'May 2015 - Jun 2017',
+			description: 'Designed scalable EAV-based database schema for flexible product management. Integrated geo-based search & recommendation system using ElasticSearch. Developed multi-vendor onboarding & order tracking system.',
+			technologies: ['ASP.NET MVC', 'WCF', 'Elasticsearch', 'Cassandra', 'Angular'],
+			company: 'Brain Technosys Pvt. Ltd.'
 		}
 	];
 
@@ -126,6 +159,13 @@
 			<a href="#projects" class="nav-link">Projects</a>
 			<a href="#skills" class="nav-link">Skills</a>
 			<a href={profile.blog} class="nav-link">Blog</a>
+			<button class="theme-toggle" on:click={toggleTheme} aria-label="Toggle theme">
+				{#if $theme === 'dark'}
+					<Sun class="theme-toggle__icon" />
+				{:else}
+					<Moon class="theme-toggle__icon" />
+				{/if}
+			</button>
 		</nav>
 	</div>
 </header>
@@ -232,16 +272,19 @@
 	</div>
 </section>
 
-<!-- Recent Projects Section -->
+<!-- Projects Section -->
 <section id="projects" class="section">
 	<div class="container">
-		<h2 class="section__title">Recent Projects</h2>
+		<h2 class="section__title">Featured Projects</h2>
 		<div class="projects__grid">
-			{#each recentProjects as project}
+			{#each allProjects as project}
 				<div class="project-card">
 					<div class="project__header">
 						<h3 class="project__title">{project.name}</h3>
-						<span class="project__period">{project.period}</span>
+						<div class="project__meta">
+							<span class="project__period">{project.period}</span>
+							<span class="project__company">{project.company}</span>
+						</div>
 					</div>
 					<p class="project__description">{project.description}</p>
 					<div class="project__technologies">
@@ -249,6 +292,12 @@
 							<span class="tech-tag">{tech}</span>
 						{/each}
 					</div>
+					{#if project.url}
+						<a href={project.url} target="_blank" rel="noopener" class="project__link">
+							<ExternalLink class="project__link-icon" />
+							View Project
+						</a>
+					{/if}
 				</div>
 			{/each}
 		</div>
@@ -345,7 +394,7 @@
 <footer class="footer">
 	<div class="container">
 		<p class="footer__text">
-			© {currentYear} {profile.name}. Built with SvelteKit and inspired by the Svelte community.
+			Built with curiosity, creativity, and a bit of AI magic. © {currentYear} {profile.name}.
 		</p>
 	</div>
 </footer>
@@ -357,10 +406,12 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background: rgba(255, 255, 255, 0.95);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid var(--color-border-light);
+		background: var(--color-header-bg);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 		z-index: var(--z-index-header);
+		transition: var(--theme-transition);
 	}
 
 	.header__container {
@@ -378,7 +429,7 @@
 		font-size: 1.25rem;
 		color: var(--color-text);
 		text-decoration: none;
-		transition: color 0.2s;
+		transition: var(--theme-transition);
 	}
 
 	.header__logo:hover {
@@ -391,14 +442,30 @@
 	}
 
 	.nav-link {
-		color: var(--color-text-light);
+		color: var(--color-text);
 		text-decoration: none;
 		font-weight: 500;
-		transition: color 0.2s;
+		transition: var(--theme-transition);
+		position: relative;
 	}
 
 	.nav-link:hover {
 		color: var(--color-primary);
+	}
+
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: var(--color-primary);
+		transition: width 0.3s ease;
+	}
+
+	.nav-link:hover::after {
+		width: 100%;
 	}
 
 	/* Hero Section */
@@ -640,10 +707,10 @@
 		font-weight: 500;
 	}
 
-	/* Projects Section */
+	/* Projects Grid Section */
 	.projects__grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		grid-template-columns: repeat(3, 1fr);
 		gap: 2rem;
 	}
 
@@ -671,10 +738,25 @@
 		color: var(--color-text);
 	}
 
+	.project__meta {
+		display: flex;
+		gap: 1rem;
+		font-size: 0.875rem;
+		color: var(--color-text-light);
+	}
+
 	.project__period {
 		font-size: 0.875rem;
 		color: var(--color-primary);
 		font-weight: 500;
+	}
+
+	.project__company {
+		font-size: 0.875rem;
+		color: var(--color-text-light);
+		background: var(--color-bg-alt);
+		padding: 0.25rem 0.75rem;
+		border-radius: var(--radius-md);
 	}
 
 	.project__description {
@@ -687,6 +769,26 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.project__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--color-primary);
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.2s;
+	}
+
+	.project__link:hover {
+		color: var(--color-primary-hover);
+	}
+
+	.project__link-icon {
+		width: 1rem;
+		height: 1rem;
 	}
 
 	/* Skills Section */
@@ -825,7 +927,7 @@
 	/* Footer */
 	.footer {
 		background: var(--color-text);
-		color: white;
+		color: var(--color-bg);
 		padding: 2rem 0;
 		text-align: center;
 	}
@@ -836,6 +938,12 @@
 	}
 
 	/* Responsive Design */
+	@media (max-width: 1024px) {
+		.projects__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
 	@media (max-width: 768px) {
 		.hero__container {
 			grid-template-columns: 1fr;
@@ -900,6 +1008,11 @@
 
 		.hero__actions {
 			flex-direction: column;
+		}
+
+		.project-card {
+			margin: 0 0.5rem;
+			padding: 1.5rem;
 		}
 	}
 </style>

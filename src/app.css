@@ -2,10 +2,9 @@
 @plugin '@tailwindcss/typography';
 
 :root {
-  /* Existing colors */
+  /* Light theme colors */
   --color-primary: #19c7a6;
   --color-primary-hover: #17b398;
-  --color-secondary: #0070f3;
   --color-accent: #ffb300;
   --color-muted: #f3f4f6;
   --color-bg: #ffffff;
@@ -26,12 +25,15 @@
   --color-modal-hover: #e6f7f4;
   --color-modal-date: #6b7280;
   
+  /* Header specific colors */
+  --color-header-bg: rgba(255, 255, 255, 0.85);
+  
   /* Profile page specific colors */
   --color-bg-alt: #f8f9fa;
   --color-text-light: #676778;
   --color-border-light: #f1f3f4;
-  --color-hero-gradient-start: #667eea;
-  --color-hero-gradient-end: #764ba2;
+  --color-hero-gradient-start: #19c7a6;
+  --color-hero-gradient-end: #17b398;
   --color-hero-overlay: rgba(255, 255, 255, 0.1);
   --color-hero-border: rgba(255, 255, 255, 0.2);
   
@@ -57,6 +59,51 @@
   /* Container */
   --container-max-width: 1200px;
   --container-padding: 1rem;
+  
+  /* Theme transition */
+  --theme-transition: all 0.3s ease;
+}
+
+/* Dark theme colors */
+[data-theme="dark"] {
+  --color-primary: #19c7a6;
+  --color-primary-hover: #17b398;
+  --color-accent: #ffb300;
+  --color-muted: #374151;
+  --color-bg: #111827;
+  --color-text: #f9fafb;
+  --color-border: #374151;
+  --color-link: #19c7a6;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-modal-overlay: rgba(0, 0, 0, 0.5);
+  --color-modal-bg: #1f2937;
+  --color-modal-border: #374151;
+  --color-modal-shadow: rgba(0,0,0,0.3);
+  --color-modal-title: #f9fafb;
+  --color-modal-close: #9ca3af;
+  --color-modal-input-bg: #374151;
+  --color-modal-input-border: #4b5563;
+  --color-modal-input-text: #f9fafb;
+  --color-modal-divider: #374151;
+  --color-modal-hover: #374151;
+  --color-modal-date: #9ca3af;
+  
+  /* Header specific colors */
+  --color-header-bg: rgba(31, 41, 55, 0.9);
+  
+  /* Profile page specific colors */
+  --color-bg-alt: #1f2937;
+  --color-text-light: #d1d5db;
+  --color-border-light: #374151;
+  --color-hero-gradient-start: #19c7a6;
+  --color-hero-gradient-end: #17b398;
+  --color-hero-overlay: rgba(0, 0, 0, 0.3);
+  --color-hero-border: rgba(255, 255, 255, 0.1);
+  
+  /* Shadows for dark theme */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
 }
 
 /* Global styles */
@@ -70,12 +117,49 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);
+  transition: var(--theme-transition);
 }
 
 .container {
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--theme-transition);
+  margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.theme-toggle__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: var(--theme-transition);
 }
 
 /* Reusable button styles */
@@ -87,7 +171,7 @@ body {
   border-radius: var(--radius-md);
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: var(--theme-transition);
   border: none;
   cursor: pointer;
   font-size: 1rem;
@@ -123,10 +207,12 @@ body {
 /* Reusable section styles */
 .section {
   padding: 80px 0;
+  transition: var(--theme-transition);
 }
 
 .section--alt {
   background: var(--color-bg-alt);
+  transition: var(--theme-transition);
 }
 
 .section__title {
@@ -135,6 +221,7 @@ body {
   text-align: center;
   margin: 0 0 3rem 0;
   color: var(--color-text);
+  transition: var(--theme-transition);
 }
 
 /* Reusable card styles */
@@ -143,7 +230,7 @@ body {
   padding: 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: var(--theme-transition);
 }
 
 .card:hover {
@@ -159,7 +246,7 @@ body {
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: var(--theme-transition);
 }
 
 .tag:hover {
@@ -173,7 +260,7 @@ body {
   color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: var(--theme-transition);
 }
 
 .link:hover {
@@ -198,6 +285,10 @@ body {
   
   .container {
     padding: 0 1rem;
+  }
+  
+  .theme-toggle {
+    margin-left: 0.5rem;
   }
 }
 

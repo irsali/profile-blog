@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Fuse from 'fuse.js';
 	import { onMount } from 'svelte';
-	import { X, Search } from 'lucide-svelte';
+	import { X, Search, Sun, Moon } from 'lucide-svelte';
+	import { theme, toggleTheme } from '$lib/stores/theme';
 	export let data;
 	let searchQuery = '';
 	let showSearch = false;
@@ -70,6 +71,13 @@
 					<span class="search-btn__text">Ctrl K</span>
 				</button>
 				<a href="/blog" class="blog-header__link">Blog</a>
+				<button class="theme-toggle" on:click={toggleTheme} aria-label="Toggle theme">
+					{#if $theme === 'dark'}
+						<Sun class="theme-toggle__icon" />
+					{:else}
+						<Moon class="theme-toggle__icon" />
+					{/if}
+				</button>
 			</nav>
 		</div>
 	</header>
@@ -137,10 +145,12 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background: rgba(255, 255, 255, 0.95);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid var(--color-border-light);
+		background: var(--color-header-bg);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 		z-index: var(--z-index-header);
+		transition: var(--theme-transition);
 	}
 
 	.blog-header__container {
@@ -163,7 +173,7 @@
 		font-size: 1.25rem;
 		color: var(--color-text);
 		text-decoration: none;
-		transition: color 0.2s;
+		transition: var(--theme-transition);
 	}
 
 	.blog-header__logo:hover {
@@ -182,18 +192,27 @@
 		gap: 0.5rem;
 		padding: 0.5rem 0.75rem;
 		border: none;
-		background: none;
+		background: rgba(0, 0, 0, 0.05);
 		color: var(--color-text);
 		border-radius: var(--radius-md);
-		transition: all 0.2s;
+		transition: var(--theme-transition);
 		cursor: pointer;
 		font-size: 0.875rem;
 		font-weight: 500;
 	}
 
 	.search-btn:hover {
-		background: var(--color-muted);
+		background: rgba(0, 0, 0, 0.1);
 		color: var(--color-primary);
+		transform: translateY(-1px);
+	}
+
+	[data-theme="dark"] .search-btn {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	[data-theme="dark"] .search-btn:hover {
+		background: rgba(255, 255, 255, 0.15);
 	}
 
 	.search-btn__icon {
@@ -209,17 +228,52 @@
 		color: var(--color-text);
 		text-decoration: none;
 		font-weight: 500;
-		transition: color 0.2s;
+		transition: var(--theme-transition);
+		position: relative;
+		padding: 0.5rem 0.75rem;
+		border-radius: var(--radius-md);
 	}
 
 	.blog-header__link:hover {
 		color: var(--color-primary);
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	[data-theme="dark"] .blog-header__link:hover {
+		background: rgba(255, 255, 255, 0.1);
 	}
 
 	/* Blog Content */
 	.blog-content {
 		margin-top: 64px;
 		padding: 2rem var(--container-padding);
+	}
+
+	/* Theme toggle button */
+	.theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: none;
+		background: transparent;
+		color: var(--color-text);
+		border-radius: var(--radius-md);
+		cursor: pointer;
+		transition: var(--theme-transition);
+		margin-left: 1rem;
+	}
+
+	.theme-toggle:hover {
+		background: var(--color-muted);
+		color: var(--color-primary);
+	}
+
+	.theme-toggle__icon {
+		width: 1.25rem;
+		height: 1.25rem;
+		transition: var(--theme-transition);
 	}
 
 	/* Search Modal */
@@ -371,6 +425,10 @@
 
 		.search-btn__text {
 			display: none;
+		}
+
+		.theme-toggle {
+			margin-left: 0.5rem;
 		}
 	}
 </style>
