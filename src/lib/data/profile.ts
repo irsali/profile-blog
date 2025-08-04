@@ -184,6 +184,7 @@ export const skills: Skills = {
 		'AWS Lex',
 		'Google Dialogflow',
 		'IBM Watson'
+		'ECS'
 	],
 	tools: [
 		'Git',
@@ -197,7 +198,6 @@ export const skills: Skills = {
 		'DOMO',
 		'Dataiku',
 		'CI/CD',
-		'Big Data',
 		'Monitoring',
 		'IIS',
 		'n8n'
@@ -205,6 +205,7 @@ export const skills: Skills = {
 	other: [
 		'Performance Optimization',
 		'Architecture Design',
+		'Database Design',
 		'Technical Documentation',
 		'Problem Solving',
 		'Security',
@@ -268,52 +269,44 @@ export const recentProjects: Project[] = [
 		title: 'Nomis Price Manager',
 		description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Implementation support for large file handling, diff viewer, validations maker/checker process and activation.',
 		technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor', 'sinon', 'chai'],
-		github: 'https://github.com/irsali/nomis-price-manager'
 	},
 	{
 		title: 'Smartlinx Healthcare Workforce Management',
 		description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling to improve efficiency across multiple facilities.',
 		technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps'],
-		github: 'https://github.com/irsali/smartlinx-healthcare'
 	},
 	{
 		title: 'Storhub Data Integration & Automation',
 		description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions. Integrated Zendesk and Oracle NetSuite for unified data visibility.',
 		technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite'],
-		github: 'https://github.com/irsali/storhub-integration'
 	},
 	{
 		title: 'Consent Management Platform',
 		description: 'Developed comprehensive cookie compliance and consent management platform with customizable banners and automatic blocking capabilities. Features consent analytics dashboard with trust score tracking.',
 		technologies: ['AWS Elastic Beanstalk', 'AWS Redshift', 'Azure DevOps', 'Big Data', 'Angular', 'Node.js', 'JavaScript', 'Python'],
-		github: 'https://github.com/irsali/consent-platform',
-		live: 'https://cookie-compliance.co/'
+		live: 'https://app.hu-manity.co/'
 	},
 	{
 		title: 'SAM&C Applications',
 		description: 'Implemented SAM&C applications on microsoft.com domain with global deployment across multiple Azure regions in 18 languages. Built High Touch, Low Touch and No Touch versions.',
 		technologies: ['ASP.NET Core 2 MVC', 'Angular 6', 'C#', 'TypeScript', 'Web API 2', 'Azure SQL Database', 'Azure DevOps'],
-		github: 'https://github.com/irsali/samc-applications'
 	},
 	{
 		title: 'Cybersecurity Self-Assessment',
 		description: 'Developed self-assessment applications for Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Multiple App Services with Azure Functions and WebJobs.',
 		technologies: ['ASP.NET MVC 6', 'C#', 'Azure Functions', 'WebJobs', 'Web API 2', 'Azure CDN', 'jQuery', 'Azure Storage'],
-		github: 'https://github.com/irsali/cybersecurity-assessment',
-		live: 'https://msftselfassessment-dev.azurewebsites.net/'
 	},
 	{
 		title: 'VQBZ E-Commerce Platform',
 		description: 'Designed scalable EAV-based database schema for flexible product management. Integrated geo-based search & recommendation system using ElasticSearch. Developed multi-vendor onboarding & order tracking system.',
 		technologies: ['ASP.NET MVC', 'WCF', 'Elasticsearch', 'Cassandra', 'Angular'],
-		github: 'https://github.com/irsali/vqbz-ecommerce'
 	},
 	{
 		title: 'Personal Portfolio Website',
 		description: 'Modern, responsive portfolio website built with SvelteKit featuring dark/light theme, animated backgrounds, and blog functionality.',
 		technologies: ['SvelteKit', 'TypeScript', 'CSS', 'Vite'],
 		github: 'https://github.com/irsali/portfolio-blog',
-		live: 'https://irshad-ali.dev'
+		live: 'https://ali-irshad.netlify.app'
 	}
 ];
 
