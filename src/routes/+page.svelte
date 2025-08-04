@@ -1,10 +1,35 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, } from 'lucide-svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3 } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
-	import { profile, companies, skills, achievements, recentProjects, experienceYears } from '$lib/data/profile';
+	import { profile, companies, skills, skillCategories, achievements, recentProjects, experienceYears } from '$lib/data/profile';
 	import { siGithub } from 'simple-icons';
+
+	/**
+	 * Returns the appropriate icon component based on the icon name
+	 * @param iconName - The name of the icon to return
+	 * @returns The icon component
+	 */
+	function getIconComponent(iconName: string) {
+		const iconMap: Record<string, any> = {
+			'Code': Code,
+			'Server': Server,
+			'Globe': Globe,
+			'Database': Database,
+			'Cloud': Cloud,
+			'Brain': Brain,
+			'Monitor': Monitor,
+			'Award': Award,
+			'Git': GitBranch,
+			'Bug': Bug,
+			'Settings': Settings,
+			'BarChart3': BarChart3,
+			'Users': Users,
+			'Shield': Shield
+		};
+		return iconMap[iconName] || Code; // Default to Code if icon not found
+	}
 
 
 	onMount(() => {
@@ -203,94 +228,19 @@
 	<div class="container">
 		<h2 class="section__title">Skills & Technologies</h2>
 		<div class="skills__grid">
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Code class="skills__icon" />
-					Programming Languages
-				</h3>
-				<div class="skills__list">
-					{#each skills.programming as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
+			{#each skillCategories as category}
+				<div class="skills__category">
+					<h3 class="skills__category-title">
+						<svelte:component this={getIconComponent(category.icon)} class="skills__icon" />
+						{category.title}
+					</h3>
+					<div class="skills__list">
+						{#each category.skills as skill}
+							<span class="skill-tag">{skill}</span>
+						{/each}
+					</div>
 				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Server class="skills__icon" />
-					Backend Frameworks
-				</h3>
-				<div class="skills__list">
-					{#each skills.backendFrameworks as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Globe class="skills__icon" />
-					Frontend Frameworks
-				</h3>
-				<div class="skills__list">
-					{#each skills.frontendFrameworks as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Database class="skills__icon" />
-					Data Store
-				</h3>
-				<div class="skills__list">
-					{#each skills.dataStore as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Cloud class="skills__icon" />
-					Cloud & Infrastructure
-				</h3>
-				<div class="skills__list">
-					{#each skills.cloud as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Brain class="skills__icon" />
-					AI & Machine Learning
-				</h3>
-				<div class="skills__list">
-					{#each skills.ai as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Bot class="skills__icon" />
-					Chatbots
-				</h3>
-				<div class="skills__list">
-					{#each skills.chatbots as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Monitor class="skills__icon" />
-					Development Tools
-				</h3>
-				<div class="skills__list">
-					{#each skills.tools as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
+			{/each}
 		</div>
 	</div>
 </section>

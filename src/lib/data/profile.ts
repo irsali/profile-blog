@@ -31,9 +31,19 @@ export interface Skills {
 	dataStore: string[];
 	cloud: string[];
 	ai: string[];
-	chatbots: string[];
 	tools: string[];
-	other: string[];
+	devops: string[];
+	architecture: string[];
+	leadership: string[];
+	dataEngineering: string[];
+	security: string[];
+}
+
+export interface SkillCategory {
+	id: string;
+	title: string;
+	icon: string;
+	skills: string[];
 }
 
 export interface Achievement {
@@ -119,6 +129,24 @@ export const skills: Skills = {
 		'CSS',
 		'Python'
 	],
+	dataStore: [
+		'PostgreSQL',
+		'SQL Server',
+		'ElasticSearch',
+		'Azure Blob Storage',
+		'AWS S3',
+		'Apache Ignite',
+		'Cassandra'
+	],
+	ai: [
+		'Ollama',
+		'Prompt Engineering',
+		'Embedding and Semantic Search',
+		'RAG',
+		'AWS Lex',
+		'Google Dialogflow',
+		'IBM Watson'
+	],
 	backendFrameworks: [
 		'.NET Core',
 		'ASP.NET MVC',
@@ -131,7 +159,6 @@ export const skills: Skills = {
 		'Unity',
 		'AutoMapper',
 		'Razor Engine',
-		'Unit Tests',
 		'Node.js',
 		'Express'
 	],
@@ -143,48 +170,19 @@ export const skills: Skills = {
 		'DataTable',
 		'Bootstrap',
 		'Tailwind CSS',
-		'Svelte',
-		'sinon',
-		'chai'
-	],
-	dataStore: [
-		'PostgreSQL',
-		'SQL Server',
-		'Elasticsearch',
-		'Azure Blob Storage',
-		'AWS S3',
-		'Apache Ignite',
-		'Cassandra'
+		'Svelte'
 	],
 	cloud: [
 		'Azure',
 		'AWS',
-		'IBM Cloud',
-		'Azure DevOps',
-		'Azure Functions',
-		'Azure SQL Database',
-		'Cloud-Native Development',
-		'Microservices',
 		'Serverless',
+		'Azure Functions',
+		'Cloud-Native Development',
 		'Redshift',
 		'Elastic Beanstalk',
-		'Docker',
-		'CloudWatch',
 		'ECS',
 		'CloudFront',
 		'ElastiCache'
-	],
-	ai: [
-		'Ollama',
-		'Prompt Engineering',
-		'Embedding and Semantic Search',
-		'RAG'
-	],
-	chatbots: [
-		'AWS Lex',
-		'Google Dialogflow',
-		'IBM Watson'
-		'ECS'
 	],
 	tools: [
 		'Git',
@@ -197,42 +195,124 @@ export const skills: Skills = {
 		'Jupyter Notebook',
 		'DOMO',
 		'Dataiku',
+		'IIS',
+		'n8n',
+		'Docker',
+		'sinon',
+		'chai'
+	],
+	devops: [
+		'Azure DevOps',
 		'CI/CD',
 		'Monitoring',
-		'IIS',
-		'n8n'
+		'CloudWatch'
 	],
-	other: [
+	architecture: [
 		'Performance Optimization',
-		'Architecture Design',
+		'Solution Architecture',
 		'Database Design',
+		'System Integration',
+		'Root Cause Analysis',
+		'Data Pipeline Development'
+	],
+	leadership: [
 		'Technical Documentation',
 		'Problem Solving',
-		'Security',
-		'Unit Testing',
 		'Knowledge Sharing',
 		'Continuous Learning',
 		'Team Collaboration',
 		'Leadership',
-		'Debugging',
-		'Chrome DevTools',
-		'Responsive Web Design',
-		'Root Cause Analysis',
-		'Data Pipeline Development',
-		'Solution Architecture',
 		'Mentoring',
-		'Cross-functional Collaboration',
+		'Cross-functional Collaboration'
+	],
+	dataEngineering: [
+		'Database Schema Design',
 		'ETL',
-		'Data Integration',
+		'Data Integration'
+	],
+	security: [
+		'Security',
 		'GDPR Compliance',
 		'CCPA Compliance',
-		'Multi-tenant Architecture',
-		'Microservices Architecture',
-		'API Development',
-		'Database Design',
-		'System Integration'
+		'HIPAA Compliance'
 	]
 };
+
+// Skills Categories for looping
+export const skillCategories: SkillCategory[] = [
+	{
+		id: 'programming',
+		title: 'Programming Languages',
+		icon: 'Code',
+		skills: skills.programming
+	},
+	{
+		id: 'dataStore',
+		title: 'Data Store',
+		icon: 'Database',
+		skills: skills.dataStore
+	},
+	{
+		id: 'ai',
+		title: 'AI & Machine Learning',
+		icon: 'Brain',
+		skills: skills.ai
+	},
+	{
+		id: 'cloud',
+		title: 'Cloud & Infrastructure',
+		icon: 'Cloud',
+		skills: skills.cloud
+	},
+	{
+		id: 'backendFrameworks',
+		title: 'Backend Frameworks',
+		icon: 'Server',
+		skills: skills.backendFrameworks
+	},
+	{
+		id: 'frontendFrameworks',
+		title: 'Frontend Frameworks',
+		icon: 'Globe',
+		skills: skills.frontendFrameworks
+	},
+	{
+		id: 'tools',
+		title: 'Development Tools',
+		icon: 'Monitor',
+		skills: skills.tools
+	},
+	{
+		id: 'devops',
+		title: 'DevOps & CI/CD',
+		icon: 'Git',
+		skills: skills.devops
+	},
+	{
+		id: 'architecture',
+		title: 'Architecture & Design',
+		icon: 'Settings',
+		skills: skills.architecture
+	},
+	{
+		id: 'leadership',
+		title: 'Leadership & Collaboration',
+		icon: 'Users',
+		skills: skills.leadership
+	},
+	{
+		id: 'dataEngineering',
+		title: 'Data Engineering',
+		icon: 'BarChart3',
+		skills: skills.dataEngineering
+	},
+	{
+		id: 'security',
+		title: 'Security & Compliance',
+		icon: 'Shield',
+		skills: skills.security
+	}
+];
 
 // Achievements
 export const achievements: Achievement[] = [
