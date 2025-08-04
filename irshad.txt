@@ -17,9 +17,12 @@ Languages	C#, Typescript, Javascript, Html, Css, Python
 Server-side Frameworks / Techs	.Net Framework, .Net Core, LinQ, MVC, Web API, WCF, Identity, EnitiyFramework, Autofac, Unity, AutoMapper, Nest, Fody, Razor Engine, Unit Tests, Nodejs, Express
 Client-side Frameworks / Techs	Angular, Angular Material, jQuery, Ajax, DataTable, Bootstrap, Tailwind 
 Data Store	ElasticSearch, Sql Server, PostgreSql, Azure Blob Storage, AWS S3, Apache.Ignite
-Cloud	Azure, AWS, IBM 
+Cloud	Azure, AWS
+AI:  Ollama, Prompt Engineering, Embedding and Semantic Search, RAG
+Chat bots: AWS Lex, Google Dialogflow, IBM Watson
+
 Others	Git, Azure DevOps, Jira, Jupyter Notebook, DOMO, Dataiku 
-Development Tools	Visual Studio, VS Code, Github Copilot, Cline, Postman
+Development Tools	Visual Studio, VS Code, Github Copilot, Cursor, Postman
 
  
 Work Experience:

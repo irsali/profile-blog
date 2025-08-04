@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, } from 'lucide-svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
 	import { profile, companies, skills, achievements, recentProjects, experienceYears } from '$lib/data/profile';
@@ -216,11 +216,33 @@
 			</div>
 			<div class="skills__category">
 				<h3 class="skills__category-title">
-					<Globe class="skills__icon" />
-					Frameworks & Libraries
+					<Server class="skills__icon" />
+					Backend Frameworks
 				</h3>
 				<div class="skills__list">
-					{#each skills.frameworks as skill}
+					{#each skills.backendFrameworks as skill}
+						<span class="skill-tag">{skill}</span>
+					{/each}
+				</div>
+			</div>
+			<div class="skills__category">
+				<h3 class="skills__category-title">
+					<Globe class="skills__icon" />
+					Frontend Frameworks
+				</h3>
+				<div class="skills__list">
+					{#each skills.frontendFrameworks as skill}
+						<span class="skill-tag">{skill}</span>
+					{/each}
+				</div>
+			</div>
+			<div class="skills__category">
+				<h3 class="skills__category-title">
+					<Database class="skills__icon" />
+					Data Store
+				</h3>
+				<div class="skills__list">
+					{#each skills.dataStore as skill}
 						<span class="skill-tag">{skill}</span>
 					{/each}
 				</div>
@@ -238,8 +260,30 @@
 			</div>
 			<div class="skills__category">
 				<h3 class="skills__category-title">
-					<Database class="skills__icon" />
-					Tools & Platforms
+					<Brain class="skills__icon" />
+					AI & Machine Learning
+				</h3>
+				<div class="skills__list">
+					{#each skills.ai as skill}
+						<span class="skill-tag">{skill}</span>
+					{/each}
+				</div>
+			</div>
+			<div class="skills__category">
+				<h3 class="skills__category-title">
+					<Bot class="skills__icon" />
+					Chatbots
+				</h3>
+				<div class="skills__list">
+					{#each skills.chatbots as skill}
+						<span class="skill-tag">{skill}</span>
+					{/each}
+				</div>
+			</div>
+			<div class="skills__category">
+				<h3 class="skills__category-title">
+					<Monitor class="skills__icon" />
+					Development Tools
 				</h3>
 				<div class="skills__list">
 					{#each skills.tools as skill}

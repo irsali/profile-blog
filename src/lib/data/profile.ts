@@ -26,8 +26,12 @@ export interface Company {
 
 export interface Skills {
 	programming: string[];
-	frameworks: string[];
+	backendFrameworks: string[];
+	frontendFrameworks: string[];
+	dataStore: string[];
 	cloud: string[];
+	ai: string[];
+	chatbots: string[];
 	tools: string[];
 	other: string[];
 }
@@ -109,52 +113,94 @@ export const companies: Company[] = [
 export const skills: Skills = {
 	programming: [
 		'C#',
-		'JavaScript',
 		'TypeScript',
-		'Python',
-		'SQL',
-		'HTML/CSS'
+		'JavaScript',
+		'HTML',
+		'CSS',
+		'Python'
 	],
-	frameworks: [
+	backendFrameworks: [
 		'.NET Core',
 		'ASP.NET MVC',
-		'ASP.NET Core',
+		'Web API',
+		'WCF',
 		'Entity Framework',
-		'MediatR',
+		'LINQ',
+		'Identity',
+		'Autofac',
+		'Unity',
+		'AutoMapper',
+		'Razor Engine',
+		'Unit Tests',
 		'Node.js',
+		'Express'
+	],
+	frontendFrameworks: [
 		'Angular',
+		'Angular Material',
+		'jQuery',
+		'Ajax',
+		'DataTable',
 		'Bootstrap',
-		'Syncfusion',
-		'Svelte',
 		'Tailwind CSS',
+		'Svelte',
+		'sinon',
+		'chai'
+	],
+	dataStore: [
+		'PostgreSQL',
+		'SQL Server',
+		'Elasticsearch',
+		'Azure Blob Storage',
+		'AWS S3',
+		'Apache Ignite',
+		'Cassandra'
 	],
 	cloud: [
-		'AWS',
 		'Azure',
-		'Azure Functions',
+		'AWS',
+		'IBM Cloud',
 		'Azure DevOps',
-		'Docker',
+		'Azure Functions',
+		'Azure SQL Database',
 		'Cloud-Native Development',
 		'Microservices',
 		'Serverless',
-		'Elasticsearch',
 		'Redshift',
 		'Elastic Beanstalk',
+		'Docker',
+		'CloudWatch',
+		'ECS',
+		'CloudFront',
+		'ElastiCache'
+	],
+	ai: [
+		'Ollama',
+		'Prompt Engineering',
+		'Embedding and Semantic Search',
+		'RAG'
+	],
+	chatbots: [
+		'AWS Lex',
+		'Google Dialogflow',
+		'IBM Watson'
 	],
 	tools: [
 		'Git',
 		'Visual Studio',
 		'VS Code',
-		'Cursor AI',
-		'Azure DevOps',
+		'GitHub Copilot',
+		'Cursor',
+		'Postman',
+		'Jira',
+		'Jupyter Notebook',
+		'DOMO',
+		'Dataiku',
 		'CI/CD',
-		'Infrastructure as Code',
 		'Big Data',
 		'Monitoring',
-		'Apache Ignite',
-		'Unity',
-		'Jekyll',
-		'IIS'
+		'IIS',
+		'n8n'
 	],
 	other: [
 		'Performance Optimization',
@@ -169,7 +215,21 @@ export const skills: Skills = {
 		'Leadership',
 		'Debugging',
 		'Chrome DevTools',
-		'Responsive Web Design'
+		'Responsive Web Design',
+		'Root Cause Analysis',
+		'Data Pipeline Development',
+		'Solution Architecture',
+		'Mentoring',
+		'Cross-functional Collaboration',
+		'ETL',
+		'Data Integration',
+		'GDPR Compliance',
+		'CCPA Compliance',
+		'Multi-tenant Architecture',
+		'Microservices Architecture',
+		'API Development',
+		'Database Design',
+		'System Integration'
 	]
 };
 
@@ -258,4 +318,4 @@ export const recentProjects: Project[] = [
 ];
 
 // Calculate experience years
-export const experienceYears = new Date().getFullYear() - 2014; 
+export const experienceYears = new Date().getFullYear() - 2014; // 11+ years as mentioned in resume 
