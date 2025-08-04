@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Fuse from 'fuse.js';
 	import { onMount } from 'svelte';
-	import { X, Search } from 'lucide-svelte';
+	import { X, Search, Sun, Moon } from 'lucide-svelte';
+	import { theme, toggleTheme } from '$lib/stores/theme';
+	import Preloader from '$lib/components/Preloader.svelte';
 	export let data;
 	let searchQuery = '';
 	let showSearch = false;
@@ -53,54 +55,60 @@
 	<title>Blogs | Irshad Ali</title>
 </svelte:head>
 
-<div class="blog-list-layout px-4 md:px-8 lg:px-16">
-	<header
-		class="bg-opacity-80 sticky top-0 z-40 flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-bg)] py-5 text-[var(--color-text)] backdrop-blur-sm"
-	>
-		<div class="flex text-xl font-bold tracking-wide">
-			<a href="/">Irshad Ali</a>
+<!-- Preloader -->
+<Preloader duration={0} />
+
+<div class="blog-list-layout">
+	<header class="blog-header">
+		<div class="blog-header__container">
+			<div class="blog-header__left">
+				<a href="/" class="blog-header__logo">Irshad Ali</a>
+			</div>
+			<nav class="blog-header__nav">
+				<button
+					class="search-btn"
+					on:click={openSearch}
+					title="Search blogs"
+					aria-label="Open search modal"
+				>
+					<Search class="search-btn__icon" />
+					<span class="search-btn__text">Ctrl K</span>
+				</button>
+				<a href="/blog" class="blog-header__link">Blog</a>
+				<button class="theme-toggle" on:click={toggleTheme} aria-label="Toggle theme">
+					{#if $theme === 'dark'}
+						<Sun class="theme-toggle__icon" />
+					{:else}
+						<Moon class="theme-toggle__icon" />
+					{/if}
+				</button>
+			</nav>
 		</div>
-		<nav class="flex items-center justify-end space-x-6 px-2 md:px-4 lg:px-8">
-			<button
-				class="search-btn flex items-center gap-2 rounded px-3 py-1 text-[var(--color-text)] transition-colors hover:bg-[var(--color-muted)] hover:text-[var(--color-primary)]"
-				on:click={openSearch}
-				title="Search blogs"
-				aria-label="Open search modal"
-			>
-				<Search class="h-6 w-6" />
-				<span class="ml-1 text-base font-medium">Ctrl K</span>
-			</button>
-			<a href="/blog" class="text-base text-[var(--color-text)] hover:text-[var(--color-primary)]"
-				>Blog</a
-			>
-		</nav>
 	</header>
 
 	{#if showSearch}
 		<div
-			class="fixed top-0 left-0 z-[var(--z-index-modal,1000)] flex h-screen w-screen items-start justify-center px-2 md:px-8"
+			class="search-modal-overlay"
 			style="background: var(--color-modal-overlay); backdrop-filter: blur(8px);"
 		>
 			<div
-				class="animate-fadeInModal shadow-3xl relative mt-[5vh] max-h-[70vh] w-full overflow-y-auto border border-[var(--color-modal-border)] bg-[var(--color-modal-bg)] p-6 sm:w-[500px] md:w-[700px] md:p-8 lg:w-[900px] xl:w-[900px]"
+				class="search-modal"
 				style="box-shadow: 0 8px 32px var(--color-modal-shadow,rgba(0,0,0,0.10));"
 			>
 				<button
-					class="absolute top-4 right-4 cursor-pointer border-none bg-none text-xl text-[var(--color-modal-close)] hover:text-[var(--color-primary)] focus:outline-none"
+					class="search-modal__close"
 					on:click={closeSearch}
 					aria-label="Close search modal"
 				>
-					<X class="h-6 w-6" />
+					<X class="search-modal__close-icon" />
 				</button>
-				<h2
-					class="mb-4 flex items-center gap-2 text-xl font-semibold text-[var(--color-modal-title)]"
-				>
-					<Search class="h-5 w-5 text-[var(--color-primary)]" />
+				<h2 class="search-modal__title">
+					<Search class="search-modal__title-icon" />
 					<span>Search Blog</span>
 				</h2>
 				<input
 					id="blog-search-input"
-					class="mb-5 w-full rounded-xl border border-[var(--color-modal-input-border)] bg-[var(--color-modal-input-bg)] px-5 py-3 text-lg text-[var(--color-modal-input-text)] shadow-sm focus:border-[var(--color-primary)] focus:outline-none"
+					class="search-modal__input"
 					type="text"
 					placeholder="Type to search..."
 					bind:value={searchQuery}
@@ -108,63 +116,323 @@
 					autocomplete="off"
 				/>
 				{#if results.length > 0}
-					<ul class="m-0 list-none divide-y divide-[var(--color-modal-divider)] p-0">
+					<ul class="search-modal__results">
 						{#each results as post}
-							<li
-								class="flex flex-col rounded-md p-3 transition-colors hover:bg-[var(--color-modal-hover)]"
-							>
+							<li class="search-modal__result-item">
 								<a
 									href={post.url}
-									class="text-lg font-medium text-[var(--color-primary)]"
+									class="search-modal__result-link"
 									on:click={closeSearch}
-									>{post.title}
-									<small class="mt-1 block text-[var(--color-modal-date)]">{post.date}</small>
+								>
+									{post.title}
+									<small class="search-modal__result-date">{post.date}</small>
 								</a>
 							</li>
 						{/each}
 					</ul>
 				{:else if searchQuery.length > 0}
-					<p class="text-[var(--color-modal-date)] italic">No results found.</p>
+					<p class="search-modal__no-results">No results found.</p>
 				{/if}
 			</div>
 		</div>
 	{/if}
 </div>
 
-<div class="mb-4">
+<div class="blog-content">
 	<slot />
 </div>
 
-<!-- Tailwind animation for modal and custom scrollbar for modal -->
 <style>
-	@keyframes fadeInModal {
-		from {
-			opacity: 0;
-			transform: translateY(-20px);
+	/* Blog Header */
+	.blog-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		background: var(--color-header-bg);
+		backdrop-filter: blur(20px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+		z-index: var(--z-index-header);
+		transition: var(--theme-transition);
+	}
+
+	.blog-header__container {
+		max-width: var(--container-max-width);
+		margin: 0 auto;
+		padding: 0 var(--container-padding);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 64px;
+	}
+
+	.blog-header__left {
+		display: flex;
+		align-items: center;
+	}
+
+	.blog-header__logo {
+		font-weight: 700;
+		font-size: 1.25rem;
+		color: var(--color-text);
+		text-decoration: none;
+		transition: var(--theme-transition);
+	}
+
+	.blog-header__logo:hover {
+		color: var(--color-primary);
+	}
+
+	.blog-header__nav {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.search-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		border: none;
+		background: rgba(0, 0, 0, 0.05);
+		color: var(--color-text);
+		border-radius: var(--radius-md);
+		transition: var(--theme-transition);
+		cursor: pointer;
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	.search-btn:hover {
+		background: rgba(0, 0, 0, 0.1);
+		color: var(--color-primary);
+		transform: translateY(-1px);
+	}
+
+	[data-theme="dark"] .search-btn {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	[data-theme="dark"] .search-btn:hover {
+		background: rgba(255, 255, 255, 0.15);
+	}
+
+	.search-btn__icon {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	.search-btn__text {
+		font-weight: 500;
+	}
+
+	.blog-header__link {
+		color: var(--color-text);
+		text-decoration: none;
+		font-weight: 500;
+		transition: var(--theme-transition);
+		position: relative;
+		padding: 0.5rem 0.75rem;
+		border-radius: var(--radius-md);
+	}
+
+	.blog-header__link:hover {
+		color: var(--color-primary);
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	[data-theme="dark"] .blog-header__link:hover {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	/* Blog Content */
+	.blog-content {
+		margin-top: 64px;
+		padding: 2rem var(--container-padding);
+	}
+
+	/* Theme toggle button */
+	.theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: none;
+		background: transparent;
+		color: var(--color-text);
+		border-radius: var(--radius-md);
+		cursor: pointer;
+		transition: var(--theme-transition);
+		margin-left: 1rem;
+	}
+
+	.theme-toggle:hover {
+		background: var(--color-muted);
+		color: var(--color-primary);
+	}
+
+	.theme-toggle__icon {
+		width: 1.25rem;
+		height: 1.25rem;
+		transition: var(--theme-transition);
+	}
+
+	/* Search Modal */
+	.search-modal-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: var(--z-index-modal);
+		display: flex;
+		height: 100vh;
+		width: 100vw;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 0 1rem;
+	}
+
+	.search-modal {
+		position: relative;
+		margin-top: 5vh;
+		max-height: 70vh;
+		width: 100%;
+		overflow-y: auto;
+		border: 1px solid var(--color-modal-border);
+		background: var(--color-modal-bg);
+		padding: 1.5rem;
+		border-radius: var(--radius-lg);
+	}
+
+	.search-modal__close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		cursor: pointer;
+		border: none;
+		background: none;
+		color: var(--color-modal-close);
+		font-size: 1.25rem;
+		transition: color 0.2s;
+	}
+
+	.search-modal__close:hover {
+		color: var(--color-primary);
+	}
+
+	.search-modal__close-icon {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
+	.search-modal__title {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 0 0 1rem 0;
+		color: var(--color-modal-title);
+	}
+
+	.search-modal__title-icon {
+		width: 1.25rem;
+		height: 1.25rem;
+		color: var(--color-primary);
+	}
+
+	.search-modal__input {
+		width: 100%;
+		margin-bottom: 1.25rem;
+		padding: 0.75rem 1.25rem;
+		border: 1px solid var(--color-modal-input-border);
+		background: var(--color-modal-input-bg);
+		color: var(--color-modal-input-text);
+		border-radius: var(--radius-lg);
+		font-size: 1.125rem;
+		box-shadow: var(--shadow-sm);
+		transition: border-color 0.2s;
+	}
+
+	.search-modal__input:focus {
+		outline: none;
+		border-color: var(--color-primary);
+	}
+
+	.search-modal__results {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border-top: 1px solid var(--color-modal-divider);
+	}
+
+	.search-modal__result-item {
+		border-bottom: 1px solid var(--color-modal-divider);
+	}
+
+	.search-modal__result-link {
+		display: block;
+		padding: 0.75rem;
+		color: var(--color-primary);
+		text-decoration: none;
+		font-size: 1.125rem;
+		font-weight: 500;
+		transition: background-color 0.2s;
+		border-radius: var(--radius-md);
+	}
+
+	.search-modal__result-link:hover {
+		background: var(--color-modal-hover);
+	}
+
+	.search-modal__result-date {
+		display: block;
+		margin-top: 0.25rem;
+		color: var(--color-modal-date);
+		font-size: 0.875rem;
+		font-weight: normal;
+	}
+
+	.search-modal__no-results {
+		color: var(--color-modal-date);
+		font-style: italic;
+		margin: 0;
+		padding: 0.75rem;
+	}
+
+	/* Responsive Design */
+	@media (min-width: 640px) {
+		.search-modal {
+			width: 500px;
+			padding: 2rem;
 		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+	}
+
+	@media (min-width: 768px) {
+		.search-modal {
+			width: 700px;
 		}
 	}
-	.animate-fadeInModal {
-		animation: fadeInModal 0.25s;
+
+	@media (min-width: 1024px) {
+		.search-modal {
+			width: 900px;
+		}
 	}
-	/* Custom scrollbar for modal */
-	.animate-fadeInModal::-webkit-scrollbar {
-		width: 10px;
-		background: var(--color-overlay, #f3f4f6);
-	}
-	.animate-fadeInModal::-webkit-scrollbar-thumb {
-		background: #cbd5e1;
-		border-radius: 6px;
-	}
-	.animate-fadeInModal::-webkit-scrollbar-thumb:hover {
-		background: #94a3b8;
-	}
-	/* For Firefox */
-	.animate-fadeInModal {
-		scrollbar-width: thin;
-		scrollbar-color: #cbd5e1 var(--color-overlay, #f3f4f6);
+
+	@media (max-width: 768px) {
+		.blog-header__nav {
+			gap: 1rem;
+		}
+
+		.search-btn__text {
+			display: none;
+		}
+
+		.theme-toggle {
+			margin-left: 0.5rem;
+		}
 	}
 </style>

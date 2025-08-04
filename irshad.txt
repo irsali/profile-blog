@@ -1,0 +1,99 @@
+IRSHAD ALI
+New Delhi, India	                                       		Email: text.irshad@gmail.com
+Mob:  +91 7042466278				  	        	website: https://irsali.github.io                                                                                                            
+
+SYNOPSIS
+	Software Engineer offering around 11+ years of experience in the full software development lifecycle – from concept through delivery of next-generation applications and customizable solutions.
+	Experience of Azure and AWS Clouds.
+	Proven expertise in handling large datasets and creating robust data pipelines.
+	Adept at performing root cause analysis and collaborating with teams to resolve customer technical issues effectively.
+	Active participant in solution architecture, contributing to module-level design and implementation with a methodical problem-solving approach.
+	Experience of creating highly standard software applications, tests and CI/CD pipelines.
+	Proficient in adopting and applying emerging standards in software development architecture and tools. Mentor and motivate fellow Developers.
+
+
+Technical Skills:
+Languages	C#, Typescript, Javascript, Html, Css, Python
+Server-side Frameworks / Techs	.Net Framework, .Net Core, LinQ, MVC, Web API, WCF, Identity, EnitiyFramework, Autofac, Unity, AutoMapper, Nest, Fody, Razor Engine, Unit Tests, Nodejs, Express
+Client-side Frameworks / Techs	Angular, Angular Material, jQuery, Ajax, DataTable, Bootstrap, Tailwind 
+Data Store	ElasticSearch, Sql Server, PostgreSql, Azure Blob Storage, AWS S3, Apache.Ignite
+Cloud	Azure, AWS, IBM 
+Others	Git, Azure DevOps, Jira, Jupyter Notebook, DOMO, Dataiku 
+Development Tools	Visual Studio, VS Code, Github Copilot, Cline, Postman
+
+ 
+Work Experience:
+Persistent Systems
+•	Project Lead (Jan 2024 – July 2025)
+•	Software Engineering Lead (Nov 2021 – Dec 2023)
+•	Senior Software Engineer (Jul 2017 – Nov 2021)
+o	Led development and architectural improvements in multiple cloud-based applications.
+o	Implemented security enhancements, optimized data pipelines, and led CI/CD improvements.
+o	Mentored junior developers and collaborated with cross-functional teams to enhance application performance.
+Brain Technosys
+•	Senior Software Engineer (May 2015 – Jun 2017)
+o	Designed and developed scalable applications, enhancing system performance.
+o	Led the transition of applications to modern frameworks and optimized database structures.
+ATG Trans
+•	Software Engineer (Nov 2014 – May 2015)
+o	Developed robust web applications, focusing on backend optimization and security.
+o	Enhanced system reliability through comprehensive unit testing and debugging.
+
+
+Key Projects
+________________________________________
+
+Nomis Price Manager 
+•	Tech Stack: AWS ECS, CloudWatch, S3, BullMq, Node.js, Meteor, sinon, chai
+•	Led implementation of pricing attributes, templates, and rate adjustment rules to be dynamic, configuration-driven model, improving maintainability and enabling faster rollout of pricing strategies.
+•	Implementation support for large file handling, diff viewer, validations maker/checker process and activation.
+
+Smartlinx (Healthcare Workforce Management)
+•	Tech Stack: .NET Core, Microservices, SQL Server, Azure DevOps
+•	Led security implementation and penetration testing, ensuring compliance with healthcare standards.
+•	Optimized real-time workforce scheduling to improve efficiency across multiple facilities.
+•	Collaborated with cross-functional teams to enhance time tracking and payroll integration.
+Storhub (Data Integration & Automation)
+•	Developed scalable, one-time data ingestion pipelines using .NET Core and Azure Durable Functions to extract, transform, and load (ETL) customer and operational data from SugarCRM and Storeganize into a centralized PostgreSQL database.
+•	Integrated Zendesk for scheduled data synchronization to support customer service analytics and reporting.
+•	Implemented on-demand data retrieval from Oracle NetSuite, enabling granular access to financial and operational data by region or business unit.
+•	Enabled StorHub’s transition from siloed systems to unified data visibility across multiple APAC regions, supporting strategic reporting and operational efficiency.
+
+Cookie Compliance (Web Privacy & GDPR Compliance)
+•	Tech Stack: AWS (EB, S3, ElastiCache, PostgreSQL, CloudFront), Node.js, Angular
+•	Designed and developed a fully customizable cookie consent solution, supporting GDPR & CCPA compliance.
+•	Engineered cookie categorization & blocking automation, reducing compliance risks.
+•	Developed multi-tenant admin portal for managing banner customizations and analytics.
+•	Led high-performance optimizations, reducing infrastructure costs by 30% and improving API response times by 40%.
+
+Microsoft Deployment Summary Online (SAMCDSO)
+•	Tech Stack: ASP.NET Core, EF Core, Azure SQL, Blob Storage, Dynamics CRM, Angular
+•	Architected and developed a multilingual data collection system for Microsoft customers.
+•	Built an automated analytics engine to suggest licensing optimizations, increasing cloud adoption.
+•	Integrated Azure Blob Storage for scalable document management.
+
+Microsoft Cyber Security Self-Assessment
+•	Tech Stack: C#, ASP.NET MVC, Azure DevOps, Azure SQL
+•	Developed a self-assessment tool for cybersecurity awareness, impacting thousands of users globally.
+•	Implemented localized security recommendations, tailored for different regions.
+•	Optimized API response times by 40%, improving user experience and engagement.
+
+VQBZ (E-Commerce Platform)
+•	Tech Stack: ASP.NET MVC, WCF, Elasticsearch, Cassandra, Angular
+•	Designed a scalable, EAV-based database schema, enabling flexible product management.
+•	Integrated geo-based search & recommendation system using ElasticSearch.
+•	Developed multi-vendor onboarding & order tracking system, increasing operational efficiency.
+
+Academics:
+	M.C.A from Indira Gandhi National Open University, Delhi.
+	PGDCA from Indira Gandhi National Open University, Delhi.
+	B.Sc from Shri Aurobindo College (Delhi University), 2010.
+
+Personal Attributes:
+	Problem-Solver: Methodical and analytical approach to tackling technical challenges.
+	Leader & Mentor: Passionate about guiding teams and fostering skill development.
+	Adaptable & Quick Learner: Thrives in fast-paced environments, always up to date with emerging technologies.
+
+
+Date:
+Place:                                                                         (IRSHAD ALI)			

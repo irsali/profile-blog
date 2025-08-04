@@ -1,0 +1,261 @@
+/**
+ * Profile Data
+ * 
+ * Centralized data file containing all profile information including
+ * personal details, work experience, skills, achievements, and projects.
+ */
+
+export interface Profile {
+	name: string;
+	title: string;
+	description: string;
+	location: string;
+	email: string;
+	github: string;
+	linkedin: string;
+	blog: string;
+}
+
+export interface Company {
+	name: string;
+	role: string;
+	period: string;
+	description: string;
+	technologies: string[];
+}
+
+export interface Skills {
+	programming: string[];
+	frameworks: string[];
+	cloud: string[];
+	tools: string[];
+	other: string[];
+}
+
+export interface Achievement {
+	title: string;
+	description: string;
+	year?: string;
+}
+
+export interface Project {
+	title: string;
+	description: string;
+	technologies: string[];
+	github?: string;
+	live?: string;
+	image?: string;
+}
+
+// Profile Information
+export const profile: Profile = {
+	name: 'Irshad Ali',
+	title: 'Project Lead & Full-Stack Software Engineer',
+	description: 'Result-driven software engineer with extensive experience in full-stack development, specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures. I help businesses create smart and scalable solutions to their general and unique problems.',
+	location: 'India',
+	email: 'irshad.ali@example.com',
+	github: 'https://github.com/irsali',
+	linkedin: 'https://linkedin.com/in/irshad-ali',
+	blog: '/blog'
+};
+
+// Work Experience
+export const companies: Company[] = [
+	{
+		name: 'Persistent Systems',
+		role: 'Project Lead',
+		period: 'Jan 2024 - Jul 2025',
+		description: 'Leading development teams and delivering enterprise solutions with modern technologies. Working with Smartlinx to improve their product quality, providing real-time data and advanced scheduling tools to manage staffing costs.',
+		technologies: ['.NET Core', 'Azure Functions', 'Microservices', 'SQL Server', 'Azure DevOps']
+	},
+	{
+		name: 'Persistent Systems',
+		role: 'Senior Engineering Lead',
+		period: 'Nov 2021 - Dec 2023',
+		description: 'Led development of Consent Management Platform for customizable cookie compliance banner with autoblocking. Modernized Ivanti legacy projects with AWS and modern cloud technologies.',
+		technologies: ['AWS', 'Amazon Redshift', 'Node.js', 'Angular', 'Python', 'Big Data']
+	},
+	{
+		name: 'Persistent Systems (Shree Partners)',
+		role: 'Sr. Software Engineer',
+		period: 'Jul 2017 - Nov 2021',
+		description: 'Developed cloud-native, enterprise-grade marketing automation and CRM-integrated web application, built with scalable architecture for global deployment and multilingual support.',
+		technologies: ['.NET Core', 'Azure Functions', 'Angular', 'SQL Server', 'Azure DevOps']
+	},
+	{
+		name: 'Brain Technosys Pvt. Ltd.',
+		role: 'Sr. Software Engineer',
+		period: 'Apr 2016 - Jun 2017',
+		description: 'Built enterprise applications using .NET and modern JavaScript frameworks. Implemented e-commerce platform with ElasticSearch, Cassandra, and Angular.',
+		technologies: ['ElasticSearch', 'Cassandra', 'ASP.NET MVC', 'AngularJS', 'SQL Server']
+	},
+	{
+		name: 'Brain Technosys Pvt. Ltd.',
+		role: 'Software Engineer',
+		period: 'May 2015 - Mar 2016',
+		description: 'Implemented e-commerce application to virtually sell anything from different merchants. Built using ASP.NET MVC 5, EF 6, SQL Server, Apache Ignite, Unity, ElasticSearch, and Cassandra.',
+		technologies: ['ASP.NET MVC', 'Entity Framework', 'SQL Server', 'Apache Ignite', 'ElasticSearch', 'Cassandra', 'AngularJS']
+	},
+	{
+		name: 'ATG Trans',
+		role: 'Software Engineer',
+		period: 'Nov 2014 - May 2015',
+		description: 'Solutions Engineering and .NET Framework development.',
+		technologies: ['.NET Framework', 'Solutions Engineering']
+	}
+];
+
+// Skills
+export const skills: Skills = {
+	programming: [
+		'C#',
+		'JavaScript',
+		'TypeScript',
+		'Python',
+		'SQL',
+		'HTML/CSS'
+	],
+	frameworks: [
+		'.NET Core',
+		'ASP.NET MVC',
+		'ASP.NET Core',
+		'Entity Framework',
+		'MediatR',
+		'Node.js',
+		'Angular',
+		'Bootstrap',
+		'Syncfusion',
+		'Svelte',
+		'Tailwind CSS',
+	],
+	cloud: [
+		'AWS',
+		'Azure',
+		'Azure Functions',
+		'Azure DevOps',
+		'Docker',
+		'Cloud-Native Development',
+		'Microservices',
+		'Serverless',
+		'Elasticsearch',
+		'Redshift',
+		'Elastic Beanstalk',
+	],
+	tools: [
+		'Git',
+		'Visual Studio',
+		'VS Code',
+		'Cursor AI',
+		'Azure DevOps',
+		'CI/CD',
+		'Infrastructure as Code',
+		'Big Data',
+		'Monitoring',
+		'Apache Ignite',
+		'Unity',
+		'Jekyll',
+		'IIS'
+	],
+	other: [
+		'Performance Optimization',
+		'Architecture Design',
+		'Technical Documentation',
+		'Problem Solving',
+		'Security',
+		'Unit Testing',
+		'Knowledge Sharing',
+		'Continuous Learning',
+		'Team Collaboration',
+		'Leadership',
+		'Debugging',
+		'Chrome DevTools',
+		'Responsive Web Design'
+	]
+};
+
+// Achievements
+export const achievements: Achievement[] = [
+	{
+		title: 'Top Talent Award',
+		description: 'Recognized for exceptional performance and leadership at Persistent Systems',
+		year: '2024'
+	},
+	{
+		title: 'Impressive Initiator Award',
+		description: 'Awarded at the 12th foundation day award ceremony at Brain Technosys Pvt. Ltd.',
+		year: '2016'
+	},
+	{
+		title: 'Led Successful Enterprise Migration',
+		description: 'Successfully led the migration of legacy systems to modern cloud-native architecture, improving performance by 40%.',
+		year: '2021'
+	},
+	{
+		title: 'Mentored 15+ Junior Developers',
+		description: 'Provided technical mentorship and guidance to junior developers, helping them grow their skills and advance their careers.',
+		year: '2020-2023'
+	},
+	{
+		title: 'Open Source Contributor',
+		description: 'Active contributor to open source projects, particularly in the .NET and JavaScript ecosystems.',
+		year: '2019-Present'
+	}
+];
+
+// Projects
+export const recentProjects: Project[] = [
+	{
+		title: 'Nomis Price Manager',
+		description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Implementation support for large file handling, diff viewer, validations maker/checker process and activation.',
+		technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor', 'sinon', 'chai'],
+		github: 'https://github.com/irsali/nomis-price-manager'
+	},
+	{
+		title: 'Smartlinx Healthcare Workforce Management',
+		description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling to improve efficiency across multiple facilities.',
+		technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps'],
+		github: 'https://github.com/irsali/smartlinx-healthcare'
+	},
+	{
+		title: 'Storhub Data Integration & Automation',
+		description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions. Integrated Zendesk and Oracle NetSuite for unified data visibility.',
+		technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite'],
+		github: 'https://github.com/irsali/storhub-integration'
+	},
+	{
+		title: 'Consent Management Platform',
+		description: 'Developed comprehensive cookie compliance and consent management platform with customizable banners and automatic blocking capabilities. Features consent analytics dashboard with trust score tracking.',
+		technologies: ['AWS Elastic Beanstalk', 'AWS Redshift', 'Azure DevOps', 'Big Data', 'Angular', 'Node.js', 'JavaScript', 'Python'],
+		github: 'https://github.com/irsali/consent-platform',
+		live: 'https://cookie-compliance.co/'
+	},
+	{
+		title: 'SAM&C Applications',
+		description: 'Implemented SAM&C applications on microsoft.com domain with global deployment across multiple Azure regions in 18 languages. Built High Touch, Low Touch and No Touch versions.',
+		technologies: ['ASP.NET Core 2 MVC', 'Angular 6', 'C#', 'TypeScript', 'Web API 2', 'Azure SQL Database', 'Azure DevOps'],
+		github: 'https://github.com/irsali/samc-applications'
+	},
+	{
+		title: 'Cybersecurity Self-Assessment',
+		description: 'Developed self-assessment applications for Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Multiple App Services with Azure Functions and WebJobs.',
+		technologies: ['ASP.NET MVC 6', 'C#', 'Azure Functions', 'WebJobs', 'Web API 2', 'Azure CDN', 'jQuery', 'Azure Storage'],
+		github: 'https://github.com/irsali/cybersecurity-assessment',
+		live: 'https://msftselfassessment-dev.azurewebsites.net/'
+	},
+	{
+		title: 'VQBZ E-Commerce Platform',
+		description: 'Designed scalable EAV-based database schema for flexible product management. Integrated geo-based search & recommendation system using ElasticSearch. Developed multi-vendor onboarding & order tracking system.',
+		technologies: ['ASP.NET MVC', 'WCF', 'Elasticsearch', 'Cassandra', 'Angular'],
+		github: 'https://github.com/irsali/vqbz-ecommerce'
+	},
+	{
+		title: 'Personal Portfolio Website',
+		description: 'Modern, responsive portfolio website built with SvelteKit featuring dark/light theme, animated backgrounds, and blog functionality.',
+		technologies: ['SvelteKit', 'TypeScript', 'CSS', 'Vite'],
+		github: 'https://github.com/irsali/portfolio-blog',
+		live: 'https://irshad-ali.dev'
+	}
+];
+
+// Calculate experience years
+export const experienceYears = new Date().getFullYear() - 2014; 
