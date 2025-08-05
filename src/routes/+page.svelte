@@ -5,6 +5,7 @@
 	import Preloader from '$lib/components/Preloader.svelte';
 	import { profile, companies, skills, skillCategories, achievements, recentProjects, experienceYears } from '$lib/data/profile';
 	import { siGithub } from 'simple-icons';
+	import 'animate.css';
 
 	/**
 	 * Returns the appropriate icon component based on the icon name
@@ -44,6 +45,36 @@
 				}
 			});
 		});
+
+		// Setup Intersection Observer for animations
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const element = entry.target as HTMLElement;
+					const animationType = element.dataset.animate;
+					
+					requestAnimationFrame(() => {
+						// Add animation classes
+						element.classList.add('animate__animated');
+						if (animationType) {
+							element.classList.add(`animate__${animationType}`);
+						}
+					});
+					
+					// Stop observing after animation is triggered
+					observer.unobserve(element);
+				}
+			});
+		}, {
+			threshold: 0.1,
+			rootMargin: '-50px 0px'
+		});
+
+		// Observe all elements with data-animate attribute
+		const animatedElements = document.querySelectorAll('[data-animate]');
+		animatedElements.forEach(element => observer.observe(element));
+
+
 	});
 </script>
 
@@ -79,7 +110,7 @@
 </header>
 
 <!-- Hero Section -->
-<section class="hero">
+<section class="hero section">
 	
 	<div class="hero__container">
 		<div class="hero__content">
@@ -120,7 +151,7 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="section">
+<section id="about" class="section" data-animate="fadeInUp">
 	<div class="container">
 		<h2 class="section__title">About Me</h2>
 		<div class="about__content">
@@ -141,7 +172,7 @@
 			</div>
 			<div class="about__achievements">
 						{#each achievements as achievement}
-			<div class="achievement">
+			<div class="achievement" data-animate="fadeInRight">
 				<div class="achievement__content">
 					<h3 class="achievement__title">{achievement.title}</h3>
 					<p class="achievement__description">{achievement.description}</p>
@@ -157,12 +188,12 @@
 </section>
 
 <!-- Experience Section -->
-<section id="experience" class="section section--alt">
+<section id="experience" class="section section--alt" data-animate="fadeInUp">
 	<div class="container">
 		<h2 class="section__title">Professional Experience</h2>
 		<div class="experience__timeline">
-			{#each companies as company, index}
-				<div class="timeline__item">
+						{#each companies as company, index}
+			<div class="timeline__item" data-animate="fadeInLeft">
 					<div class="timeline__marker"></div>
 					<div class="timeline__content">
 						<div class="timeline__header">
@@ -184,13 +215,13 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="section">
+<section id="projects" class="section" data-animate="fadeInUp">
 	
 	<div class="container">
 		<h2 class="section__title">Featured Projects</h2>
 		<div class="projects__grid">
-			{#each recentProjects as project}
-				<div class="project-card">
+						{#each recentProjects as project}
+			<div class="project-card" data-animate="fadeInUp">
 					<div class="project__header">
 						<h3 class="project__title">{project.title}</h3>
 					</div>
@@ -223,13 +254,13 @@
 </section>
 
 <!-- Skills Section -->
-<section id="skills" class="section section--alt">
+<section id="skills" class="section section--alt" data-animate="fadeInUp">
 	
 	<div class="container">
 		<h2 class="section__title">Skills & Technologies</h2>
 		<div class="skills__grid">
-			{#each skillCategories as category}
-				<div class="skills__category">
+						{#each skillCategories as category}
+			<div class="skills__category" data-animate="fadeInUp">
 					<h3 class="skills__category-title">
 						<svelte:component this={getIconComponent(category.icon)} class="skills__icon" />
 						{category.title}
@@ -246,7 +277,7 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="section">
+<section id="contact" class="section" data-animate="fadeInUp">
 	<div class="container">
 		<h2 class="section__title">Get in Touch</h2>
 		<div class="contact__content">
@@ -900,6 +931,42 @@
 		margin: 0;
 		opacity: 0.8;
 	}
+
+	/* Animation Controls */
+	.animate__animated {
+		--animate-duration: 0.8s;
+	}
+
+	/* Initial state for elements that will be animated */
+	[data-animate] {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+	}
+
+	[data-animate].animate__animated {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Staggered delays for grid items */
+	.project-card:nth-child(1) { animation-delay: 0.1s; }
+	.project-card:nth-child(2) { animation-delay: 0.2s; }
+	.project-card:nth-child(3) { animation-delay: 0.3s; }
+
+	.skills__category:nth-child(1) { animation-delay: 0.1s; }
+	.skills__category:nth-child(2) { animation-delay: 0.2s; }
+	.skills__category:nth-child(3) { animation-delay: 0.3s; }
+	.skills__category:nth-child(4) { animation-delay: 0.4s; }
+
+	.timeline__item:nth-child(1) { animation-delay: 0.1s; }
+	.timeline__item:nth-child(2) { animation-delay: 0.2s; }
+	.timeline__item:nth-child(3) { animation-delay: 0.3s; }
+	.timeline__item:nth-child(4) { animation-delay: 0.4s; }
+
+	.achievement:nth-child(1) { animation-delay: 0.1s; }
+	.achievement:nth-child(2) { animation-delay: 0.2s; }
+	.achievement:nth-child(3) { animation-delay: 0.3s; }
 
 	/* Responsive Design */
 	@media (max-width: 1024px) {
