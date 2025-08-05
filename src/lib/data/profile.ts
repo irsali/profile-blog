@@ -13,6 +13,7 @@ export interface Profile {
 	email: string;
 	github: string;
 	linkedin: string;
+	stackoverflow: string;
 	blog: string;
 }
 
@@ -70,6 +71,7 @@ export const profile: Profile = {
 	email: 'irshad.ali@example.com',
 	github: 'https://github.com/irsali',
 	linkedin: 'https://linkedin.com/in/irshad-ali',
+	stackoverflow: 'https://stackoverflow.com/users/4478515/irshad-ali',
 	blog: '/blog'
 };
 
