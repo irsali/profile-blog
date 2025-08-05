@@ -74,8 +74,59 @@
 		const animatedElements = document.querySelectorAll('[data-animate]');
 		animatedElements.forEach(element => observer.observe(element));
 
-
+		// Start typing animation for hero title
+		startTypingAnimation();
+		
 	});
+
+	/**
+	 * Creates a typing effect for the hero description
+	 */
+	function startTypingAnimation() {
+		const descriptionElement = document.querySelector('.hero__description') as HTMLElement;
+		
+		if (!descriptionElement) return;
+
+		const descriptionText = descriptionElement.textContent || '';
+		
+		// Hide the original text but keep it in the layout
+		descriptionElement.style.visibility = 'hidden';
+		descriptionElement.classList.add('typing'); // Add typing class for cursor
+		
+		// Create a visible overlay for typing
+		const typingOverlay = document.createElement('span');
+		typingOverlay.style.cssText = `
+			position: absolute;
+			top: 0;
+			left: 0;
+			visibility: visible;
+			background: transparent;
+			pointer-events: none;
+		`;
+		descriptionElement.appendChild(typingOverlay);
+
+		let currentIndex = 0;
+		const typeSpeed = 50; // milliseconds per character
+
+		function typeNextChar() {
+			if (currentIndex < descriptionText.length) {
+				typingOverlay.textContent += descriptionText[currentIndex];
+				currentIndex++;
+				setTimeout(typeNextChar, typeSpeed);
+			} else {
+				// Remove typing class when finished
+				setTimeout(() => {
+					descriptionElement.classList.remove('typing');
+					// Show the original text and remove overlay
+					descriptionElement.style.visibility = 'visible';
+					typingOverlay.remove();
+				}, 500);
+			}
+		}
+
+		// Start typing after a short delay
+		setTimeout(typeNextChar, 1000);
+	}
 </script>
 
 <svelte:head>
@@ -483,7 +534,10 @@
 		font-size: 3.5rem;
 		font-weight: 800;
 		line-height: 1.1;
+		position: relative;
 	}
+
+
 
 	.hero__subtitle {
 		font-size: 1.5rem;
@@ -496,6 +550,27 @@
 		margin: 0 0 2rem 0;
 		opacity: 0.9;
 		line-height: 1.7;
+		position: relative;
+		min-height: 1.7em;
+	}
+
+	.hero__description::after {
+		content: '|';
+		position: absolute;
+		right: -8px;
+		top: 0;
+		color: var(--color-primary);
+		animation: blink 1s infinite;
+		opacity: 0;
+	}
+
+	@keyframes blink {
+		0%, 50% { opacity: 1; }
+		51%, 100% { opacity: 0; }
+	}
+
+	.hero__description.typing::after {
+		opacity: 1;
 	}
 
 	.hero__stats {

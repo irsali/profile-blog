@@ -64,7 +64,7 @@ export interface Project {
 // Profile Information
 export const profile: Profile = {
 	name: 'Irshad Ali',
-	title: 'Project Lead & Full-Stack Software Engineer',
+	title: 'Architect and Project Lead',
 	description: 'Result-driven software engineer with extensive experience in full-stack development, specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures. I help businesses create smart and scalable solutions to their general and unique problems.',
 	location: 'India',
 	email: 'irshad.ali@example.com',
