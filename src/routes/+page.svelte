@@ -380,8 +380,7 @@
 		right: 0;
 		background: var(--color-header-bg);
 		backdrop-filter: blur(20px);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+		border-bottom: 1px solid var(--color-border);
 		z-index: var(--z-index-header);
 		transition: var(--theme-transition);
 	}
