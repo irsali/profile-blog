@@ -8,21 +8,25 @@
 - Use strict type checking and avoid `any` types
 - Prefer `interface` over `type` for object shapes
 - Export types and interfaces that are used across multiple files
+- Use type assertions (`as HTMLElement`) when accessing DOM properties
+- Implement proper error handling with graceful fallbacks
 
 ### Svelte Components
 - Use Svelte 5 syntax with `$props()` and `$state()`
-- Write doc comments for each function and component
+- Write doc comments for each function and component (JSDoc format)
 - Use proper prop typing with `export let` statements
 - Implement reactive statements with `$:` when needed
 - Use `onMount()` for side effects and DOM manipulation
 - Prefer `{#if}`, `{#each}`, and `{#await}` blocks over imperative code
+- Implement proper lifecycle management for animations and effects
 
 ### File Organization
-- Keep components in `src/lib/templates/` for reusable UI
+- Keep components in `src/lib/components/` for reusable UI
 - Place services in `src/lib/services/` with proper separation of concerns
 - Store types in `src/lib/types.ts`
 - Use descriptive file names that match their purpose
 - Group related functionality in the same directory
+- Organize data files in `src/lib/data/` for profile and content data
 
 ## Blog Post Management
 
@@ -52,18 +56,28 @@
 
 ## Styling & Design
 
-### TailwindCSS
-- Use TailwindCSS utility classes for styling
-- Leverage CSS custom properties for theming: `var(--color-primary)`
+### CSS & Theming
+- Use CSS custom properties for theming: `var(--color-primary)`, `var(--color-bg)`, etc.
 - Maintain responsive design with mobile-first approach
 - Use semantic color names in CSS variables
-- Prefer utility classes over custom CSS when possible
+- Implement dark/light theme support with CSS variables
+- Use consistent spacing and typography scales
 
 ### Component Styling
 - Use `class:` directive for conditional styling
 - Implement proper hover and focus states
 - Ensure accessibility with proper contrast ratios
 - Use consistent spacing and typography scales
+- Implement smooth transitions and animations
+- Use CSS Grid and Flexbox for layouts
+
+### Animation System
+- Use `animate.css` library for pre-built animations
+- Implement viewport-triggered animations with Intersection Observer
+- Use `data-animate` attributes for flexible animation system
+- Apply staggered delays using CSS custom properties
+- Use `requestAnimationFrame` for smooth DOM updates
+- Implement proper animation cleanup and lifecycle management
 
 ## Performance & Best Practices
 
@@ -72,26 +86,31 @@
 - Optimize images and assets in `static/` directory
 - Implement proper lazy loading for components
 - Use `import.meta.glob()` for dynamic imports
+- Optimize animation performance with GPU acceleration
 
 ### Code Organization
 - Keep components small and focused on single responsibility
 - Use composition over inheritance
 - Implement proper error boundaries
 - Add loading states for async operations
+- Implement proper cleanup for event listeners and animations
+- Use modular function structure for maintainability
 
 ## Documentation
 
 ### Code Comments
-- Write doc comments for each function and component
-- Document complex business logic
-- Explain non-obvious code decisions
-- Use JSDoc format for TypeScript functions
+- Write doc comments for each function and component (JSDoc format)
+- Document complex business logic and animation implementations
+- Explain non-obvious code decisions and performance optimizations
+- Use JSDoc format for TypeScript functions with parameter descriptions
+- Document animation triggers and interaction patterns
 
 ### README & Documentation
 - Keep `README.md` updated with setup instructions
 - Document any new features or configuration changes
-- Include examples for common tasks
+- Include examples for common tasks and animation implementations
 - Maintain changelog for significant updates
+- Document animation system usage and customization options
 
 ## Testing & Quality Assurance
 
@@ -100,12 +119,16 @@
 - Run `npm run check` to verify TypeScript types
 - Use `npm run lint` to check code quality
 - Fix all linting errors before committing
+- Validate animation performance and smoothness
+- Test responsive behavior across different screen sizes
 
 ### Content Validation
 - Validate frontmatter structure for all blog posts
 - Ensure all required metadata fields are present
 - Check for broken links and missing images
 - Verify proper markdown syntax
+- Test animation triggers and interaction patterns
+- Validate theme switching functionality
 
 ## Deployment & Configuration
 
@@ -114,12 +137,15 @@
 - Use `npm run build` for production builds
 - Configure proper environment variables
 - Set up proper Git hooks for pre-commit checks
+- Test animation performance in production builds
 
 ### Static Assets
 - Organize images in `static/static/blog/` by category
 - Use descriptive image names
 - Optimize images for web delivery
 - Maintain proper directory structure for assets
+- Optimize profile images and icons for fast loading
+- Use appropriate image formats (WebP, AVIF) when possible
 
 ## Security & Best Practices
 
@@ -134,6 +160,8 @@
 - Use specific version numbers in package.json
 - Audit dependencies regularly for security issues
 - Prefer stable, well-maintained packages
+- Include animation libraries (animate.css) in dependency management
+- Monitor performance impact of third-party libraries
 
 ## Accessibility
 
@@ -143,11 +171,58 @@
 - Ensure keyboard navigation works
 - Maintain proper heading hierarchy
 - Use alt text for all images
+- Ensure animations don't interfere with accessibility
 
 ### User Experience
 - Provide clear navigation and breadcrumbs
 - Implement proper loading states
 - Use consistent design patterns
 - Ensure responsive design works on all devices
+- Implement smooth animations that enhance UX
+- Provide fallbacks for users with reduced motion preferences
+- Ensure custom cursor effects work with assistive technologies
+
+## Advanced Features & Interactions
+
+### Custom Cursor System
+- Implement custom cursor with glow effects for desktop
+- Use `cursor: none` for custom cursor elements
+- Provide mobile fallback to default system cursor
+- Implement hover scaling and color changes
+- Ensure cursor follows mouse movement smoothly
+- Add interactive states for different element types
+
+### Typing Effects
+- Implement character-by-character typing animations
+- Use space reservation to prevent layout shifts
+- Provide blinking cursor during typing
+- Remove cursor after typing completion
+- Support multiline text with proper height calculation
+- Use visibility overlay technique for layout stability
+
+### Ripple Effects
+- Implement dynamic ripple creation on click
+- Calculate ripple size based on element dimensions
+- Position ripple at exact click coordinates
+- Use CSS animations for smooth ripple expansion
+- Implement auto-cleanup after animation completion
+- Apply to all interactive elements (buttons, links, cards)
+
+### Theme Management
+- Implement dark/light theme switching
+- Use CSS custom properties for theme variables
+- Store theme preference in localStorage
+- Provide smooth theme transitions
+- Ensure all components respect theme changes
+- Use semantic color naming in CSS variables
+
+### Performance Optimization
+- Use Intersection Observer for efficient viewport detection
+- Implement proper animation cleanup and lifecycle management
+- Use `requestAnimationFrame` for smooth DOM updates
+- Optimize animation performance with GPU acceleration
+- Implement staggered delays for grid animations
+- Use CSS transforms instead of layout properties for animations
+
 alwaysApply: true
 ---
