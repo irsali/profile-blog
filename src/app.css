@@ -319,3 +319,99 @@ body {
   color: var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
 }
+
+/* Prose content theming for blog posts */
+.prose {
+  color: var(--color-text-light);
+  transition: var(--theme-transition);
+}
+
+/* Prose styles using CSS custom properties */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--color-text);
+  transition: var(--theme-transition);
+}
+
+.prose p {
+  color: var(--color-text-light);
+  transition: var(--theme-transition);
+}
+
+.prose strong {
+  color: var(--color-text);
+  transition: var(--theme-transition);
+}
+
+.prose a {
+  color: var(--color-primary);
+  transition: var(--theme-transition);
+}
+
+.prose a:hover {
+  color: var(--color-primary-hover);
+}
+
+.prose blockquote {
+  color: var(--color-text-light);
+  border-left-color: var(--color-primary);
+  transition: var(--theme-transition);
+}
+
+.prose code {
+  color: var(--color-text);
+  background-color: var(--color-bg-alt);
+  transition: var(--theme-transition);
+}
+
+.prose pre {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  transition: var(--theme-transition);
+}
+
+.prose pre code {
+  background-color: transparent;
+}
+
+.prose ul li::marker,
+.prose ol li::marker {
+  color: var(--color-text-light);
+  transition: var(--theme-transition);
+}
+
+.prose hr {
+  border-color: var(--color-border);
+  transition: var(--theme-transition);
+}
+
+.prose table th {
+  color: var(--color-text);
+  border-color: var(--color-border);
+  transition: var(--theme-transition);
+}
+
+.prose table td {
+  border-color: var(--color-border);
+  transition: var(--theme-transition);
+}
+
+.prose img {
+  border-radius: var(--radius-md);
+}
+
+.prose blockquote p {
+  color: var(--color-text-light);
+}
+
+.prose li {
+  color: var(--color-text-light);
+}
+
+.prose li strong {
+  color: var(--color-text);
+}
