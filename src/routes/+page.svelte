@@ -1,11 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3 } from 'lucide-svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
+	import VersionModal from '$lib/components/VersionModal.svelte';
 	import { profile, companies, skills, skillCategories, achievements, recentProjects, experienceYears } from '$lib/data/profile';
 	import { siGithub } from 'simple-icons';
 	import 'animate.css';
+
+	let showVersionModal = false;
+
+	// Version history data
+	const versionHistory = [
+		{
+			version: 'v1.0',
+			title: 'Portfolio v1.0',
+			description: 'Initial version with basic layout',
+			image: undefined // Add actual screenshot path here
+		}
+	];
 
 	/**
 	 * Returns the appropriate icon component based on the icon name
@@ -31,6 +44,19 @@
 		};
 		return iconMap[iconName] || Code; // Default to Code if icon not found
 	}
+
+	/**
+	 * Toggle the version modal
+	 */
+	function toggleVersionModal() {
+		showVersionModal = !showVersionModal;
+		if (showVersionModal) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+	}
+
 
 
 	onMount(() => {
@@ -370,6 +396,18 @@
 		</p>
 	</div>
 </footer>
+
+<!-- Version History Modal -->
+<VersionModal 
+	show={showVersionModal} 
+	versions={versionHistory}
+	onClose={toggleVersionModal}
+/>
+
+<!-- Version History Button -->
+<button class="version-history-btn" on:click={toggleVersionModal} aria-label="View version history">
+	<Clock />
+</button>
 
 <style>
 	/* Header */
@@ -1119,8 +1157,75 @@
 			margin: 0 0.5rem;
 			padding: 1.5rem;
 		}
+
+		/* Version Modal Mobile Styles */
+		.version-modal__content {
+			padding: 2rem 1rem;
+			width: 95%;
+		}
+
+		.version-modal__orb {
+			width: 150px;
+			height: 150px;
+		}
+
+		.version-modal__orb-content h2 {
+			font-size: 1.25rem;
+		}
+
+		.version-modal__orb-content p {
+			font-size: 0.8rem;
+		}
+
+		.version-modal__grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.version-history-btn {
+			bottom: 1rem;
+			right: 1rem;
+			padding: 0.5rem 1rem;
+			font-size: 0.8rem;
+		}
 	}
 
+
+
+	/* Version History Button */
+	.version-history-btn {
+		position: fixed;
+		bottom: 2rem;
+		right: 2rem;
+		background: var(--color-primary);
+		color: white;
+		border: none;
+		border-radius: var(--radius-md);
+		padding: 0.75rem 1.25rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		font-size: 0.9rem;
+		cursor: pointer;
+		box-shadow: var(--shadow-md);
+		z-index: 999;
+		transition: background 0.2s, transform 0.2s;
+	}
+
+	.version-history-btn:hover {
+		background: var(--color-primary-hover);
+		transform: translateY(-2px);
+	}
+
+	.version-history-btn:focus {
+		outline: none;
+	}
+
+	.version-history-btn .lucide-clock {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
 
 </style>
 
