@@ -594,24 +594,6 @@
 		min-height: 1.7em;
 	}
 
-	.hero__description::after {
-		content: '|';
-		position: absolute;
-		right: -8px;
-		top: 0;
-		color: var(--color-primary);
-		animation: blink 1s infinite;
-		opacity: 0;
-	}
-
-	@keyframes blink {
-		0%, 50% { opacity: 1; }
-		51%, 100% { opacity: 0; }
-	}
-
-	.hero__description.typing::after {
-		opacity: 1;
-	}
 
 	.hero__stats {
 		display: flex;
