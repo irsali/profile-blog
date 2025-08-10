@@ -12,6 +12,7 @@ export interface PostMeta {
 	categories: string[];
 	tags: string[];
 	icon?: string;
+	readingTime?: string;
 }
 
 export interface PostMetaWithUrl extends PostMeta {

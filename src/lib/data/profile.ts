@@ -13,6 +13,7 @@ export interface Profile {
 	email: string;
 	github: string;
 	linkedin: string;
+	stackoverflow: string;
 	blog: string;
 }
 
@@ -26,10 +27,24 @@ export interface Company {
 
 export interface Skills {
 	programming: string[];
-	frameworks: string[];
+	backendFrameworks: string[];
+	frontendFrameworks: string[];
+	dataStore: string[];
 	cloud: string[];
+	ai: string[];
 	tools: string[];
-	other: string[];
+	devops: string[];
+	architecture: string[];
+	leadership: string[];
+	dataEngineering: string[];
+	security: string[];
+}
+
+export interface SkillCategory {
+	id: string;
+	title: string;
+	icon: string;
+	skills: string[];
 }
 
 export interface Achievement {
@@ -50,12 +65,13 @@ export interface Project {
 // Profile Information
 export const profile: Profile = {
 	name: 'Irshad Ali',
-	title: 'Project Lead & Full-Stack Software Engineer',
+	title: 'Architect and Project Lead',
 	description: 'Result-driven software engineer with extensive experience in full-stack development, specializing in .NET technologies, modern JavaScript frameworks, and cloud-native architectures. I help businesses create smart and scalable solutions to their general and unique problems.',
 	location: 'India',
 	email: 'irshad.ali@example.com',
 	github: 'https://github.com/irsali',
 	linkedin: 'https://linkedin.com/in/irshad-ali',
+	stackoverflow: 'https://stackoverflow.com/users/4478515/irshad-ali',
 	blog: '/blog'
 };
 
@@ -109,69 +125,196 @@ export const companies: Company[] = [
 export const skills: Skills = {
 	programming: [
 		'C#',
-		'JavaScript',
 		'TypeScript',
-		'Python',
-		'SQL',
-		'HTML/CSS'
+		'JavaScript',
+		'HTML',
+		'CSS',
+		'Python'
 	],
-	frameworks: [
+	dataStore: [
+		'PostgreSQL',
+		'SQL Server',
+		'ElasticSearch',
+		'Azure Blob Storage',
+		'AWS S3',
+		'Apache Ignite',
+		'Cassandra'
+	],
+	ai: [
+		'Ollama',
+		'Prompt Engineering',
+		'Embedding and Semantic Search',
+		'RAG',
+		'AWS Lex',
+		'Google Dialogflow',
+		'IBM Watson'
+	],
+	backendFrameworks: [
 		'.NET Core',
 		'ASP.NET MVC',
-		'ASP.NET Core',
+		'Web API',
+		'WCF',
 		'Entity Framework',
-		'MediatR',
+		'LINQ',
+		'Identity',
+		'Autofac',
+		'Unity',
+		'AutoMapper',
+		'Razor Engine',
 		'Node.js',
+		'Express'
+	],
+	frontendFrameworks: [
 		'Angular',
+		'Angular Material',
+		'jQuery',
+		'Ajax',
+		'DataTable',
 		'Bootstrap',
-		'Syncfusion',
-		'Svelte',
 		'Tailwind CSS',
+		'Svelte'
 	],
 	cloud: [
-		'AWS',
 		'Azure',
-		'Azure Functions',
-		'Azure DevOps',
-		'Docker',
-		'Cloud-Native Development',
-		'Microservices',
+		'AWS',
 		'Serverless',
-		'Elasticsearch',
+		'Azure Functions',
+		'Cloud-Native Development',
 		'Redshift',
 		'Elastic Beanstalk',
+		'ECS',
+		'CloudFront',
+		'ElastiCache'
 	],
 	tools: [
 		'Git',
 		'Visual Studio',
 		'VS Code',
-		'Cursor AI',
+		'GitHub Copilot',
+		'Cursor',
+		'Postman',
+		'Jira',
+		'Jupyter Notebook',
+		'DOMO',
+		'Dataiku',
+		'IIS',
+		'n8n',
+		'Docker',
+		'sinon',
+		'chai'
+	],
+	devops: [
 		'Azure DevOps',
 		'CI/CD',
-		'Infrastructure as Code',
-		'Big Data',
 		'Monitoring',
-		'Apache Ignite',
-		'Unity',
-		'Jekyll',
-		'IIS'
+		'CloudWatch'
 	],
-	other: [
+	architecture: [
 		'Performance Optimization',
-		'Architecture Design',
+		'Solution Architecture',
+		'Database Design',
+		'System Integration',
+		'Root Cause Analysis',
+		'Data Pipeline Development'
+	],
+	leadership: [
 		'Technical Documentation',
 		'Problem Solving',
-		'Security',
-		'Unit Testing',
 		'Knowledge Sharing',
 		'Continuous Learning',
 		'Team Collaboration',
 		'Leadership',
-		'Debugging',
-		'Chrome DevTools',
-		'Responsive Web Design'
+		'Mentoring',
+		'Cross-functional Collaboration'
+	],
+	dataEngineering: [
+		'Database Schema Design',
+		'ETL',
+		'Data Integration'
+	],
+	security: [
+		'Security',
+		'GDPR Compliance',
+		'CCPA Compliance',
+		'HIPAA Compliance'
 	]
 };
+
+// Skills Categories for looping
+export const skillCategories: SkillCategory[] = [
+	{
+		id: 'programming',
+		title: 'Programming Languages',
+		icon: 'Code',
+		skills: skills.programming
+	},
+	{
+		id: 'dataStore',
+		title: 'Data Store',
+		icon: 'Database',
+		skills: skills.dataStore
+	},
+	{
+		id: 'ai',
+		title: 'AI & Machine Learning',
+		icon: 'Brain',
+		skills: skills.ai
+	},
+	{
+		id: 'cloud',
+		title: 'Cloud & Infrastructure',
+		icon: 'Cloud',
+		skills: skills.cloud
+	},
+	{
+		id: 'backendFrameworks',
+		title: 'Backend Frameworks',
+		icon: 'Server',
+		skills: skills.backendFrameworks
+	},
+	{
+		id: 'frontendFrameworks',
+		title: 'Frontend Frameworks',
+		icon: 'Globe',
+		skills: skills.frontendFrameworks
+	},
+	{
+		id: 'tools',
+		title: 'Development Tools',
+		icon: 'Monitor',
+		skills: skills.tools
+	},
+	{
+		id: 'devops',
+		title: 'DevOps & CI/CD',
+		icon: 'Git',
+		skills: skills.devops
+	},
+	{
+		id: 'architecture',
+		title: 'Architecture & Design',
+		icon: 'Settings',
+		skills: skills.architecture
+	},
+	{
+		id: 'leadership',
+		title: 'Leadership & Collaboration',
+		icon: 'Users',
+		skills: skills.leadership
+	},
+	{
+		id: 'dataEngineering',
+		title: 'Data Engineering',
+		icon: 'BarChart3',
+		skills: skills.dataEngineering
+	},
+	{
+		id: 'security',
+		title: 'Security & Compliance',
+		icon: 'Shield',
+		skills: skills.security
+	}
+];
 
 // Achievements
 export const achievements: Achievement[] = [
@@ -208,54 +351,46 @@ export const recentProjects: Project[] = [
 		title: 'Nomis Price Manager',
 		description: 'Led implementation of dynamic, configuration-driven pricing attributes and rate adjustment rules. Implementation support for large file handling, diff viewer, validations maker/checker process and activation.',
 		technologies: ['AWS ECS', 'CloudWatch', 'S3', 'BullMq', 'Node.js', 'Meteor', 'sinon', 'chai'],
-		github: 'https://github.com/irsali/nomis-price-manager'
 	},
 	{
 		title: 'Smartlinx Healthcare Workforce Management',
 		description: 'Led security implementation and penetration testing, ensuring healthcare compliance. Optimized real-time workforce scheduling to improve efficiency across multiple facilities.',
 		technologies: ['.NET Core', 'Microservices', 'SQL Server', 'Azure DevOps'],
-		github: 'https://github.com/irsali/smartlinx-healthcare'
 	},
 	{
 		title: 'Storhub Data Integration & Automation',
 		description: 'Developed scalable ETL pipelines using .NET Core and Azure Durable Functions for data integration across APAC regions. Integrated Zendesk and Oracle NetSuite for unified data visibility.',
 		technologies: ['.NET Core', 'Azure Functions', 'PostgreSQL', 'SugarCRM', 'Oracle NetSuite'],
-		github: 'https://github.com/irsali/storhub-integration'
 	},
 	{
 		title: 'Consent Management Platform',
 		description: 'Developed comprehensive cookie compliance and consent management platform with customizable banners and automatic blocking capabilities. Features consent analytics dashboard with trust score tracking.',
 		technologies: ['AWS Elastic Beanstalk', 'AWS Redshift', 'Azure DevOps', 'Big Data', 'Angular', 'Node.js', 'JavaScript', 'Python'],
-		github: 'https://github.com/irsali/consent-platform',
-		live: 'https://cookie-compliance.co/'
+		live: 'https://app.hu-manity.co/'
 	},
 	{
 		title: 'SAM&C Applications',
 		description: 'Implemented SAM&C applications on microsoft.com domain with global deployment across multiple Azure regions in 18 languages. Built High Touch, Low Touch and No Touch versions.',
 		technologies: ['ASP.NET Core 2 MVC', 'Angular 6', 'C#', 'TypeScript', 'Web API 2', 'Azure SQL Database', 'Azure DevOps'],
-		github: 'https://github.com/irsali/samc-applications'
 	},
 	{
 		title: 'Cybersecurity Self-Assessment',
 		description: 'Developed self-assessment applications for Cybersecurity, GDPR, Digital Transformation, and Workplace Productivity. Multiple App Services with Azure Functions and WebJobs.',
 		technologies: ['ASP.NET MVC 6', 'C#', 'Azure Functions', 'WebJobs', 'Web API 2', 'Azure CDN', 'jQuery', 'Azure Storage'],
-		github: 'https://github.com/irsali/cybersecurity-assessment',
-		live: 'https://msftselfassessment-dev.azurewebsites.net/'
 	},
 	{
 		title: 'VQBZ E-Commerce Platform',
 		description: 'Designed scalable EAV-based database schema for flexible product management. Integrated geo-based search & recommendation system using ElasticSearch. Developed multi-vendor onboarding & order tracking system.',
 		technologies: ['ASP.NET MVC', 'WCF', 'Elasticsearch', 'Cassandra', 'Angular'],
-		github: 'https://github.com/irsali/vqbz-ecommerce'
 	},
 	{
 		title: 'Personal Portfolio Website',
 		description: 'Modern, responsive portfolio website built with SvelteKit featuring dark/light theme, animated backgrounds, and blog functionality.',
 		technologies: ['SvelteKit', 'TypeScript', 'CSS', 'Vite'],
 		github: 'https://github.com/irsali/portfolio-blog',
-		live: 'https://irshad-ali.dev'
+		live: 'https://ali-irshad.netlify.app'
 	}
 ];
 
 // Calculate experience years
-export const experienceYears = new Date().getFullYear() - 2014; 
+export const experienceYears = new Date().getFullYear() - 2014; // 11+ years as mentioned in resume 

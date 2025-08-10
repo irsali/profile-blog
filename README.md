@@ -1,119 +1,77 @@
-# Irshad Ali - Profile & Blog
+# Profile Blog
 
-A modern, responsive personal website built with SvelteKit, featuring a professional profile page and technical blog.
+A modern, responsive blog built with SvelteKit featuring dark/light theme support, smooth animations, and dynamic content management.
 
-## 🚀 Features
+## Features
 
-### Profile Page
-- **Modern Design**: Inspired by [Svelte.dev](https://svelte.dev/) with clean, professional aesthetics
-- **Responsive Layout**: Optimized for desktop, tablet, and mobile devices
-- **Interactive Elements**: Smooth scrolling, hover effects, and animated components
-- **Professional Sections**:
-  - Hero section with key statistics
-  - About section with achievements
-  - Professional experience timeline
-  - Skills and technologies showcase
-  - Contact information and social links
+### Core Features
+- **Modern Design**: Clean, professional design with dark/light theme support
+- **Responsive Layout**: Mobile-first responsive design
+- **Blog System**: Markdown-based blog posts with categories and tags
+- **Reading Time**: Automatic calculation of reading time for blog posts
+- **Comments**: Giscus-powered comments with theme synchronization
+- **Smooth Animations**: Viewport-triggered animations using Animate.css
+- **Custom Cursor**: Elegant glow cursor effect for desktop
+- **Typing Effects**: Character-by-character typing animations
+- **Ripple Effects**: Dynamic button interactions
 
-### Blog System
-- **Markdown Support**: Write blog posts in Markdown with frontmatter
-- **Category & Tag System**: Organize content by categories and tags
-- **Search Functionality**: Find posts using Fuse.js search
-- **Syntax Highlighting**: Code blocks with Shiki syntax highlighting
-- **Comments**: Giscus integration for blog comments
+### Reading Time Calculation
+The blog automatically calculates reading time for each post using the following methodology:
 
-## 🛠️ Tech Stack
+- **Word Count**: Analyzes the raw markdown content, excluding HTML tags and metadata
+- **Reading Speed**: Uses 200 words per minute as the average reading speed
+- **Formatting**: Displays as "X min read" or "Less than 1 min read" for short posts
+- **Accuracy**: Rounds up to the nearest minute for better user experience
 
-- **Framework**: SvelteKit 2.16.0
-- **Styling**: TailwindCSS 4.0.0
-- **Icons**: Lucide Svelte
-- **Markdown**: mdsvex with rehype plugins
-- **Syntax Highlighting**: Shiki with Nord theme
-- **Search**: Fuse.js
-- **Comments**: Giscus
-- **Deployment**: Static site generation
+The calculation is performed at build time and cached for performance.
 
-## 📁 Project Structure
+## Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+```bash
+npm install
+```
+
+### Development
+```bash
+npm run dev
+```
+
+### Build
+```bash
+npm run build
+```
+
+## Project Structure
 
 ```
 src/
-├── routes/
-│   ├── +page.svelte          # Main profile page
-│   ├── +layout.svelte        # Global layout
-│   └── blog/                 # Blog routes
-├── posts/
-│   └── blog/                 # Markdown blog posts
 ├── lib/
-│   ├── services/             # Business logic
-│   ├── templates/            # Reusable components
-│   └── types.ts              # TypeScript definitions
-└── static/
-    └── static/
-        ├── profile/          # Profile images
-        └── blog/             # Blog assets
+│   ├── components/     # Reusable UI components
+│   ├── data/          # Profile and content data
+│   ├── services/      # Business logic services
+│   ├── stores/        # Svelte stores (theme, etc.)
+│   ├── templates/     # Blog templates
+│   ├── types.ts       # TypeScript type definitions
+│   └── utils/         # Utility functions (reading time, etc.)
+├── posts/
+│   └── blog/          # Markdown blog posts
+├── routes/            # SvelteKit routes
+└── static/            # Static assets
 ```
 
-## 🎨 Design Features
+## Blog Post Format
 
-### Color Scheme
-- **Primary**: Svelte orange (#ff3e00)
-- **Background**: Clean white and light gray
-- **Text**: Dark gray for readability
-- **Accents**: Subtle shadows and borders
+Blog posts are written in Markdown with frontmatter:
 
-### Typography
-- **System Fonts**: Apple system fonts for optimal performance
-- **Hierarchy**: Clear heading structure with proper spacing
-- **Readability**: Optimized line heights and letter spacing
-
-### Animations
-- **Hover Effects**: Subtle transforms and shadow changes
-- **Smooth Scrolling**: Anchor link navigation
-- **Loading States**: Progressive enhancement
-
-## 📱 Responsive Design
-
-- **Desktop**: Full-featured layout with side-by-side sections
-- **Tablet**: Adjusted grid layouts and spacing
-- **Mobile**: Single-column layout with optimized touch targets
-
-## 🚀 Getting Started
-
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Start Development Server**
-   ```bash
-   npm run dev
-   ```
-
-3. **Build for Production**
-   ```bash
-   npm run build
-   ```
-
-4. **Preview Production Build**
-   ```bash
-   npm run preview
-   ```
-
-## 📝 Content Management
-
-### Profile Information
-Update the profile data in `src/routes/+page.svelte`:
-- Personal information
-- Professional experience
-- Skills and technologies
-- Contact details
-
-### Blog Posts
-Add new blog posts in `src/posts/blog/` with frontmatter:
 ```yaml
 ---
 title: "Post Title"
-date: "YYYY-MM-DD"
+date: "2024-01-01"
 description: "Brief description"
 categories: ["category1", "category2"]
 tags: ["tag1", "tag2"]
@@ -121,84 +79,32 @@ icon: "icon-name"
 ---
 ```
 
-## 🎯 Key Sections
+## Theme System
 
-### Hero Section
-- Professional title and description
-- Key statistics (experience, articles, projects)
-- Call-to-action buttons
-- Profile image
+The application supports dynamic theme switching with CSS custom properties:
 
-### About Section
-- Personal introduction
-- Key achievements with icons
-- Professional philosophy
+- **Light Theme**: Clean, bright interface
+- **Dark Theme**: Easy on the eyes for low-light environments
+- **Automatic Detection**: Respects system theme preferences
+- **Persistent Storage**: Remembers user's theme choice
 
-### Experience Timeline
-- Chronological work history
-- Company details and roles
-- Project descriptions
+## Animation System
 
-### Skills Showcase
-- Programming languages
-- Frameworks and libraries
-- Cloud platforms
-- Development tools
+Built with performance and accessibility in mind:
 
-### Contact Information
-- Email and location
-- Social media links
-- Blog access
+- **Viewport Triggered**: Animations activate when elements enter the viewport
+- **Staggered Delays**: Smooth sequential animations for grid items
+- **Reduced Motion**: Respects user's motion preferences
+- **GPU Accelerated**: Uses CSS transforms for smooth performance
 
-## 🔧 Customization
+## Contributing
 
-### Colors
-Update CSS variables in the component styles:
-```css
-:global(:root) {
-  --color-primary: #ff3e00;
-  --color-primary-hover: #ff5722;
-  /* ... other variables */
-}
-```
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-### Layout
-Modify grid layouts and spacing in the CSS:
-```css
-.hero__container {
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-}
-```
+## License
 
-### Content
-Update the profile data object in the script section:
-```javascript
-const profile = {
-  name: 'Your Name',
-  title: 'Your Title',
-  // ... other properties
-};
-```
-
-## 📊 Performance
-
-- **Static Generation**: Pre-built pages for fast loading
-- **Image Optimization**: Responsive images with proper sizing
-- **Code Splitting**: Automatic route-based code splitting
-- **Minification**: Optimized CSS and JavaScript
-
-## 🌐 Deployment
-
-The site is configured for static deployment:
-- **Adapter**: `@sveltejs/adapter-static`
-- **Build Output**: Static HTML, CSS, and JavaScript
-- **Hosting**: Compatible with Netlify, Vercel, GitHub Pages, etc.
-
-## 📄 License
-
-This project is open source and available under the MIT license.
-
----
-
-Built with ❤️ using SvelteKit and inspired by the Svelte community.
+This project is licensed under the MIT License.

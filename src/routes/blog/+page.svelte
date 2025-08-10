@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PostMetaWithUrl } from '$lib/types';
 	import BlogMetaSidebar from '$lib/templates/blogMetaSidebar.svelte';
-	import { MessageCircle, CalendarDays } from 'lucide-svelte';
+	import { CalendarDays, Clock } from 'lucide-svelte';
 
 	export let data: { posts: PostMetaWithUrl[]; categories?: string[]; tags?: string[] };
 	const posts = data.posts;
@@ -37,12 +37,15 @@
 								>
 								<div class="mt-1 flex items-center gap-6 text-base text-[var(--color-modal-date)]">
 									<span class="flex items-center gap-1">
-										<MessageCircle class="inline h-5 w-5 text-[var(--color-muted)]" /> Comments (0)
-									</span>
-									<span class="flex items-center gap-1">
 										<CalendarDays class="inline h-5 w-5 text-[var(--color-muted)]" />
 										{post.date}
 									</span>
+									{#if post.readingTime}
+										<span class="flex items-center gap-1">
+											<Clock class="inline h-5 w-5 text-[var(--color-muted)]" />
+											{post.readingTime}
+										</span>
+									{/if}
 								</div>
 							</a>
 						</li>

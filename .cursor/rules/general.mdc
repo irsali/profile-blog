@@ -1,4 +1,7 @@
-# Svelte Profile Blog - General Rules
+# Svelte Profile Blog - General Rules & Guidelines
+
+## Project Overview
+This is a Svelte 5 + SvelteKit personal profile/blog website with advanced animations, theme switching, and blog functionality. The project uses CSS-first configuration with Tailwind CSS and custom CSS variables for theming.
 
 ## Code Quality & Standards
 
@@ -8,21 +11,29 @@
 - Use strict type checking and avoid `any` types
 - Prefer `interface` over `type` for object shapes
 - Export types and interfaces that are used across multiple files
+- Use type assertions (`as HTMLElement`) when accessing DOM properties
+- Implement proper error handling with graceful fallbacks
+- Write doc comments for each function (JSDoc format)
 
 ### Svelte Components
-- Use Svelte 5 syntax with `$props()` and `$state()`
-- Write doc comments for each function and component
+- Use Svelte 5 syntax with `$props()` and `$state()` where applicable
 - Use proper prop typing with `export let` statements
 - Implement reactive statements with `$:` when needed
 - Use `onMount()` for side effects and DOM manipulation
 - Prefer `{#if}`, `{#each}`, and `{#await}` blocks over imperative code
+- Implement proper lifecycle management for animations and effects
+- Use `svelte:component` for dynamic component rendering
 
 ### File Organization
-- Keep components in `src/lib/templates/` for reusable UI
+- Keep components in `src/lib/components/` for reusable UI
 - Place services in `src/lib/services/` with proper separation of concerns
 - Store types in `src/lib/types.ts`
 - Use descriptive file names that match their purpose
 - Group related functionality in the same directory
+- Organize data files in `src/lib/data/` for profile and content data
+- Place utility functions in `src/lib/utils/` directory
+- Store Svelte stores in `src/lib/stores/` directory
+- Keep templates in `src/lib/templates/` for reusable layouts
 
 ## Blog Post Management
 
@@ -43,27 +54,75 @@
 - Include proper markdown formatting with headers, lists, and code blocks
 - Use relative paths for images in `static/static/blog/` directory
 
-### Post Service
+### Post Service & Reading Time
 - Extend `PostService` in `src/lib/services/post.service.ts` for new functionality
+- Use `src/lib/utils/reading-time.ts` for calculating reading time
+- Calculate reading time at build time using raw markdown content
 - Add proper error handling for missing metadata
 - Implement caching for performance when needed
 - Use async/await patterns consistently
 - Add JSDoc comments for all public methods
 
+### Blog Routes & Layouts
+- Use `src/routes/blog/+layout.ts` for blog-wide data loading
+- Implement category and tag filtering in `src/routes/blog/category/[category]/+page.svelte`
+- Use `src/routes/blog/[slug]/+layout.ts` for individual post data loading
+- Implement proper error handling for missing posts
+- Use `src/routes/blog/[slug]/+page.svelte` for individual post rendering
+
 ## Styling & Design
 
-### TailwindCSS
-- Use TailwindCSS utility classes for styling
-- Leverage CSS custom properties for theming: `var(--color-primary)`
+### CSS & Theming System
+- Use CSS custom properties for theming: `var(--color-primary)`, `var(--color-bg)`, etc.
 - Maintain responsive design with mobile-first approach
 - Use semantic color names in CSS variables
-- Prefer utility classes over custom CSS when possible
+- Implement dark/light theme support with CSS variables
+- Use consistent spacing and typography scales
+- Prefer global CSS in `src/app.css` for reusable parts/components/widgets
+- **CRITICAL**: Always use CSS variables from `app.css` since they automatically switch for themes
+- Use `--theme-transition` for smooth theme switching animations
 
 ### Component Styling
 - Use `class:` directive for conditional styling
 - Implement proper hover and focus states
 - Ensure accessibility with proper contrast ratios
 - Use consistent spacing and typography scales
+- Implement smooth transitions and animations
+- Use CSS Grid and Flexbox for layouts
+- Apply theme-aware styling using CSS variables
+
+### Prose Content Styling
+- Use Tailwind's `prose` classes for blog content
+- Override prose styles using CSS custom properties for theme consistency
+- Ensure all prose elements (headings, paragraphs, code blocks) follow theme
+- Use `transition: var(--theme-transition)` for smooth theme switching
+- Maintain proper typography hierarchy and spacing
+
+## Animation System
+
+### Animate.css Integration
+- Use `animate.css` library for pre-built animations
+- Implement viewport-triggered animations with Intersection Observer
+- Use `data-animate` attributes for flexible animation system
+- Apply staggered delays using CSS custom properties
+- Use `requestAnimationFrame` for smooth DOM updates
+- Implement proper animation cleanup and lifecycle management
+
+### Custom Animations
+- Implement typing effects for hero descriptions
+- Use ripple effects on interactive elements
+- Create custom cursor with glow effects for desktop
+- Implement smooth page transitions and loading states
+- Use CSS transforms for GPU-accelerated animations
+
+### Animation Best Practices
+- Use Intersection Observer for efficient viewport detection
+- Implement proper animation cleanup and lifecycle management
+- Use `requestAnimationFrame` for smooth DOM updates
+- Optimize animation performance with GPU acceleration
+- Implement staggered delays for grid animations
+- Use CSS transforms instead of layout properties for animations
+- Provide fallbacks for users with reduced motion preferences
 
 ## Performance & Best Practices
 
@@ -72,26 +131,83 @@
 - Optimize images and assets in `static/` directory
 - Implement proper lazy loading for components
 - Use `import.meta.glob()` for dynamic imports
+- Optimize animation performance with GPU acceleration
+- Use `prerender = true` for static generation
 
 ### Code Organization
 - Keep components small and focused on single responsibility
 - Use composition over inheritance
 - Implement proper error boundaries
 - Add loading states for async operations
+- Implement proper cleanup for event listeners and animations
+- Use modular function structure for maintainability
+
+### Memory Management
+- Clean up event listeners in component destroy functions
+- Remove DOM elements created for animations
+- Unsubscribe from Svelte stores when components are destroyed
+- Use proper cleanup for Intersection Observer instances
+- Remove custom cursor elements on page unload
+
+## Advanced Features
+
+### Custom Cursor System
+- Implement custom cursor with glow effects for desktop
+- Use `cursor: none` for custom cursor elements
+- Provide mobile fallback to default system cursor
+- Implement hover scaling and color changes
+- Ensure cursor follows mouse movement smoothly
+- Add interactive states for different element types
+- Clean up cursor elements on component destroy
+
+### Typing Effects
+- Implement character-by-character typing animations
+- Use space reservation to prevent layout shifts
+- Provide blinking cursor during typing
+- Remove cursor after typing completion
+- Support multiline text with proper height calculation
+- Use visibility overlay technique for layout stability
+
+### Ripple Effects
+- Implement dynamic ripple creation on click
+- Calculate ripple size based on element dimensions
+- Position ripple at exact click coordinates
+- Use CSS animations for smooth ripple expansion
+- Implement auto-cleanup after animation completion
+- Apply to all interactive elements (buttons, links, cards)
+
+### Theme Management
+- Implement dark/light theme switching using Svelte stores
+- Use CSS custom properties for theme variables
+- Store theme preference in localStorage
+- Provide smooth theme transitions
+- Ensure all components respect theme changes
+- Use semantic color naming in CSS variables
+- Update Giscus comments theme to match application theme
+
+### Giscus Integration
+- Initialize Giscus script dynamically in blog posts
+- Update Giscus theme when application theme changes
+- Handle Giscus script cleanup on component destroy
+- Use proper theme mapping for Giscus (noborder_light/noborder_dark)
+- Implement proper error handling for Giscus loading
 
 ## Documentation
 
 ### Code Comments
-- Write doc comments for each function and component
-- Document complex business logic
-- Explain non-obvious code decisions
-- Use JSDoc format for TypeScript functions
+- Write doc comments for each function and component (JSDoc format)
+- Document complex business logic and animation implementations
+- Explain non-obvious code decisions and performance optimizations
+- Use JSDoc format for TypeScript functions with parameter descriptions
+- Document animation triggers and interaction patterns
 
 ### README & Documentation
 - Keep `README.md` updated with setup instructions
 - Document any new features or configuration changes
-- Include examples for common tasks
+- Include examples for common tasks and animation implementations
 - Maintain changelog for significant updates
+- Document animation system usage and customization options
+- Document reading time calculation methodology
 
 ## Testing & Quality Assurance
 
@@ -100,12 +216,17 @@
 - Run `npm run check` to verify TypeScript types
 - Use `npm run lint` to check code quality
 - Fix all linting errors before committing
+- Validate animation performance and smoothness
+- Test responsive behavior across different screen sizes
 
 ### Content Validation
 - Validate frontmatter structure for all blog posts
 - Ensure all required metadata fields are present
 - Check for broken links and missing images
 - Verify proper markdown syntax
+- Test animation triggers and interaction patterns
+- Validate theme switching functionality
+- Verify reading time calculations are accurate
 
 ## Deployment & Configuration
 
@@ -114,12 +235,15 @@
 - Use `npm run build` for production builds
 - Configure proper environment variables
 - Set up proper Git hooks for pre-commit checks
+- Test animation performance in production builds
 
 ### Static Assets
 - Organize images in `static/static/blog/` by category
 - Use descriptive image names
 - Optimize images for web delivery
 - Maintain proper directory structure for assets
+- Optimize profile images and icons for fast loading
+- Use appropriate image formats (WebP, AVIF) when possible
 
 ## Security & Best Practices
 
@@ -134,6 +258,8 @@
 - Use specific version numbers in package.json
 - Audit dependencies regularly for security issues
 - Prefer stable, well-maintained packages
+- Include animation libraries (animate.css) in dependency management
+- Monitor performance impact of third-party libraries
 
 ## Accessibility
 
@@ -143,11 +269,40 @@
 - Ensure keyboard navigation works
 - Maintain proper heading hierarchy
 - Use alt text for all images
+- Ensure animations don't interfere with accessibility
 
 ### User Experience
 - Provide clear navigation and breadcrumbs
 - Implement proper loading states
 - Use consistent design patterns
 - Ensure responsive design works on all devices
+- Implement smooth animations that enhance UX
+- Provide fallbacks for users with reduced motion preferences
+- Ensure custom cursor effects work with assistive technologies
+- Test theme switching with screen readers
+
+## Project-Specific Guidelines
+
+### SvelteKit Configuration
+- Use `src/routes/+layout.svelte` for global layout
+- Implement proper page transitions
+- Use `src/routes/+layout.ts` for global data loading
+- Configure static adapter for deployment
+- Use proper prerendering for blog posts
+
+### Blog Features
+- Implement pagination for blog listing
+- Use category and tag filtering
+- Display reading time for all posts
+- Show post metadata (date, reading time) consistently
+- Use proper SEO meta tags
+- Implement proper 404 handling for missing posts
+
+### Profile Features
+- Display profile information from `src/lib/data/profile.ts`
+- Implement smooth animations for profile sections
+- Use proper responsive design for profile layout
+- Ensure profile images are optimized and accessible
+
 alwaysApply: true
 ---

@@ -1,10 +1,62 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, } from 'lucide-svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock, CircleDot } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
-	import { profile, companies, skills, achievements, recentProjects, experienceYears } from '$lib/data/profile';
+	import VersionModal from '$lib/components/VersionModal.svelte';
+	import { profile, companies, skills, skillCategories, achievements, recentProjects, experienceYears } from '$lib/data/profile';
 	import { siGithub } from 'simple-icons';
+	import 'animate.css';
+
+	let showVersionModal = false;
+
+	// Version history data
+	const versionHistory = [
+		{
+			version: 'v1.0',
+			title: 'Portfolio v1.0',
+			description: 'Initial version with basic layout',
+			image: undefined // Add actual screenshot path here
+		}
+	];
+
+	/**
+	 * Returns the appropriate icon component based on the icon name
+	 * @param iconName - The name of the icon to return
+	 * @returns The icon component
+	 */
+	function getIconComponent(iconName: string) {
+		const iconMap: Record<string, any> = {
+			'Code': Code,
+			'Server': Server,
+			'Globe': Globe,
+			'Database': Database,
+			'Cloud': Cloud,
+			'Brain': Brain,
+			'Monitor': Monitor,
+			'Award': Award,
+			'Git': GitBranch,
+			'Bug': Bug,
+			'Settings': Settings,
+			'BarChart3': BarChart3,
+			'Users': Users,
+			'Shield': Shield
+		};
+		return iconMap[iconName] || Code; // Default to Code if icon not found
+	}
+
+	/**
+	 * Toggle the version modal
+	 */
+	function toggleVersionModal() {
+		showVersionModal = !showVersionModal;
+		if (showVersionModal) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+	}
+
 
 
 	onMount(() => {
@@ -19,7 +71,88 @@
 				}
 			});
 		});
+
+		// Setup Intersection Observer for animations
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const element = entry.target as HTMLElement;
+					const animationType = element.dataset.animate;
+					
+					requestAnimationFrame(() => {
+						// Add animation classes
+						element.classList.add('animate__animated');
+						if (animationType) {
+							element.classList.add(`animate__${animationType}`);
+						}
+					});
+					
+					// Stop observing after animation is triggered
+					observer.unobserve(element);
+				}
+			});
+		}, {
+			threshold: 0.1,
+			rootMargin: '-50px 0px'
+		});
+
+		// Observe all elements with data-animate attribute
+		const animatedElements = document.querySelectorAll('[data-animate]');
+		animatedElements.forEach(element => observer.observe(element));
+
+		// Start typing animation for hero title
+		startTypingAnimation();
+		
 	});
+
+	/**
+	 * Creates a typing effect for the hero description
+	 */
+	function startTypingAnimation() {
+		const descriptionElement = document.querySelector('.hero__description') as HTMLElement;
+		
+		if (!descriptionElement) return;
+
+		const descriptionText = descriptionElement.textContent || '';
+		
+		// Hide the original text but keep it in the layout
+		descriptionElement.style.visibility = 'hidden';
+		descriptionElement.classList.add('typing'); // Add typing class for cursor
+		
+		// Create a visible overlay for typing
+		const typingOverlay = document.createElement('span');
+		typingOverlay.style.cssText = `
+			position: absolute;
+			top: 0;
+			left: 0;
+			visibility: visible;
+			background: transparent;
+			pointer-events: none;
+		`;
+		descriptionElement.appendChild(typingOverlay);
+
+		let currentIndex = 0;
+		const typeSpeed = 50; // milliseconds per character
+
+		function typeNextChar() {
+			if (currentIndex < descriptionText.length) {
+				typingOverlay.textContent += descriptionText[currentIndex];
+				currentIndex++;
+				setTimeout(typeNextChar, typeSpeed);
+			} else {
+				// Remove typing class when finished
+				setTimeout(() => {
+					descriptionElement.classList.remove('typing');
+					// Show the original text and remove overlay
+					descriptionElement.style.visibility = 'visible';
+					typingOverlay.remove();
+				}, 500);
+			}
+		}
+
+		// Start typing after a short delay
+		setTimeout(typeNextChar, 1000);
+	}
 </script>
 
 <svelte:head>
@@ -54,7 +187,7 @@
 </header>
 
 <!-- Hero Section -->
-<section class="hero">
+<section class="hero section">
 	
 	<div class="hero__container">
 		<div class="hero__content">
@@ -95,7 +228,7 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="section">
+<section id="about" class="section" data-animate="fadeInUp">
 	<div class="container">
 		<h2 class="section__title">About Me</h2>
 		<div class="about__content">
@@ -116,7 +249,7 @@
 			</div>
 			<div class="about__achievements">
 						{#each achievements as achievement}
-			<div class="achievement">
+			<div class="achievement" data-animate="fadeInRight">
 				<div class="achievement__content">
 					<h3 class="achievement__title">{achievement.title}</h3>
 					<p class="achievement__description">{achievement.description}</p>
@@ -132,12 +265,12 @@
 </section>
 
 <!-- Experience Section -->
-<section id="experience" class="section section--alt">
+<section id="experience" class="section section--alt" data-animate="fadeInUp">
 	<div class="container">
 		<h2 class="section__title">Professional Experience</h2>
 		<div class="experience__timeline">
-			{#each companies as company, index}
-				<div class="timeline__item">
+						{#each companies as company, index}
+			<div class="timeline__item" data-animate="fadeInLeft">
 					<div class="timeline__marker"></div>
 					<div class="timeline__content">
 						<div class="timeline__header">
@@ -159,13 +292,13 @@
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="section">
+<section id="projects" class="section" data-animate="fadeInUp">
 	
 	<div class="container">
 		<h2 class="section__title">Featured Projects</h2>
 		<div class="projects__grid">
-			{#each recentProjects as project}
-				<div class="project-card">
+						{#each recentProjects as project}
+			<div class="project-card" data-animate="fadeInUp">
 					<div class="project__header">
 						<h3 class="project__title">{project.title}</h3>
 					</div>
@@ -198,61 +331,30 @@
 </section>
 
 <!-- Skills Section -->
-<section id="skills" class="section section--alt">
+<section id="skills" class="section section--alt" data-animate="fadeInUp">
 	
 	<div class="container">
 		<h2 class="section__title">Skills & Technologies</h2>
 		<div class="skills__grid">
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Code class="skills__icon" />
-					Programming Languages
-				</h3>
-				<div class="skills__list">
-					{#each skills.programming as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
+						{#each skillCategories as category}
+			<div class="skills__category" data-animate="fadeInUp">
+					<h3 class="skills__category-title">
+						<svelte:component this={getIconComponent(category.icon)} class="skills__icon" />
+						{category.title}
+					</h3>
+					<div class="skills__list">
+						{#each category.skills as skill}
+							<span class="skill-tag">{skill}</span>
+						{/each}
+					</div>
 				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Globe class="skills__icon" />
-					Frameworks & Libraries
-				</h3>
-				<div class="skills__list">
-					{#each skills.frameworks as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Cloud class="skills__icon" />
-					Cloud & Infrastructure
-				</h3>
-				<div class="skills__list">
-					{#each skills.cloud as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
-			<div class="skills__category">
-				<h3 class="skills__category-title">
-					<Database class="skills__icon" />
-					Tools & Platforms
-				</h3>
-				<div class="skills__list">
-					{#each skills.tools as skill}
-						<span class="skill-tag">{skill}</span>
-					{/each}
-				</div>
-			</div>
+			{/each}
 		</div>
 	</div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="section">
+<section id="contact" class="section" data-animate="fadeInUp">
 	<div class="container">
 		<h2 class="section__title">Get in Touch</h2>
 		<div class="contact__content">
@@ -295,6 +397,21 @@
 	</div>
 </footer>
 
+<!-- Version History Modal -->
+<VersionModal 
+	show={showVersionModal} 
+	versions={versionHistory}
+	onClose={toggleVersionModal}
+/>
+
+<!-- Version History Button -->
+<button class="version-history-btn portal-btn" on:click={toggleVersionModal} aria-label="View version history">
+	<div class="portal-icon">
+		<CircleDot />
+	</div>
+	<!-- <span>Time Portal</span> -->
+</button>
+
 <style>
 	/* Header */
 	.header {
@@ -304,8 +421,7 @@
 		right: 0;
 		background: var(--color-header-bg);
 		backdrop-filter: blur(20px);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+		border-bottom: 1px solid var(--color-border);
 		z-index: var(--z-index-header);
 		transition: var(--theme-transition);
 	}
@@ -458,7 +574,10 @@
 		font-size: 3.5rem;
 		font-weight: 800;
 		line-height: 1.1;
+		position: relative;
 	}
+
+
 
 	.hero__subtitle {
 		font-size: 1.5rem;
@@ -471,7 +590,10 @@
 		margin: 0 0 2rem 0;
 		opacity: 0.9;
 		line-height: 1.7;
+		position: relative;
+		min-height: 1.7em;
 	}
+
 
 	.hero__stats {
 		display: flex;
@@ -907,6 +1029,42 @@
 		opacity: 0.8;
 	}
 
+	/* Animation Controls */
+	.animate__animated {
+		--animate-duration: 0.8s;
+	}
+
+	/* Initial state for elements that will be animated */
+	[data-animate] {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+	}
+
+	[data-animate].animate__animated {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Staggered delays for grid items */
+	.project-card:nth-child(1) { animation-delay: 0.1s; }
+	.project-card:nth-child(2) { animation-delay: 0.2s; }
+	.project-card:nth-child(3) { animation-delay: 0.3s; }
+
+	.skills__category:nth-child(1) { animation-delay: 0.1s; }
+	.skills__category:nth-child(2) { animation-delay: 0.2s; }
+	.skills__category:nth-child(3) { animation-delay: 0.3s; }
+	.skills__category:nth-child(4) { animation-delay: 0.4s; }
+
+	.timeline__item:nth-child(1) { animation-delay: 0.1s; }
+	.timeline__item:nth-child(2) { animation-delay: 0.2s; }
+	.timeline__item:nth-child(3) { animation-delay: 0.3s; }
+	.timeline__item:nth-child(4) { animation-delay: 0.4s; }
+
+	.achievement:nth-child(1) { animation-delay: 0.1s; }
+	.achievement:nth-child(2) { animation-delay: 0.2s; }
+	.achievement:nth-child(3) { animation-delay: 0.3s; }
+
 	/* Responsive Design */
 	@media (max-width: 1024px) {
 		.projects__grid {
@@ -984,8 +1142,149 @@
 			margin: 0 0.5rem;
 			padding: 1.5rem;
 		}
+
+		/* Version Modal Mobile Styles */
+		.version-modal__content {
+			padding: 2rem 1rem;
+			width: 95%;
+		}
+
+		.version-modal__orb {
+			width: 150px;
+			height: 150px;
+		}
+
+		.version-modal__orb-content h2 {
+			font-size: 1.25rem;
+		}
+
+		.version-modal__orb-content p {
+			font-size: 0.8rem;
+		}
+
+		.version-modal__grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.version-history-btn {
+			bottom: 1rem;
+			right: 1rem;
+			padding: 0.5rem 1rem;
+			font-size: 0.8rem;
+		}
 	}
 
+
+
+	/* Version History Button */
+	.version-history-btn {
+		position: fixed;
+		bottom: 2rem;
+		right: 2rem;
+		background: var(--color-primary);
+		color: white;
+		border: none;
+		border-radius: var(--radius-md);
+		padding: 0.75rem 1.25rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		font-size: 0.9rem;
+		cursor: pointer;
+		box-shadow: var(--shadow-md);
+		z-index: 999;
+		transition: background 0.2s, transform 0.2s;
+	}
+
+	.version-history-btn:hover {
+		background: var(--color-primary-hover);
+		transform: translateY(-2px);
+	}
+
+	.version-history-btn:focus {
+		outline: none;
+	}
+
+	.version-history-btn .lucide-clock {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	/* Portal Button Styles */
+	.portal-btn {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		border-radius: 50px;
+		padding: 0.75rem 1.5rem;
+		gap: 0.75rem;
+		box-shadow: 
+			0 8px 32px rgba(102, 126, 234, 0.3),
+			0 0 0 1px rgba(255, 255, 255, 0.1);
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+	}
+
+	.portal-btn:hover {
+		background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+		transform: translateY(-3px) scale(1.05);
+		box-shadow: 
+			0 12px 40px rgba(102, 126, 234, 0.4),
+			0 0 0 1px rgba(255, 255, 255, 0.2);
+	}
+
+	.portal-icon {
+		position: relative;
+		animation: portal-pulse 2s ease-in-out infinite;
+	}
+
+	.portal-icon::before,
+	.portal-icon::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border: 2px solid rgba(255, 255, 255, 0.3);
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		animation: portal-rings 3s ease-in-out infinite;
+	}
+
+	.portal-icon::before {
+		width: 2.5rem;
+		height: 2.5rem;
+		animation-delay: 0s;
+	}
+
+	.portal-icon::after {
+		width: 3.5rem;
+		height: 3.5rem;
+		animation-delay: 0.5s;
+	}
+
+	.portal-icon svg {
+		width: 1.5rem;
+		height: 1.5rem;
+		filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+		position: relative;
+		z-index: 2;
+	}
+
+	@keyframes portal-pulse {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.1); }
+	}
+
+	@keyframes portal-rings {
+		0%, 100% { 
+			opacity: 0.3;
+			transform: translate(-50%, -50%) scale(0.8);
+		}
+		50% { 
+			opacity: 0.8;
+			transform: translate(-50%, -50%) scale(1.2);
+		}
+	}
 
 </style>
 
