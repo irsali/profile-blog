@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock } from 'lucide-svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock, CircleDot } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
 	import VersionModal from '$lib/components/VersionModal.svelte';
@@ -405,8 +405,11 @@
 />
 
 <!-- Version History Button -->
-<button class="version-history-btn" on:click={toggleVersionModal} aria-label="View version history">
-	<Clock />
+<button class="version-history-btn portal-btn" on:click={toggleVersionModal} aria-label="View version history">
+	<div class="portal-icon">
+		<CircleDot />
+	</div>
+	<!-- <span>Time Portal</span> -->
 </button>
 
 <style>
@@ -1225,6 +1228,80 @@
 	.version-history-btn .lucide-clock {
 		width: 1.25rem;
 		height: 1.25rem;
+	}
+
+	/* Portal Button Styles */
+	.portal-btn {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		border-radius: 50px;
+		padding: 0.75rem 1.5rem;
+		gap: 0.75rem;
+		box-shadow: 
+			0 8px 32px rgba(102, 126, 234, 0.3),
+			0 0 0 1px rgba(255, 255, 255, 0.1);
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+	}
+
+	.portal-btn:hover {
+		background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+		transform: translateY(-3px) scale(1.05);
+		box-shadow: 
+			0 12px 40px rgba(102, 126, 234, 0.4),
+			0 0 0 1px rgba(255, 255, 255, 0.2);
+	}
+
+	.portal-icon {
+		position: relative;
+		animation: portal-pulse 2s ease-in-out infinite;
+	}
+
+	.portal-icon::before,
+	.portal-icon::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		border: 2px solid rgba(255, 255, 255, 0.3);
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		animation: portal-rings 3s ease-in-out infinite;
+	}
+
+	.portal-icon::before {
+		width: 2.5rem;
+		height: 2.5rem;
+		animation-delay: 0s;
+	}
+
+	.portal-icon::after {
+		width: 3.5rem;
+		height: 3.5rem;
+		animation-delay: 0.5s;
+	}
+
+	.portal-icon svg {
+		width: 1.5rem;
+		height: 1.5rem;
+		filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+		position: relative;
+		z-index: 2;
+	}
+
+	@keyframes portal-pulse {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.1); }
+	}
+
+	@keyframes portal-rings {
+		0%, 100% { 
+			opacity: 0.3;
+			transform: translate(-50%, -50%) scale(0.8);
+		}
+		50% { 
+			opacity: 0.8;
+			transform: translate(-50%, -50%) scale(1.2);
+		}
 	}
 
 </style>

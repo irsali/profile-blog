@@ -62,11 +62,13 @@
 				<div class="version-content">
 					<div class="perspective-wrapper">
 						<h2 class="perspective-text">
-							Looking for a different <br /> site? Go back in time...
+							Looking for a previous 
+							<br /> version of the site? 
+							<br /> Go back in time...
 						</h2>
 						<div class="version-preview">
 							<div>
-								<a href="https://irsali.github.io/">
+								<a href="https://irsali.github.io/" target="_blank">
 									<img src="/static/profile/portfolio.jpg" alt="Portfolio Preview" />
 								</a>
 							</div>
