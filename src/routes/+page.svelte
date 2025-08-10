@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock, CircleDot } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
@@ -57,9 +57,29 @@
 		}
 	}
 
+	/**
+	 * Close the version modal
+	 */
+	function closeVersionModal() {
+		showVersionModal = false;
+		document.body.style.overflow = '';
+	}
+
+	/**
+	 * Handle keyboard events
+	 */
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && showVersionModal) {
+			closeVersionModal();
+		}
+	}
+
 
 
 	onMount(() => {
+		// Add keyboard event listener for ESC key
+		document.addEventListener('keydown', handleKeydown);
+
 		// Add smooth scrolling for anchor links
 		const links = document.querySelectorAll('a[href^="#"]');
 		links.forEach(link => {
@@ -103,6 +123,11 @@
 		// Start typing animation for hero title
 		startTypingAnimation();
 		
+	});
+
+	onDestroy(() => {
+		// Remove keyboard event listener
+		document.removeEventListener('keydown', handleKeydown);
 	});
 
 	/**
