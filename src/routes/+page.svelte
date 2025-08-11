@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock, CircleDot } from 'lucide-svelte';
+	import { onMount, onDestroy } from 'svelte';
+	import { Mail, ExternalLink, Code, Database, Cloud, Globe, Users, Award, Calendar, MapPin, Star, Zap, Shield, Sun, Moon, Linkedin, Server, Monitor, Bot, Brain, GitBranch, Bug, Settings, BarChart3, Clock, CircleDot, Menu, X } from 'lucide-svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 	import Preloader from '$lib/components/Preloader.svelte';
 	import VersionModal from '$lib/components/VersionModal.svelte';
@@ -9,6 +9,7 @@
 	import 'animate.css';
 
 	let showVersionModal = false;
+	let showMobileMenu = false;
 
 	// Version history data
 	const versionHistory = [
@@ -50,65 +51,116 @@
 	 */
 	function toggleVersionModal() {
 		showVersionModal = !showVersionModal;
-		if (showVersionModal) {
-			document.body.style.overflow = 'hidden';
-		} else {
+		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+			if (showVersionModal) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = '';
+			}
+		}
+	}
+
+	/**
+	 * Close the version modal
+	 */
+	function closeVersionModal() {
+		showVersionModal = false;
+		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 			document.body.style.overflow = '';
+		}
+	}
+
+	/**
+	 * Handle keyboard events
+	 */
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && showVersionModal) {
+			closeVersionModal();
+		}
+		if (event.key === 'Escape' && showMobileMenu) {
+			toggleMobileMenu();
+		}
+	}
+
+	/**
+	 * Toggle mobile menu
+	 */
+	function toggleMobileMenu() {
+		showMobileMenu = !showMobileMenu;
+		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+			if (showMobileMenu) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = '';
+			}
 		}
 	}
 
 
 
 	onMount(() => {
-		// Add smooth scrolling for anchor links
-		const links = document.querySelectorAll('a[href^="#"]');
-		links.forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const target = document.querySelector(link.getAttribute('href') || '');
-				if (target) {
-					target.scrollIntoView({ behavior: 'smooth' });
-				}
+		// Add keyboard event listener for ESC key
+		if (typeof document !== 'undefined') {
+			document.addEventListener('keydown', handleKeydown);
+
+			// Add smooth scrolling for anchor links
+			const links = document.querySelectorAll('a[href^="#"]');
+			links.forEach(link => {
+				link.addEventListener('click', (e) => {
+					e.preventDefault();
+					const target = document.querySelector(link.getAttribute('href') || '');
+					if (target) {
+						target.scrollIntoView({ behavior: 'smooth' });
+					}
+				});
 			});
-		});
 
-		// Setup Intersection Observer for animations
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const element = entry.target as HTMLElement;
-					const animationType = element.dataset.animate;
-					
-					requestAnimationFrame(() => {
-						// Add animation classes
-						element.classList.add('animate__animated');
-						if (animationType) {
-							element.classList.add(`animate__${animationType}`);
-						}
-					});
-					
-					// Stop observing after animation is triggered
-					observer.unobserve(element);
-				}
+			// Setup Intersection Observer for animations
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const element = entry.target as HTMLElement;
+						const animationType = element.dataset.animate;
+						
+						requestAnimationFrame(() => {
+							// Add animation classes
+							element.classList.add('animate__animated');
+							if (animationType) {
+								element.classList.add(`animate__${animationType}`);
+							}
+						});
+						
+						// Stop observing after animation is triggered
+						observer.unobserve(element);
+					}
+				});
+			}, {
+				threshold: 0.1,
+				rootMargin: '-50px 0px'
 			});
-		}, {
-			threshold: 0.1,
-			rootMargin: '-50px 0px'
-		});
 
-		// Observe all elements with data-animate attribute
-		const animatedElements = document.querySelectorAll('[data-animate]');
-		animatedElements.forEach(element => observer.observe(element));
+			// Observe all elements with data-animate attribute
+			const animatedElements = document.querySelectorAll('[data-animate]');
+			animatedElements.forEach(element => observer.observe(element));
 
-		// Start typing animation for hero title
-		startTypingAnimation();
-		
+			// Start typing animation for hero title
+			startTypingAnimation();
+		}
+	});
+
+	onDestroy(() => {
+		// Remove keyboard event listener
+		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+			document.removeEventListener('keydown', handleKeydown);
+		}
 	});
 
 	/**
 	 * Creates a typing effect for the hero description
 	 */
 	function startTypingAnimation() {
+		if (typeof window === 'undefined' || typeof document === 'undefined') return;
+		
 		const descriptionElement = document.querySelector('.hero__description') as HTMLElement;
 		
 		if (!descriptionElement) return;
@@ -183,8 +235,36 @@
 				{/if}
 			</button>
 		</nav>
+		<button class="mobile-menu-toggle" on:click={toggleMobileMenu} aria-label="Toggle mobile menu">
+			{#if showMobileMenu}
+				<X class="mobile-menu-toggle__icon" />
+			{:else}
+				<Menu class="mobile-menu-toggle__icon" />
+			{/if}
+		</button>
 	</div>
 </header>
+
+<!-- Mobile Menu -->
+{#if showMobileMenu}
+	<div class="mobile-menu-overlay" on:click={toggleMobileMenu}>
+		<nav class="mobile-menu" on:click|stopPropagation>
+			<a href="#about" class="mobile-nav-link" on:click={toggleMobileMenu}>About</a>
+			<a href="#experience" class="mobile-nav-link" on:click={toggleMobileMenu}>Experience</a>
+			<a href="#projects" class="mobile-nav-link" on:click={toggleMobileMenu}>Projects</a>
+			<a href="#skills" class="mobile-nav-link" on:click={toggleMobileMenu}>Skills</a>
+			<a href={profile.blog} class="mobile-nav-link" on:click={toggleMobileMenu}>Blog</a>
+			<button class="mobile-theme-toggle" on:click={toggleTheme} aria-label="Toggle theme">
+				{#if $theme === 'dark'}
+					<Sun class="mobile-theme-toggle__icon" />
+				{:else}
+					<Moon class="mobile-theme-toggle__icon" />
+				{/if}
+				<span>Toggle Theme</span>
+			</button>
+		</nav>
+	</div>
+{/if}
 
 <!-- Hero Section -->
 <section class="hero section">
@@ -453,6 +533,26 @@
 		gap: 2rem;
 	}
 
+	.mobile-menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		color: var(--color-text);
+		cursor: pointer;
+		padding: 0.5rem;
+		border-radius: var(--radius-md);
+		transition: var(--theme-transition);
+	}
+
+	.mobile-menu-toggle:hover {
+		background: var(--color-bg-alt);
+	}
+
+	.mobile-menu-toggle__icon {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
 	.nav-link {
 		color: var(--color-text);
 		text-decoration: none;
@@ -478,6 +578,91 @@
 
 	.nav-link:hover::after {
 		width: 100%;
+	}
+
+	/* Mobile Menu Styles */
+	.mobile-menu-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: rgba(0, 0, 0, 0.8);
+		backdrop-filter: blur(10px);
+		z-index: 1000;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		animation: fadeIn 0.3s ease-out;
+	}
+
+	.mobile-menu {
+		background: var(--color-bg);
+		border-radius: var(--radius-lg);
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		min-width: 250px;
+		box-shadow: var(--shadow-lg);
+		border: 1px solid var(--color-border);
+		animation: slideIn 0.3s ease-out;
+	}
+
+	.mobile-nav-link {
+		color: var(--color-text);
+		text-decoration: none;
+		font-weight: 500;
+		padding: 1rem;
+		border-radius: var(--radius-md);
+		transition: var(--theme-transition);
+		text-align: center;
+	}
+
+	.mobile-nav-link:hover {
+		background: var(--color-bg-alt);
+		color: var(--color-primary);
+	}
+
+	.mobile-theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
+		padding: 1rem;
+		border-radius: var(--radius-md);
+		cursor: pointer;
+		transition: var(--theme-transition);
+		margin-top: 1rem;
+	}
+
+	.mobile-theme-toggle:hover {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	.mobile-theme-toggle__icon {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+	@keyframes slideIn {
+		from { 
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to { 
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	/* Hero Section */
@@ -1117,6 +1302,10 @@
 
 		.header__nav {
 			display: none;
+		}
+
+		.mobile-menu-toggle {
+			display: block;
 		}
 	}
 
