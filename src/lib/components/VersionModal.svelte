@@ -47,7 +47,6 @@
 
 			<!-- Main Orb Body -->
 			<div class="version-modal__orb">
-				
 				<!-- Rotating orb elements based on reference CSS -->
 				<div class="orb-elements">
 					<div class="orb-element" style="--x: -53%; --y: -53%; --t: 37;"></div>
@@ -58,13 +57,13 @@
 				</div>
 
 				<!-- White center of the orb -->
-				<div class="orb-center" style="--x: -55%; --y: -45%; --t: 62;"></div>
+				<div class="orb-center"></div>
 				<div class="version-content">
 					<div class="perspective-wrapper">
 						<h2 class="perspective-text">
-							Looking for a previous 
-							<br /> version of the site? 
-							<br /> Go back in time...
+							Looking for a previous<br />
+							version of the site?<br />
+							Go back in time...
 						</h2>
 						<div class="version-preview">
 							<div>
@@ -162,8 +161,8 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 400px;
-		height: 400px;
+		width: 380px;
+		height: 380px;
 		border-radius: 50%;
 		background: radial-gradient(
 			circle,
@@ -220,7 +219,7 @@
 		z-index: 5;
 		padding: 2rem;
 		border-radius: 50%;
-		overflow: hidden;
+		overflow: visible;
 	}
 
 	.perspective-wrapper {
@@ -243,8 +242,13 @@
 		transform: rotateX(12deg) translateZ(20px);
 		transform-origin: center bottom;
 		text-align: center;
-		line-height: 1.3;
+		line-height: 1.4;
 		backface-visibility: hidden;
+		padding: 0 1.5rem;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		max-width: 100%;
+		white-space: normal;
 	}
 
 	.version-preview {
@@ -253,6 +257,12 @@
 		transform-origin: 50% 100%;
 		width: 100%;
 		max-width: 320px;
+		/* Merged flex properties from duplicate rule */
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 1rem;
+		align-items: center;
 	}
 
 	.version-preview > div {
@@ -287,14 +297,7 @@
 		text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 	}
 
-	/* Version previews container */
-	.version-preview {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		gap: 1rem;
-		align-items: center;
-	}
+	/* Version previews container styles merged with existing .version-preview */
 
 	.version-preview a {
 		display: block;
@@ -342,16 +345,18 @@
 			height: 350px;
 		}
 		.orb-center {
-			width: 150px;
-			height: 150px;
+			width: 270px;
+			height: 270px;
 		}
 		.perspective-wrapper {
 			max-width: 320px;
 			gap: 2rem;
 		}
 		.perspective-text {
-			font-size: 1.25rem;
-			transform: rotateX(8deg) translateZ(15px);
+			font-size: 1.1rem;
+			transform: rotateX(6deg) translateZ(12px);
+			line-height: 1.4;
+			padding: 0 1.25rem;
 		}
 		.version-preview > div {
 			transform: rotateX(10deg) rotateY(-5deg) translateZ(10px);
@@ -366,8 +371,8 @@
 		}
 
 		.orb-element {
-			width: 25em;
-			height: 25em;
+			width: 4em;
+			height: 4em;
 		}
 	}
 
@@ -390,18 +395,20 @@
 		}
 
 		.orb-center {
-			width: 120px;
-			height: 120px;
+			width: 210px;
+			height: 210px;
 		}
 
 		.perspective-wrapper {
-			max-width: 260px;
-			gap: 1.5rem;
+			max-width: 300px;
+			gap: 1.75rem;
 		}
 
 		.perspective-text {
-			font-size: 1rem;
-			transform: rotateX(5deg) translateZ(10px);
+			font-size: 0.95rem;
+			transform: rotateX(3deg) translateZ(8px);
+			line-height: 1.4;
+			padding: 0 1rem;
 		}
 
 		.version-preview > div {
@@ -421,8 +428,8 @@
 		}
 
 		.orb-element {
-			width: 20em;
-			height: 20em;
+			width: 3.5em;
+			height: 3.5em;
 		}
 	}
 
@@ -439,18 +446,20 @@
 			height: 250px;
 		}
 		.orb-center {
-			width: 100px;
-			height: 100px;
+			width: 190px;
+			height: 190px;
 		}
 
 		.perspective-wrapper {
-			max-width: 200px;
-			gap: 0.75rem;
+			max-width: 280px;
+			gap: 1.25rem;
 		}
 
 		.perspective-text {
-			font-size: 0.9rem;
-			transform: none;
+			font-size: 0.85rem;
+			transform: rotateX(1deg) translateZ(2px);
+			line-height: 1.5;
+			padding: 0 0.75rem;
 		}
 
 		.version-preview > div {
@@ -462,8 +471,21 @@
 		}
 
 		.orb-element {
-			width: 18em;
-			height: 18em;
+			width: 3em;
+			height: 3em;
+		}
+
+		@media (max-width: 340px) {
+			.orb-center {
+				width: 120px;
+				height: 120px;
+			}
+		}
+		@media (max-width: 300px) {
+			.orb-center {
+				width: 150px;
+				height: 150px;
+			}
 		}
 	}
 </style>
