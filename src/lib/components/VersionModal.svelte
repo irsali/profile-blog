@@ -239,7 +239,7 @@
 		font-weight: 600;
 		color: white;
 		text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-		transform: rotateX(12deg) translateZ(20px);
+		transform: rotateX(12deg) translateZ(20px) translateY(8px);
 		transform-origin: center bottom;
 		text-align: center;
 		line-height: 1.4;
@@ -353,8 +353,8 @@
 			gap: 2rem;
 		}
 		.perspective-text {
-			font-size: 1.1rem;
-			transform: rotateX(6deg) translateZ(12px);
+			font-size: 1rem;
+			transform: rotateX(6deg) translateZ(12px) translateY(6px);
 			line-height: 1.4;
 			padding: 0 1.25rem;
 		}
@@ -405,8 +405,8 @@
 		}
 
 		.perspective-text {
-			font-size: 0.95rem;
-			transform: rotateX(3deg) translateZ(8px);
+			font-size: 0.85rem;
+			transform: rotateX(3deg) translateZ(8px) translateY(5px);
 			line-height: 1.4;
 			padding: 0 1rem;
 		}
@@ -456,8 +456,8 @@
 		}
 
 		.perspective-text {
-			font-size: 0.85rem;
-			transform: rotateX(1deg) translateZ(2px);
+			font-size: 0.75rem;
+			transform: rotateX(1deg) translateZ(2px) translateY(4px);
 			line-height: 1.5;
 			padding: 0 0.75rem;
 		}
